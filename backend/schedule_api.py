@@ -261,12 +261,16 @@ async def seed_default_schedules(admin = Depends(get_current_admin)):
             }
         ]
         
-        await db.schedules.insert_many(default_schedules)
+        result = await db.schedules.insert_many(default_schedules)
         
         logger.info(f"✅ Seeded {len(default_schedules)} default schedules")
         
         # Broadcast update
         await broadcast_schedule_update()
+        
+        # Return without _id
+        for schedule in default_schedules:
+            schedule.pop('_id', None)
         
         return {
             "success": True,
