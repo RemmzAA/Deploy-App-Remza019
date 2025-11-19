@@ -27,6 +27,13 @@ class CustomizationData(BaseModel):
     instagramLink: Optional[str] = ""
     twitchLink: Optional[str] = ""
     tiktokLink: Optional[str] = ""
+    # New customizable text fields
+    aboutSectionTitle: Optional[str] = "About REMZA019 Gaming"
+    pwaInstallTitle: Optional[str] = "📱 Install REMZA019 Gaming App"
+    adminPanelTitle: Optional[str] = "🎮 REMZA019 Admin Panel"
+    copyrightText: Optional[str] = "© 2025 REMZA019 Gaming. All rights reserved."
+    tagline: Optional[str] = "🎮 Professional Gaming Content Creator"
+    enablePWAInstall: Optional[bool] = True
 
 def get_database():
     """Get database instance"""
