@@ -905,6 +905,9 @@ const GamingDemo = () => {
           </div>
         </motion.section>
 
+        {/* Stream Schedule Widget */}
+        <ScheduleWidget />
+
         {/* Leaderboard Section */}
         <Leaderboard />
 
