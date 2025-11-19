@@ -1,0 +1,72 @@
+{
+  "short_name": "REMZA019",
+  "name": "REMZA019 Gaming - Professional Gaming Content Creator",
+  "description": "Professional gaming content creator specializing in FORTNITE Battle Royale, Rocket Racing, and Call of Duty. Live streaming and gaming community hub.",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#00ff00",
+  "background_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment", "lifestyle"],
+  "lang": "en",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Live Stream",
+      "short_name": "Live",
+      "description": "Check if REMZA019 is currently live streaming",
+      "url": "/#live",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Latest Videos",
+      "short_name": "Videos",
+      "description": "Watch latest gaming videos",
+      "url": "/#videos",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Subscribe",
+      "short_name": "Notify",
+      "description": "Subscribe to notifications",
+      "url": "/#subscribe",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
