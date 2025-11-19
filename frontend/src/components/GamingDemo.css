@@ -457,7 +457,7 @@ button, .btn, .matrix-button {
 .pwa-install-button-bottom {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   border: none;
-  color: #ffffff;
+  color: var(--theme-text, var(--text-color, #ffffff));
   padding: 1.5rem 4rem;
   border-radius: 35px;
   font-size: 1.5rem;
@@ -1110,7 +1110,7 @@ button, .btn, .matrix-button {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: var(--theme-text, var(--text-color, #ffffff));
 }
 
 .stream-game {
@@ -1166,7 +1166,7 @@ button, .btn, .matrix-button {
 .schedule-time {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--theme-text, var(--text-color, #ffffff));
   margin-bottom: 0.5rem;
 }
 
