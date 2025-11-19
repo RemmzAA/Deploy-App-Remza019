@@ -30,7 +30,11 @@ const GamingDemo = () => {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [aboutContent, setAboutContent] = useState("Loading...");
-  const [currentUser, setCurrentUser] = useState(null); // For polls/predictions
+  const [currentUser, setCurrentUser] = useState(() => {
+    // Load user from localStorage
+    const saved = localStorage.getItem('viewer_user');
+    return saved ? JSON.parse(saved) : null;
+  }); // For polls/predictions and points system
   const [featuredVideo, setFeaturedVideo] = useState(null); // Featured video
   const [aboutTags, setAboutTags] = useState([]); // Load from backend, no hardcoded default!
   
