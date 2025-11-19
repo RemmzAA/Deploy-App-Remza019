@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 import './AdminLogin.css';
 
 const AdminLogin = ({ onLogin }) => {
   const { t } = useLanguage();
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -19,33 +23,20 @@ const AdminLogin = ({ onLogin }) => {
 
     try {
       console.log('🔐 Attempting admin login...');
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/auth/login`, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
+      const result = await login(credentials.username, credentials.password);
 
-      console.log('📡 Login response status:', response.status);
-      const data = await response.json();
-      console.log('📦 Login response data:', data);
-
-      if (data.success && data.token) {
-        console.log('✅ Login successful! Storing token...');
-        // Store token in localStorage
-        localStorage.setItem('admin_token', data.token);
-        localStorage.setItem('admin_id', data.admin_id);
+      if (result.success) {
+        console.log('✅ Login successful!');
         
-        console.log('🎯 Calling onLogin callback...');
-        // Call parent callback
-        onLogin(data.token, data.admin_id);
+        // Call parent callback if provided (for backwards compatibility)
+        if (onLogin) {
+          onLogin(result.token, result.admin_id);
+        }
+        
         console.log('✅ Admin authentication complete!');
       } else {
-        console.error('❌ Login failed:', data.message);
-        setError(data.message || 'Login failed');
+        console.error('❌ Login failed:', result.message);
+        setError(result.message || 'Login failed');
       }
     } catch (error) {
       console.error('❌ Login error:', error);
