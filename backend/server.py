@@ -148,6 +148,9 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.include_router(admin_router)
 app.include_router(customization_router, prefix="/api")
 app.include_router(schedule_router, prefix="/api")
+app.include_router(multistreamer_router)
+app.include_router(obs_router)
+app.include_router(streamlabs_router)
 
 # Include notifications router
 app.include_router(notifications_router)
