@@ -1368,19 +1368,10 @@ async def get_search_suggestions():
 app.include_router(api_router)
 
 # Build frontend and serve React app (after all API routes)
+# Note: Frontend is served separately by supervisor, not by backend
 frontend_build_path = Path(__file__).parent.parent / "frontend" / "build"
-if not frontend_build_path.exists():
-    logger.info("🏗️ Frontend build not found. Building React app...")
-    import subprocess
-    try:
-        os.chdir(Path(__file__).parent.parent / "frontend")
-        subprocess.run(["yarn", "install"], check=True)
-        subprocess.run(["yarn", "build"], check=True)
-        logger.info("✅ Frontend built successfully")
-    except Exception as e:
-        logger.error(f"❌ Frontend build failed: {e}")
 
-# Serve React build as static files (AFTER all API routes are registered)
+# Serve React build as static files (AFTER all API routes are registered) - DISABLED in this setup
 if frontend_build_path.exists():
     # Mount static files
     app.mount("/static", StaticFiles(directory=str(frontend_build_path / "static")), name="static")
