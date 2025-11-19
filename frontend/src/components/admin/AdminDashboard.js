@@ -1705,6 +1705,11 @@ const AdminDashboard = ({ token, onLogout }) => {
           <AdminViewerSystem />
         )}
 
+        {/* SCHEDULE TAB - New! */}
+        {activeTab === 'schedule' && (
+          <AdminSchedulePanel />
+        )}
+
       </motion.main>
 
       {error && (
