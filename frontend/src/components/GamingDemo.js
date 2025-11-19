@@ -984,7 +984,7 @@ const GamingDemo = () => {
       {/* Footer */}
       <footer className="demo-footer">
         <p>
-          © 2025 REMZA019 Gaming. All rights reserved.
+          {customization.copyrightText || '© 2025. All rights reserved.'}
         </p>
       </footer>
 
