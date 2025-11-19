@@ -68,10 +68,11 @@
   min-width: 120px;
   padding: 1rem;
   background: var(--theme-primary, #00ff00);
-  color: #000;
+  color: var(--theme-background, #000);
   border-radius: 10px;
   text-align: center;
   font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .day-label {
