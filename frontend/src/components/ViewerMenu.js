@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
+import { UserCookies } from '../utils/cookieManager';
 import './ViewerMenu.css';
 
 const ViewerMenu = () => {
