@@ -14,15 +14,15 @@
   z-index: 0;
 }
 
-/* Gaming Demo Main Container - BLACK BACKGROUND */
+/* Gaming Demo Main Container - Uses Theme Background Color */
 .gaming-demo {
   min-height: 100vh;
-  background: #000000 !important;  /* SOLID BLACK */
+  background: var(--theme-background, var(--bg-color, #000000)) !important;
   background-image: none !important;  /* NO GRID LINES */
   background-pattern: none !important;  /* NO PATTERNS */
   position: relative;
   overflow-x: hidden;
-  color: var(--text-color);  /* APPLY CUSTOM TEXT COLOR */
+  color: var(--text-color, var(--theme-text, #00ff00));  /* APPLY CUSTOM TEXT COLOR */
 }
 
 /* Apply custom text color to all text elements */
