@@ -1,0 +1,97 @@
+/* Social Links Footer */
+.social-links-footer {
+  padding: 3rem 0;
+  text-align: center;
+  background: var(--theme-card-bg, rgba(0, 255, 0, 0.05));
+  border-top: 1px solid var(--theme-border, rgba(0, 255, 0, 0.2));
+  margin-top: 3rem;
+}
+
+.social-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--theme-text, var(--text-color, #00ff00));
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--theme-primary, #00ff00);
+}
+
+.social-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.social-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--theme-card-bg, rgba(0, 0, 0, 0.6));
+  border: 2px solid var(--social-color, var(--theme-border, rgba(0, 255, 0, 0.3)));
+  border-radius: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.social-button:hover {
+  background: var(--social-color, var(--theme-primary, #00ff00));
+  border-color: var(--social-color, var(--theme-primary, #00ff00));
+  box-shadow: 0 0 20px var(--social-color, var(--theme-primary, #00ff00));
+  transform: translateY(-5px);
+}
+
+.social-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px var(--social-color, var(--theme-primary, #00ff00)));
+}
+
+.social-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--theme-text, var(--text-color, #ffffff));
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-button:hover .social-label {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .social-title {
+    font-size: 1.5rem;
+  }
+
+  .social-button {
+    padding: 1rem 0.5rem;
+  }
+
+  .social-icon {
+    font-size: 2rem;
+  }
+
+  .social-label {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+}
