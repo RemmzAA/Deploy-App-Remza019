@@ -1,0 +1,262 @@
+/* Admin Site Settings */
+.admin-site-settings {
+  padding: 2rem;
+  color: #00ff00;
+}
+
+.admin-site-settings.loading {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+}
+
+.admin-site-settings h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+/* Message */
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.message.success {
+  background: rgba(0, 255, 0, 0.2);
+  border: 2px solid #00ff00;
+  color: #00ff00;
+}
+
+.message.error {
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid #ff0000;
+  color: #ff6666;
+}
+
+/* Setting Section */
+.setting-section {
+  background: rgba(0, 255, 0, 0.05);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.setting-section.highlight {
+  background: rgba(0, 255, 0, 0.1);
+  border: 3px solid #00ff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.setting-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #00ff00;
+  font-size: 1.5rem;
+}
+
+.setting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.setting-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0 0;
+  line-height: 1.5;
+}
+
+.setting-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.setting-info.success {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.5);
+  color: #00ff00;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 0.4s;
+  border-radius: 34px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #00ff00;
+  border-color: #00ff00;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #00ff00;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.save-btn {
+  padding: 0.75rem 2rem;
+  background: #00ff00;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.save-btn:hover {
+  background: #00cc00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Info Section */
+.info-section {
+  background: rgba(0, 150, 255, 0.05);
+  border-color: rgba(0, 150, 255, 0.3);
+}
+
+.info-section h3 {
+  color: #0096ff;
+}
+
+.distribution-steps {
+  margin: 1.5rem 0;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #0096ff;
+  color: #000;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.step h4 {
+  margin: 0 0 0.25rem 0;
+  color: #0096ff;
+  font-size: 1.1rem;
+}
+
+.step p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.note code {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  color: #0096ff;
+  font-family: 'Courier New', monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .setting-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggle-switch {
+    align-self: flex-start;
+  }
+}
