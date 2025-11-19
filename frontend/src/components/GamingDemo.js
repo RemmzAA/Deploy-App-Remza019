@@ -982,6 +982,9 @@ const GamingDemo = () => {
         onClose={() => setShowDonationModal(false)} 
       />
 
+      {/* Social Links Footer */}
+      <SocialLinksFooter links={customization.communityLinks} />
+
       {/* Footer */}
       <footer className="demo-footer">
         <p>
