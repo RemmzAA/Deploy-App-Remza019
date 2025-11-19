@@ -17,6 +17,7 @@ import LicenseModal from './LicenseModal';
 import CustomizationModal from './CustomizationModal';
 import SocialLinks from './SocialLinks';
 import SocialLinksFooter from './SocialLinksFooter';
+import ScheduleWidget from './ScheduleWidget';
 import { getCustomization, updateCustomization, initializeLicense, isTrialExpired, getLicenseStatus, activateLicense } from '../utils/licenseManager';
 import './GamingDemo.css';
 
