@@ -2,14 +2,14 @@
 /* Import Rich Bold Italic Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Pirata+One&family=Metal+Mania&family=Nosifer&family=UnifrakturMaguntia:wght@400&family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
 
-/* Matrix Background - SOLID BLACK NO GRID */
+/* Matrix Background - Uses Theme Background Color */
 .matrix-background-demo {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #000000 !important;  /* SOLID BLACK */
+  background: var(--theme-background, var(--bg-color, #000000)) !important;
   background-image: none !important;  /* NO PATTERNS */
   z-index: 0;
 }
