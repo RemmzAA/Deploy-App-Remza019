@@ -173,6 +173,50 @@ async def register_viewer(registration: ViewerRegistration):
         logger.error(f"Viewer registration error: {e}")
         raise HTTPException(status_code=500, detail="Registration failed")
 
+@viewer_router.post("/verify")
+async def verify_email(email: str, code: str):
+    """Verify user email with verification code"""
+    try:
+        db = await get_database()
+        
+        # Find viewer by email and code
+        viewer = await db.viewers.find_one({
+            "email": email,
+            "verification_code": code
+        })
+        
+        if not viewer:
+            raise HTTPException(status_code=400, detail="Invalid verification code")
+        
+        # Check if code expired
+        if datetime.now() > viewer.get("verification_expires", datetime.now()):
+            raise HTTPException(status_code=400, detail="Verification code expired")
+        
+        # Verify email
+        await db.viewers.update_one(
+            {"email": email},
+            {
+                "$set": {
+                    "email_verified": True,
+                    "verification_code": None,
+                    "verification_expires": None
+                }
+            }
+        )
+        
+        logger.info(f"✅ Email verified: {email}")
+        
+        return {
+            "success": True,
+            "message": "Email verified successfully!"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Email verification error: {e}")
+        raise HTTPException(status_code=500, detail="Verification failed")
+
 @viewer_router.get("/profile/{user_id}")
 async def get_viewer_profile(user_id: str):
     """Get viewer profile with stats and progress"""
