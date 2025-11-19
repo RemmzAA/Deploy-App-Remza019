@@ -29,13 +29,7 @@ const GamingDemo = () => {
   const [aboutContent, setAboutContent] = useState("Loading...");
   const [currentUser, setCurrentUser] = useState(null); // For polls/predictions
   const [featuredVideo, setFeaturedVideo] = useState(null); // Featured video
-  const [aboutTags, setAboutTags] = useState([
-    { icon: "🏆", text: "Competitive Player" },
-    { icon: "🏎️", text: "Rocket Racing Specialist" },
-    { icon: "📺", text: "Content Creator" },
-    { icon: "🇷🇸", text: "Serbia (CET)" },
-    { icon: "💯", text: "Authentic Gameplay" }
-  ]);
+  const [aboutTags, setAboutTags] = useState([]); // Load from backend, no hardcoded default!
   
   // PWA Install State
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -51,8 +45,99 @@ const GamingDemo = () => {
     userName: 'REMZA019 Gaming',
     matrixColor: '#00ff00',
     textColor: '#00ff00',
-    logoUrl: '/remza-logo.png'
+    logoUrl: '/remza-logo.png',
+    enablePWAInstall: false  // Admin controls if users can install PWA
   });
+
+  // Apply Theme Dynamically to Entire Application
+  const applyTheme = (themeData) => {
+    console.log('🎨 Applying theme:', themeData);
+    
+    if (!themeData || !themeData.colors) {
+      console.warn('⚠️ No theme data provided');
+      return;
+    }
+    
+    const { colors, fonts, effects } = themeData;
+    
+    // Helper function to convert hex to RGB
+    const hexToRgb = (hex) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 255, 0';
+    };
+    
+    // Apply colors as CSS variables
+    if (colors) {
+      // Apply all theme-specific variables
+      Object.entries(colors).forEach(([key, value]) => {
+        const cssVarName = `--theme-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+        document.documentElement.style.setProperty(cssVarName, value);
+      });
+      
+      // CRITICAL: Override legacy variables with theme colors (these take priority!)
+      document.documentElement.style.setProperty('--matrix-color', colors.primary);
+      document.documentElement.style.setProperty('--text-color', colors.text);
+      document.documentElement.style.setProperty('--bg-color', colors.background);
+      document.documentElement.style.setProperty('--accent-color', colors.accent);
+      
+      // Set RGB version for rgba() usage
+      document.documentElement.style.setProperty('--theme-primary-rgb', hexToRgb(colors.primary));
+      document.documentElement.style.setProperty('--theme-text-rgb', hexToRgb(colors.text));
+      
+      console.log(`🎨 Theme CSS Variables Applied:`, {
+        '--matrix-color': colors.primary,
+        '--text-color': colors.text,
+        '--theme-primary': colors.primary,
+        '--theme-primary-rgb': hexToRgb(colors.primary),
+        '--theme-background': colors.background
+      });
+    }
+    
+    // Apply fonts
+    if (fonts) {
+      Object.entries(fonts).forEach(([key, value]) => {
+        const cssVarName = `--font-${key}`;
+        document.documentElement.style.setProperty(cssVarName, value);
+      });
+    }
+    
+    // Store theme in localStorage for persistence
+    localStorage.setItem('current_theme', JSON.stringify(themeData));
+    
+    // FORCE RE-RENDER: Add a small visual cue
+    document.body.setAttribute('data-theme', themeData.name.toLowerCase().replace(/ /g, '-'));
+    
+    console.log('✅ Theme applied successfully!');
+  };
+  
+  // Load Theme from Backend
+  const loadThemeFromBackend = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/themes/current`);
+      const result = await response.json();
+      
+      if (result.success && result.theme) {
+        console.log('✅ Theme loaded from backend:', result.theme);
+        applyTheme(result.theme);
+      } else {
+        console.log('ℹ️ No custom theme, using default');
+      }
+    } catch (error) {
+      console.error('❌ Failed to load theme from backend:', error);
+      
+      // Try to load from localStorage
+      const savedTheme = localStorage.getItem('current_theme');
+      if (savedTheme) {
+        try {
+          const themeData = JSON.parse(savedTheme);
+          console.log('✅ Theme loaded from localStorage:', themeData);
+          applyTheme(themeData);
+        } catch (e) {
+          console.error('❌ Failed to parse saved theme:', e);
+        }
+      }
+    }
+  };
 
   // Load Customization from Backend
   const loadCustomizationFromBackend = async () => {
@@ -64,11 +149,27 @@ const GamingDemo = () => {
         console.log('✅ Customization loaded from backend:', result.data);
         setCustomization(result.data);
         
-        // Apply colors
-        document.documentElement.style.setProperty('--matrix-color', result.data.matrixColor);
-        document.documentElement.style.setProperty('--text-color', result.data.textColor);
+        // Check if custom theme is active before applying customization colors
+        const savedTheme = localStorage.getItem('current_theme');
+        let hasCustomTheme = false;
         
-        // Also save to localStorage as cache
+        if (savedTheme) {
+          try {
+            const themeData = JSON.parse(savedTheme);
+            hasCustomTheme = themeData.name && !themeData.name.includes('Matrix Green');
+          } catch (e) {
+            // If parse fails, no custom theme
+            hasCustomTheme = false;
+          }
+        }
+        
+        // Only apply customization colors if NO custom theme is active
+        if (!hasCustomTheme) {
+          document.documentElement.style.setProperty('--matrix-color', result.data.matrixColor);
+          document.documentElement.style.setProperty('--text-color', result.data.textColor);
+        }
+        
+        // Always save to localStorage as cache (for other settings like logo, links)
         updateCustomization(result.data);
       }
     } catch (error) {
@@ -79,8 +180,23 @@ const GamingDemo = () => {
       setCustomization(savedCustomization);
       
       if (savedCustomization) {
-        document.documentElement.style.setProperty('--matrix-color', savedCustomization.matrixColor);
-        document.documentElement.style.setProperty('--text-color', savedCustomization.textColor);
+        // Check for custom theme here too
+        const savedTheme = localStorage.getItem('current_theme');
+        let hasCustomTheme = false;
+        
+        if (savedTheme) {
+          try {
+            const themeData = JSON.parse(savedTheme);
+            hasCustomTheme = themeData.name && !themeData.name.includes('Matrix Green');
+          } catch (e) {
+            hasCustomTheme = false;
+          }
+        }
+        
+        if (!hasCustomTheme) {
+          document.documentElement.style.setProperty('--matrix-color', savedCustomization.matrixColor);
+          document.documentElement.style.setProperty('--text-color', savedCustomization.textColor);
+        }
       }
     }
   };
@@ -90,8 +206,11 @@ const GamingDemo = () => {
     // Initialize license on first visit
     initializeLicense();
     
-    // Load customization from backend
-    loadCustomizationFromBackend();
+    // Load customization FIRST (for logo, social links, etc.)
+    loadCustomizationFromBackend().then(() => {
+      // THEN load theme (this will override customization colors if needed)
+      loadThemeFromBackend();
+    });
     
     // Check if trial expired
     const expired = isTrialExpired();
@@ -101,11 +220,31 @@ const GamingDemo = () => {
     }
   }, []);
   
-  // Apply customization colors dynamically
+  // Apply customization colors dynamically - ONLY if no custom theme is active
   useEffect(() => {
     if (customization) {
-      document.documentElement.style.setProperty('--matrix-color', customization.matrixColor);
-      document.documentElement.style.setProperty('--text-color', customization.textColor);
+      // Check if custom theme is active (not default Matrix Green)
+      const savedTheme = localStorage.getItem('current_theme');
+      let hasCustomTheme = false;
+      
+      if (savedTheme) {
+        try {
+          const themeData = JSON.parse(savedTheme);
+          // If theme is not default Matrix Green, don't override with customization
+          hasCustomTheme = themeData.name && !themeData.name.includes('Matrix Green');
+        } catch (e) {
+          console.error('Failed to parse saved theme:', e);
+        }
+      }
+      
+      // Only apply customization colors if NO custom theme is active
+      if (!hasCustomTheme) {
+        console.log('ℹ️ Applying customization colors (no custom theme active)');
+        document.documentElement.style.setProperty('--matrix-color', customization.matrixColor);
+        document.documentElement.style.setProperty('--text-color', customization.textColor);
+      } else {
+        console.log('ℹ️ Skipping customization colors (custom theme is active)');
+      }
     }
   }, [customization]);
 
@@ -208,8 +347,9 @@ const GamingDemo = () => {
       fetchAboutContent();
     }, 10000);
     
-    // Fetch About tags
+    // Fetch About tags and Recent Streams
     fetchAboutTags();
+    fetchRecentStreams();
     
     // Generate unique client ID for SSE connection
     const clientId = `gaming-demo-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -299,14 +439,53 @@ const GamingDemo = () => {
       }
     });
     
-    // Theme change listener
+    // Streams update listener
+    eventSource.addEventListener('streams_update', (event) => {
+      console.log('🎮 SSE EVENT: streams_update received!');
+      try {
+        const data = JSON.parse(event.data);
+        if (data.streams) {
+          setRecentStreams(data.streams);
+          console.log('✅ SSE UPDATE: Streams updated!', data.streams);
+        }
+      } catch (error) {
+        console.error('❌ SSE streams parse error:', error);
+      }
+    });
+    
+    // Theme change listener - DYNAMICALLY apply without reload!
     eventSource.addEventListener('theme_changed', (event) => {
       console.log('🎨 SSE EVENT: theme_changed received!');
       try {
         const data = JSON.parse(event.data);
-        console.log('✅ SSE UPDATE: Theme changed, reloading page...', data);
-        // Reload page to apply new theme
-        window.location.reload();
+        console.log('✅ SSE UPDATE: Applying new theme instantly!', data);
+        
+        // Apply theme immediately without page reload
+        if (data.theme) {
+          applyTheme(data.theme);
+          
+          // Show success notification
+          const notification = document.createElement('div');
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 255, 0, 0.9);
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+          `;
+          notification.textContent = '🎨 Theme Updated!';
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease-out';
+            setTimeout(() => notification.remove(), 300);
+          }, 2000);
+        }
       } catch (error) {
         console.error('❌ SSE theme parse error:', error);
       }
@@ -362,10 +541,25 @@ const GamingDemo = () => {
       const data = await response.json();
       if (data.tags && data.tags.length > 0) {
         setAboutTags(data.tags);
+        console.log('✅ Tags loaded from backend:', data.tags);
       }
     } catch (error) {
       console.error('Failed to fetch about tags:', error);
-      // Keep default tags on error
+    }
+  };
+  
+  const fetchRecentStreams = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/streams/recent`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
+      const data = await response.json();
+      if (data.streams && data.streams.length > 0) {
+        setRecentStreams(data.streams);
+        console.log('✅ Recent streams loaded from backend:', data.streams.length);
+      }
+    } catch (error) {
+      console.error('Failed to fetch recent streams:', error);
     }
   };
 
@@ -381,44 +575,8 @@ const GamingDemo = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const recentStreams = [
-    {
-      id: 1,
-      title: 'Competitive Racing - Road to Grand Champion',
-      game: 'FORTNITE ROCKET RACING',
-      duration: '2h 45m',
-      views: '3.2K',
-      thumbnail: 'https://img.youtube.com/vi/XnEtSLaI5Vo/hqdefault.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=XnEtSLaI5Vo'
-    },
-    {
-      id: 2,
-      title: 'Solo Victory Royales',
-      game: 'FORTNITE',
-      duration: '1h 58m',
-      views: '2.8K',
-      thumbnail: 'https://img.youtube.com/vi/GUhc9NBBxBM/hqdefault.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=GUhc9NBBxBM'
-    },
-    {
-      id: 3,
-      title: 'Fortnite Battle Royale Wins',
-      game: 'FORTNITE',
-      duration: '1h 32m',
-      views: '1.9K',
-      thumbnail: 'https://img.youtube.com/vi/GUhc9NBBxBM/hqdefault.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=GUhc9NBBxBM'
-    },
-    {
-      id: 4,
-      title: 'Fortnite Creative Mode',
-      game: 'FORTNITE',
-      duration: '2h 18m',
-      views: '2.1K',
-      thumbnail: 'https://img.youtube.com/vi/h1HGztOJgHo/hqdefault.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=h1HGztOJgHo'
-    }
-  ];
+  // Recent Streams - Load from backend dynamically
+  const [recentStreams, setRecentStreams] = useState([]);
 
   // Schedule state (fetched from backend)
   const [schedule, setSchedule] = useState([
@@ -549,7 +707,7 @@ const GamingDemo = () => {
               
               <div className="about-tags">
                 {aboutTags.map((tag, index) => (
-                  <span key={index} className="tag">
+                  <span key={`${tag.icon}-${tag.text}-${index}`} className="tag">
                     {tag.icon} {tag.text}
                   </span>
                 ))}
@@ -620,8 +778,8 @@ const GamingDemo = () => {
           <div className="schedule-grid">
             {schedule.map((slot, index) => (
               <motion.div 
-                key={slot.day}
-                className={`schedule-card matrix-card ${slot.day === 'SUN' ? 'rest-day' : ''}`}
+                key={slot.id || `${slot.day}-${index}`}
+                className={`schedule-card matrix-card ${slot.day === 'SUN' || slot.day === 'sunday' ? 'rest-day' : ''}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.8 + 0.05 * index }}
@@ -643,41 +801,51 @@ const GamingDemo = () => {
         >
           <h2>🎯 {t('joinTheCommunity')}</h2>
           <div className="community-links">
-            <motion.button 
-              className="matrix-button community-btn discord"
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open('https://discord.gg/remza019', '_blank')}
-            >
-              💬 {t('discordServer')}
-            </motion.button>
-            <motion.button 
-              className="matrix-button community-btn youtube"
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open('http://www.youtube.com/@remza019', '_blank')}
-            >
-              📺 {t('youtubeChannel')}
-            </motion.button>
-            <motion.button 
-              className="matrix-button community-btn youtube-follow"
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open('http://www.youtube.com/@remza019?sub_confirmation=1', '_blank')}
-            >
-              🔔 {t('followChannel')}
-            </motion.button>
-            <motion.button 
-              className="matrix-button community-btn twitch"
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open('https://www.twitch.tv/remza019', '_blank')}
-            >
-              🟣 {t('twitchChannel')}
-            </motion.button>
-            <motion.button 
-              className="matrix-button community-btn twitter"
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open('https://twitter.com/remza019', '_blank')}
-            >
-              🐦 {t('twitterX')}
-            </motion.button>
+            {customization.communityLinks?.discord && (
+              <motion.button 
+                className="matrix-button community-btn discord"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(customization.communityLinks.discord, '_blank')}
+              >
+                💬 {t('discordServer')}
+              </motion.button>
+            )}
+            {customization.communityLinks?.youtube && (
+              <motion.button 
+                className="matrix-button community-btn youtube"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(customization.communityLinks.youtube, '_blank')}
+              >
+                📺 {t('youtubeChannel')}
+              </motion.button>
+            )}
+            {customization.communityLinks?.youtube && (
+              <motion.button 
+                className="matrix-button community-btn youtube-follow"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(`${customization.communityLinks.youtube}?sub_confirmation=1`, '_blank')}
+              >
+                🔔 {t('followChannel')}
+              </motion.button>
+            )}
+            {customization.communityLinks?.twitch && (
+              <motion.button 
+                className="matrix-button community-btn twitch"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(customization.communityLinks.twitch, '_blank')}
+              >
+                🟣 {t('twitchChannel')}
+              </motion.button>
+            )}
+            {customization.communityLinks?.twitter && (
+              <motion.button 
+                className="matrix-button community-btn twitter"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.open(customization.communityLinks.twitter, '_blank')}
+              >
+                🐦 {t('twitterX')}
+              </motion.button>
+            )}
           </div>
         </motion.section>
 
@@ -726,33 +894,35 @@ const GamingDemo = () => {
           />
         </div>
 
-        {/* PWA Install Button - Bottom of Page - ALWAYS VISIBLE */}
-        <motion.section 
-          className="pwa-install-section"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="pwa-install-container">
-            <h3 className="pwa-install-title">📱 Install REMZA019 Gaming App</h3>
-            <p className="pwa-install-description">
-              Get the full experience! Install our Progressive Web App for instant access, offline support, and a native app feel.
-            </p>
-            <motion.button
-              className="pwa-install-button-bottom"
-              onClick={handlePWAInstallClick}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              📲 Install App
-            </motion.button>
-            <p className="pwa-install-note">
-              {showPWAButton 
-                ? "✅ Installation available! Click to install." 
-                : "ℹ️ Installation will be available when browser supports it."}
-            </p>
-          </div>
-        </motion.section>
+        {/* PWA Install Button - ONLY if Admin enables it */}
+        {customization.enablePWAInstall && (
+          <motion.section 
+            className="pwa-install-section"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="pwa-install-container">
+              <h3 className="pwa-install-title">📱 Install REMZA019 Gaming App</h3>
+              <p className="pwa-install-description">
+                Get the full experience! Install our Progressive Web App for instant access, offline support, and a native app feel.
+              </p>
+              <motion.button
+                className="pwa-install-button-bottom"
+                onClick={handlePWAInstallClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                📲 Install App
+              </motion.button>
+              <p className="pwa-install-note">
+                {showPWAButton 
+                  ? "✅ Installation available! Click to install." 
+                  : "ℹ️ Installation will be available when browser supports it."}
+              </p>
+            </div>
+          </motion.section>
+        )}
       </div>
       
       {/* Admin Panel Modal Overlay */}
