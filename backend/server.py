@@ -35,6 +35,7 @@ from websocket_manager import get_ws_manager
 # Import admin functionality
 from admin_api import admin_router, create_default_admin
 from customization_api import customization_router
+from schedule_api import schedule_router
 
 # Import License Validator (019Solutions Protection)
 # from license_validator import LicenseValidator  # DISABLED - module not available
