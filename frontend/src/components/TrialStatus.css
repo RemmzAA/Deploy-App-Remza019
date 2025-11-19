@@ -54,7 +54,7 @@
 }
 
 .trial-active .trial-text {
-  color: #10b981;
+  color: var(--matrix-color);
   text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
   font-size: 1.2rem;
 }
