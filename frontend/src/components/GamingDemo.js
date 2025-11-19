@@ -46,7 +46,20 @@ const GamingDemo = () => {
     matrixColor: '#00ff00',
     textColor: '#00ff00',
     logoUrl: '/remza-logo.png',
-    enablePWAInstall: false  // Admin controls if users can install PWA
+    enablePWAInstall: true,
+    aboutSectionTitle: 'About REMZA019 Gaming',
+    pwaInstallTitle: '📱 Install REMZA019 Gaming App',
+    adminPanelTitle: '🎮 REMZA019 Admin Panel',
+    copyrightText: '© 2025 REMZA019 Gaming. All rights reserved.',
+    tagline: '🎮 Professional Gaming Content Creator',
+    communityLinks: {
+      discord: '',
+      youtube: '',
+      twitch: '',
+      twitter: '',
+      instagram: '',
+      tiktok: ''
+    }
   });
 
   // Apply Theme Dynamically to Entire Application
