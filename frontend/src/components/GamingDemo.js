@@ -105,6 +105,14 @@ const GamingDemo = () => {
       document.documentElement.style.setProperty('--theme-primary-rgb', hexToRgb(colors.primary));
       document.documentElement.style.setProperty('--theme-text-rgb', hexToRgb(colors.text));
       
+      // Auto-contrast text on colored backgrounds
+      const getContrastText = (bgColor) => {
+        const rgb = hexToRgb(bgColor).split(',').map(n => parseInt(n.trim()));
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        return brightness > 128 ? '#000000' : '#ffffff';
+      };
+      document.documentElement.style.setProperty('--theme-contrast-text', getContrastText(colors.primary));
+      
       console.log(`🎨 Theme CSS Variables Applied:`, {
         '--matrix-color': colors.primary,
         '--text-color': colors.text,
