@@ -54,6 +54,7 @@ const GamingDemo = () => {
     adminPanelTitle: '🎮 REMZA019 Admin Panel',
     copyrightText: '© 2025 REMZA019 Gaming. All rights reserved.',
     tagline: '🎮 Professional Gaming Content Creator',
+    distributionMode: false,
     communityLinks: {
       discord: '',
       youtube: '',
