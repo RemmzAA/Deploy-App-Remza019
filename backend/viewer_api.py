@@ -115,6 +115,9 @@ async def register_viewer(registration: ViewerRegistration):
                 detail="Username or email already registered"
             )
         
+        # Generate verification code
+        verification_code = secrets.token_urlsafe(32)[:8].upper()
+        
         # Create new viewer account with CONSISTENT field naming
         viewer = {
             "user_id": str(uuid.uuid4()),  # PRIMARY KEY
@@ -126,10 +129,26 @@ async def register_viewer(registration: ViewerRegistration):
             "created_at": datetime.now(),
             "last_active": datetime.now(),
             "total_activities": 0,
-            "unlocked_features": ["chat"]
+            "unlocked_features": ["chat"],
+            "email_verified": False,
+            "verification_code": verification_code,
+            "verification_expires": datetime.now() + timedelta(hours=24)
         }
         
         await db.viewers.insert_one(viewer)
+        
+        # Send verification email
+        frontend_url = os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.emergentagent.com')
+        try:
+            await email_service.send_verification_email(
+                registration.email,
+                registration.username,
+                verification_code,
+                frontend_url
+            )
+            logger.info(f"📧 Verification email sent to {registration.email}")
+        except Exception as e:
+            logger.error(f"Failed to send verification email: {e}")
         
         # Award registration bonus
         await award_points(viewer["user_id"], "registration", 10, {"welcome_bonus": True})
@@ -144,8 +163,10 @@ async def register_viewer(registration: ViewerRegistration):
                 "username": viewer["username"],
                 "points": 10,  # Including registration bonus
                 "level": 1,
-                "unlocked_features": ["chat"]
-            }
+                "unlocked_features": ["chat"],
+                "email_verified": False
+            },
+            "message": "Please check your email to verify your account"
         }
         
     except Exception as e:
