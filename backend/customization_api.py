@@ -34,6 +34,7 @@ class CustomizationData(BaseModel):
     copyrightText: Optional[str] = "© 2025 REMZA019 Gaming. All rights reserved."
     tagline: Optional[str] = "🎮 Professional Gaming Content Creator"
     enablePWAInstall: Optional[bool] = True
+    distributionMode: Optional[bool] = False  # Hide admin button and dev features
 
 def get_database():
     """Get database instance"""
