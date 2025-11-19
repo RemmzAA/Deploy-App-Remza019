@@ -161,7 +161,21 @@ const GamingDemo = () => {
       
       if (result.success && result.data) {
         console.log('✅ Customization loaded from backend:', result.data);
-        setCustomization(result.data);
+        
+        // Transform social links to communityLinks format
+        const communityLinks = {
+          discord: result.data.discordLink || '',
+          youtube: result.data.youtubeLink || '',
+          twitch: result.data.twitchLink || '',
+          twitter: result.data.twitterLink || '',
+          instagram: result.data.instagramLink || '',
+          tiktok: result.data.tiktokLink || ''
+        };
+        
+        setCustomization({
+          ...result.data,
+          communityLinks
+        });
         
         // Check if custom theme is active before applying customization colors
         const savedTheme = localStorage.getItem('current_theme');
