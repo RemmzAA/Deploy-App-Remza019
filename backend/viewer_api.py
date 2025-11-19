@@ -374,6 +374,21 @@ async def award_points(user_id: str, activity: str, points: int, metadata: Dict 
         
         if level_up:
             result["level_up_message"] = f"Congratulations! You reached {LEVEL_SYSTEM[new_level]['name']}!"
+            
+            # Send level up email notification
+            if viewer.get("email_verified") and viewer.get("email"):
+                try:
+                    asyncio.create_task(
+                        email_service.send_level_up_email(
+                            viewer["email"],
+                            viewer["username"],
+                            new_level,
+                            LEVEL_SYSTEM[new_level]["name"],
+                            unlocked_features
+                        )
+                    )
+                except Exception as e:
+                    logger.error(f"Failed to send level up email: {e}")
         
         logger.info(f"Awarded {points} points to {viewer['username']} for {activity}")
         
