@@ -953,7 +953,7 @@ button, .btn, .matrix-button {
 
 .play-icon {
   font-size: 2rem;
-  color: white;
+  color: var(--theme-text, var(--text-color, #ffffff));
   margin-left: 5px;
 }
 
@@ -961,7 +961,7 @@ button, .btn, .matrix-button {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  color: white;
+  color: var(--theme-text, var(--text-color, #ffffff));
 }
 
 .stream-overlay h3 {
@@ -1085,7 +1085,7 @@ button, .btn, .matrix-button {
 .stream-views {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
-  color: white;
+  color: var(--theme-text, var(--text-color, #ffffff));
   padding: 0.3rem 0.6rem;
   border-radius: 5px;
   font-size: 0.8rem;
