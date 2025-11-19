@@ -9,11 +9,13 @@ from datetime import datetime, timedelta
 import uuid
 import json
 import asyncio
+import secrets
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from dotenv import load_dotenv
 from pathlib import Path
+from email_service import email_service
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / '.env')
