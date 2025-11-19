@@ -16,35 +16,32 @@ const ViewerMenu = () => {
   const [unlockedFeatures, setUnlockedFeatures] = useState(['chat']);
   const [chatWs, setChatWs] = useState(null);
   
-  // Load user from localStorage on mount
+  // Load user from cookies on mount
   useEffect(() => {
-    const savedUser = localStorage.getItem('viewer_user');
-    const savedPoints = localStorage.getItem('viewer_points');
-    const savedLevel = localStorage.getItem('viewer_level');
+    const savedUser = UserCookies.getUser();
     
     if (savedUser) {
-      try {
-        const userData = JSON.parse(savedUser);
-        console.log('✅ User loaded from localStorage:', userData);
-        setUser(userData);
-        setPoints(savedPoints ? parseInt(savedPoints) : 0);
-        setLevel(savedLevel ? parseInt(savedLevel) : 1);
-      } catch (error) {
-        console.error('Failed to parse saved user:', error);
-        localStorage.removeItem('viewer_user');
-      }
+      console.log('✅ User loaded from cookies:', savedUser);
+      setUser(savedUser);
+      setPoints(savedUser.points || 0);
+      setLevel(savedUser.level || 1);
+      setUnlockedFeatures(savedUser.unlocked_features || ['chat']);
     }
   }, []);
   
-  // Save user to localStorage whenever it changes
+  // Save user to cookies whenever it changes
   useEffect(() => {
     if (user) {
-      localStorage.setItem('viewer_user', JSON.stringify(user));
-      localStorage.setItem('viewer_points', points.toString());
-      localStorage.setItem('viewer_level', level.toString());
-      console.log('💾 User saved to localStorage:', user);
+      const userData = {
+        ...user,
+        points,
+        level,
+        unlocked_features: unlockedFeatures
+      };
+      UserCookies.saveUser(userData);
+      console.log('🍪 User saved to cookies:', userData);
     }
-  }, [user, points, level]);
+  }, [user, points, level, unlockedFeatures]);
 
   // Initialize WebSocket connection for chat
   useEffect(() => {
