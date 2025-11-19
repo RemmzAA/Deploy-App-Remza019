@@ -686,16 +686,18 @@ const GamingDemo = () => {
           </h1>
         </div>
         
-        {/* Header Buttons */}
-        <motion.button
-          className="admin-access-btn"
-          onClick={() => setShowAdminPanel(true)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          title={t('admin')}
-        >
-          ⚙️ {t('admin')}
-        </motion.button>
+        {/* Header Buttons - Hidden in Distribution Mode */}
+        {!customization.distributionMode && (
+          <motion.button
+            className="admin-access-btn"
+            onClick={() => setShowAdminPanel(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title={t('admin')}
+          >
+            ⚙️ {t('admin')}
+          </motion.button>
+        )}
       </motion.header>
 
       {/* Main Content Container */}
