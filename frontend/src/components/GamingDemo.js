@@ -918,7 +918,7 @@ const GamingDemo = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="pwa-install-container">
-              <h3 className="pwa-install-title">📱 Install REMZA019 Gaming App</h3>
+              <h3 className="pwa-install-title">{customization.pwaInstallTitle || '📱 Install App'}</h3>
               <p className="pwa-install-description">
                 Get the full experience! Install our Progressive Web App for instant access, offline support, and a native app feel.
               </p>
