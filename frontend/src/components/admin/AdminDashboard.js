@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../i18n/LanguageContext';
 import AdminCustomizationPanel from '../AdminCustomizationPanel';
+import AdminViewerSystem from './AdminViewerSystem';
 import './AdminDashboard.css';
 
 const AdminDashboard = ({ token, onLogout }) => {
@@ -688,6 +689,7 @@ const AdminDashboard = ({ token, onLogout }) => {
           { id: 'site', label: t('siteControl'), icon: '🌐' },
           { id: 'schedule', label: t('schedule'), icon: '📅' },
           { id: 'customization', label: 'CUSTOMIZATION', icon: '🎨' },
+          { id: 'viewer-system', label: 'VIEWER SYSTEM', icon: '🎮' },
           { id: 'engagement', label: 'ENGAGEMENT', icon: '🎯' },
           { id: 'stats', label: t('stats'), icon: '📈' }
         ].map((tab) => (
@@ -1695,6 +1697,11 @@ const AdminDashboard = ({ token, onLogout }) => {
             {/* Advanced Customization */}
             <AdminCustomizationPanel />
           </div>
+        )}
+
+        {/* VIEWER SYSTEM TAB - New! */}
+        {activeTab === 'viewer-system' && (
+          <AdminViewerSystem />
         )}
 
       </motion.main>

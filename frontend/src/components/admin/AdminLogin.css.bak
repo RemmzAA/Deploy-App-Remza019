@@ -52,13 +52,13 @@
   font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: 2px;
-  background: linear-gradient(45deg, var(--matrix-color), #00ccff, #00ffcc);
+  background: linear-gradient(45deg, #00ff00, #00ccff, #00ffcc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 
     -1px -1px 0 #000, 1px -1px 0 #000, 
     -1px 1px 0 #000, 1px 1px 0 #000,
-    0 0 10px rgba(var(--theme-primary-rgb), 0.5);
+    0 0 10px rgba(0, 255, 0, 0.5);
   margin-bottom: 0.5rem;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .input-group label {
-  color: var(--matrix-color);
+  color: #10b981;
   font-weight: 600;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
 
 .input-group input:focus {
   outline: none;
-  border-color: var(--matrix-color);
+  border-color: #10b981;
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
   transform: translateY(-2px);
 }
@@ -128,7 +128,7 @@
 
 .login-button {
   padding: 1.2rem 2rem;
-  background: linear-gradient(135deg, var(--matrix-color), #06b6d4);
+  background: linear-gradient(135deg, #10b981, #06b6d4);
   border: none;
   border-radius: 12px;
   color: white;
