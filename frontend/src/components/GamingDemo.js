@@ -958,7 +958,7 @@ const GamingDemo = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="admin-modal-header">
-                <h2>🎮 REMZA019 Admin Panel</h2>
+                <h2>{customization.adminPanelTitle || '🎮 Admin Panel'}</h2>
                 <button
                   className="admin-close-btn"
                   onClick={() => setShowAdminPanel(false)}
