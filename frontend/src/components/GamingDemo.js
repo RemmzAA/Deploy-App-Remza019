@@ -236,6 +236,20 @@ const GamingDemo = () => {
     }
   };
   
+  // Handle points update from PointsTracker
+  const handlePointsUpdate = (updateData) => {
+    setCurrentUser(prev => {
+      const updated = {
+        ...prev,
+        points: updateData.points,
+        level: updateData.level,
+        levelName: updateData.levelName
+      };
+      localStorage.setItem('viewer_user', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   // License Initialization - CHECK ON MOUNT
   useEffect(() => {
     // Initialize license on first visit
