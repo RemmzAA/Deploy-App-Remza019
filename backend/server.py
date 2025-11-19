@@ -36,6 +36,9 @@ from websocket_manager import get_ws_manager
 from admin_api import admin_router, create_default_admin
 from customization_api import customization_router
 from schedule_api import schedule_router
+from multi_streamer_api import router as multistreamer_router
+from obs_api import obs_router
+from streamlabs_api import streamlabs_router
 
 # Import License Validator (019Solutions Protection)
 # from license_validator import LicenseValidator  # DISABLED - module not available
