@@ -4,6 +4,7 @@ import { useLanguage } from '../../i18n/LanguageContext';
 import AdminCustomizationPanel from '../AdminCustomizationPanel';
 import AdminViewerSystem from './AdminViewerSystem';
 import AdminSchedulePanel from './AdminSchedulePanel';
+import AdminSiteSettings from './AdminSiteSettings';
 import './AdminDashboard.css';
 
 const AdminDashboard = ({ token, onLogout }) => {
