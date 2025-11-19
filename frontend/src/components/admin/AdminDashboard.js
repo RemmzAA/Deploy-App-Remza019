@@ -1712,6 +1712,11 @@ const AdminDashboard = ({ token, onLogout }) => {
           <AdminSchedulePanel />
         )}
 
+        {/* SITE SETTINGS TAB - New! */}
+        {activeTab === 'settings' && (
+          <AdminSiteSettings />
+        )}
+
       </motion.main>
 
       {error && (
