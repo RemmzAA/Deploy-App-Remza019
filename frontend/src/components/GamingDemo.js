@@ -696,7 +696,8 @@ const GamingDemo = () => {
           <ViewerMenu />
         </motion.section>
 
-        {/* About REMZA019 Section - COMPACT VERSION with DYNAMIC Content */}
+        {/* About Section - COMPACT VERSION with DYNAMIC Content */}
+        {customization.aboutSectionTitle && (
         <motion.section 
           className="about-remza-compact"
           initial={{ opacity: 0, y: 20 }}
