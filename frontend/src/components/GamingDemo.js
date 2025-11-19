@@ -930,6 +930,16 @@ const GamingDemo = () => {
         {/* Stream Schedule Widget */}
         <ScheduleWidget />
 
+        {/* Points Tracker - User Engagement */}
+        {currentUser && (
+          <PointsTracker 
+            user={currentUser}
+            points={currentUser.points || 0}
+            level={currentUser.level || 1}
+            onPointsUpdate={handlePointsUpdate}
+          />
+        )}
+
         {/* Leaderboard Section */}
         <Leaderboard />
 
