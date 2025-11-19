@@ -729,6 +729,7 @@ const GamingDemo = () => {
             </div>
           </div>
         </motion.section>
+        )}
 
         {/* Featured Video Section - REMOVED */}
 
