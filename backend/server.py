@@ -1372,40 +1372,8 @@ app.include_router(api_router)
 frontend_build_path = Path(__file__).parent.parent / "frontend" / "build"
 
 # Serve React build as static files (AFTER all API routes are registered) - DISABLED in this setup
-if frontend_build_path.exists():
-    # Mount static files
-    app.mount("/static", StaticFiles(directory=str(frontend_build_path / "static")), name="static")
-    
-    @app.api_route("/", methods=["GET"])
-    async def serve_index():
-        """Serve React index.html for root path"""
-        index_file = frontend_build_path / "index.html"
-        if index_file.exists():
-            return FileResponse(index_file)
-        else:
-            raise HTTPException(status_code=404, detail="Frontend not built")
-    
-    @app.api_route("/{full_path:path}", methods=["GET"])
-    async def serve_react_app(full_path: str):
-        """Serve React app for all non-API routes (SPA catch-all)"""
-        # Skip API routes, docs, static files
-        if (full_path.startswith("api/") or 
-            full_path.startswith("docs") or 
-            full_path.startswith("redoc") or
-            full_path.startswith("static/") or
-            full_path.startswith("openapi.json")):
-            raise HTTPException(status_code=404, detail="Endpoint not found")
-        
-        # Serve index.html for React routing (SPA)
-        index_file = frontend_build_path / "index.html"
-        if index_file.exists():
-            return FileResponse(index_file)
-        else:
-            raise HTTPException(status_code=404, detail="Frontend not built")
-            
-    logger.info("🎮 React frontend integrated successfully")
-else:
-    logger.warning("⚠️ Frontend build not found - API only mode")
+# Frontend is served separately by supervisor on port 3000
+logger.info("🎮 Backend API ready - Frontend served separately on port 3000")
 
 # Startup event to initialize admin and sync
 @app.on_event("startup")
