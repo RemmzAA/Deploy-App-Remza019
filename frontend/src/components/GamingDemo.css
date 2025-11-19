@@ -283,13 +283,13 @@ h2, h3, h4, h5, h6 {
   text-shadow: 0 0 10px var(--text-color);
 }
 
-/* Global Bold Italic Styling - NO GRID BACKGROUND */
+/* Global Bold Italic Styling - Uses Theme Background */
 body, .gaming-demo {
-  font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+  font-family: var(--font-primary, 'Montserrat', 'Open Sans', 'Roboto', sans-serif);
   font-weight: 600;
   font-style: italic;
   letter-spacing: 0.5px;
-  background: #000000 !important;  /* SOLID BLACK */
+  background: var(--theme-background, var(--bg-color, #000000)) !important;
   background-image: none !important;  /* NO GRID PATTERNS */
 }
 
