@@ -103,12 +103,15 @@ async def add_schedule(
             "created_by": admin.get("username", "admin")
         }
         
-        await db.schedules.insert_one(schedule_data)
+        result = await db.schedules.insert_one(schedule_data)
         
         logger.info(f"✅ Schedule added: {schedule.day} {schedule.time} - {schedule.game}")
         
         # Broadcast update
         await broadcast_schedule_update()
+        
+        # Return without _id
+        schedule_data.pop('_id', None)
         
         return {
             "success": True,
