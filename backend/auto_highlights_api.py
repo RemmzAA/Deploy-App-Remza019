@@ -10,7 +10,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional
 from datetime import datetime, timezone
 from dotenv import load_dotenv
-from emergentintegrations.llm.chat import LlmChat, UserMessage
+from 019solutionsintegrations.llm.chat import LlmChat, UserMessage
 import uuid
 
 # Load environment variables
@@ -18,8 +18,8 @@ load_dotenv()
 
 router = APIRouter(prefix="/api/auto-highlights", tags=["auto-highlights"])
 
-# Initialize LLM Chat with Emergent Universal Key
-EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY")
+# Initialize LLM Chat with 019Solutions Universal Key
+019SOLUTIONS_LLM_KEY = os.getenv("019SOLUTIONS_LLM_KEY")
 
 class HighlightRequest(BaseModel):
     stream_id: str
@@ -45,7 +45,7 @@ async def analyze_stream_for_highlights(request: HighlightRequest):
     try:
         # Initialize AI chat
         chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
+            api_key=019SOLUTIONS_LLM_KEY,
             session_id=f"highlight-{request.stream_id}",
             system_message="""You are an expert gaming stream analyst. Your job is to identify the most exciting moments from a stream based on chat reactions, viewer engagement, and game events. 
             

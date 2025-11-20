@@ -138,7 +138,7 @@ async def register_viewer(registration: ViewerRegistration):
         await db.viewers.insert_one(viewer)
         
         # Send verification email
-        frontend_url = os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.emergentagent.com')
+        frontend_url = os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.019solutionsagent.com')
         try:
             await email_service.send_verification_email(
                 registration.email,

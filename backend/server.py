@@ -77,17 +77,17 @@ from stats_api import stats_router
 # from remote_management import remote_router
 
 try:
-    from emergentintegrations import EmergentClient
-    from emergentintegrations.llm.chat import LlmChat, UserMessage
-    EMERGENT_AVAILABLE = True
-    print("✅ EmergentIntegrations LLM Chat available")
+    from 019solutionsintegrations import 019SolutionsClient
+    from 019solutionsintegrations.llm.chat import LlmChat, UserMessage
+    019SOLUTIONS_AVAILABLE = True
+    print("✅ 019SolutionsIntegrations LLM Chat available")
     
-    # Initialize real EmergentClient
-    emergent_client = EmergentClient()
+    # Initialize real 019SolutionsClient
+    019solutions_client = 019SolutionsClient()
     
 except ImportError:
-    print("⚠️  EmergentIntegrations not available, using mock implementation")
-    EMERGENT_AVAILABLE = False
+    print("⚠️  019SolutionsIntegrations not available, using mock implementation")
+    019SOLUTIONS_AVAILABLE = False
     # Mock classes for testing
     class LlmChat:
         def __init__(self, api_key, session_id, system_message):
@@ -106,11 +106,11 @@ except ImportError:
         def __init__(self, text):
             self.text = text
     
-    # Mock EmergentClient if not available
-    class MockEmergentClient:
+    # Mock 019SolutionsClient if not available
+    class Mock019SolutionsClient:
         pass
     
-    emergent_client = MockEmergentClient()
+    019solutions_client = Mock019SolutionsClient()
 from youtube_api_client import get_youtube_client
 
 # Configure logging
@@ -474,7 +474,7 @@ async def websocket_stats():
 
 # CORS middleware - Production-ready configuration
 # Get allowed origins from environment variable or use default
-ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', 'https://gaming-creator-pwa.preview.emergentagent.com,https://remza019.ch').split(',')
+ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', 'https://gaming-creator-pwa.preview.019solutionsagent.com,https://remza019.ch').split(',')
 
 app.add_middleware(
     CORSMiddleware,
@@ -696,8 +696,8 @@ Answer questions about gaming, streaming schedule, community, and provide helpfu
         # Generate session ID if not provided
         session_id = chat_message.session_id or f"gaming_chat_{int(asyncio.get_event_loop().time())}"
         
-        # Get EMERGENT_LLM_KEY from environment
-        api_key = os.environ.get('EMERGENT_LLM_KEY')
+        # Get 019SOLUTIONS_LLM_KEY from environment
+        api_key = os.environ.get('019SOLUTIONS_LLM_KEY')
         if not api_key:
             raise HTTPException(status_code=500, detail="LLM API key not configured")
         

@@ -176,7 +176,7 @@ class EmailService:
                     </div>
                     <p>Keep earning points to unlock even more features!</p>
                     <center>
-                        <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.emergentagent.com')}" style="display: inline-block; padding: 15px 30px; background: #00ff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
+                        <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.019solutionsagent.com')}" style="display: inline-block; padding: 15px 30px; background: #00ff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
                             🎮 View My Profile
                         </a>
                     </center>
@@ -244,7 +244,7 @@ class EmailService:
                     <p>Your rank changed: <strong>#{old_rank}</strong> → <strong>#{new_rank}</strong></p>
                     <div class="rank">#{new_rank}</div>
                     <p>Total Points: <strong>{total_points}</strong></p>
-                    <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.emergentagent.com')}" style="display: inline-block; padding: 15px 30px; background: #ffff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
+                    <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.019solutionsagent.com')}" style="display: inline-block; padding: 15px 30px; background: #ffff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
                         🏆 View Leaderboard
                     </a>
                 </center>
@@ -275,7 +275,7 @@ class EmailService:
                     <p>Hey {username}!</p>
                     <p>You have <strong>{points} points</strong> and a <strong>{streak} day streak</strong>!</p>
                     <p>Don't break it! Visit today to earn your +5 daily bonus.</p>
-                    <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.emergentagent.com')}" style="display: inline-block; padding: 15px 30px; background: #00ff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
+                    <a href="{os.environ.get('FRONTEND_URL', 'https://remote-code-fetch.preview.019solutionsagent.com')}" style="display: inline-block; padding: 15px 30px; background: #00ff00; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0;">
                         🎮 Visit Now (+5 Points)
                     </a>
                 </center>

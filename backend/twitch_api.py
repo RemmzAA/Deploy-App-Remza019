@@ -107,7 +107,7 @@ async def get_embed_url():
     """
     try:
         channel_name = "remza019"
-        parent_domain = "verify-gaming-1.preview.emergentagent.com"
+        parent_domain = "verify-gaming-1.preview.019solutionsagent.com"
         
         embed_url = f"https://player.twitch.tv/?channel={channel_name}&parent={parent_domain}"
         chat_url = f"https://www.twitch.tv/embed/{channel_name}/chat?parent={parent_domain}"
