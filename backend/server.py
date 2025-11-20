@@ -106,11 +106,11 @@ except ImportError:
         def __init__(self, text):
             self.text = text
     
-    # Mock 019SolutionsClient if not available
-    class Mock019SolutionsClient:
+    # Mock EmergentClient if not available
+    class MockEmergentClient:
         pass
     
-    019solutions_client = Mock019SolutionsClient()
+    emergent_client = MockEmergentClient()
 from youtube_api_client import get_youtube_client
 
 # Configure logging
