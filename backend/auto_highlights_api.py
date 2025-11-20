@@ -10,7 +10,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional
 from datetime import datetime, timezone
 from dotenv import load_dotenv
-from 019solutionsintegrations.llm.chat import LlmChat, UserMessage
+from emergentintegrations.llm.chat import LlmChat, UserMessage
 import uuid
 
 # Load environment variables
@@ -18,8 +18,8 @@ load_dotenv()
 
 router = APIRouter(prefix="/api/auto-highlights", tags=["auto-highlights"])
 
-# Initialize LLM Chat with 019Solutions Universal Key
-019SOLUTIONS_LLM_KEY = os.getenv("019SOLUTIONS_LLM_KEY")
+# Initialize LLM Chat with Emergent Universal Key
+EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY")
 
 class HighlightRequest(BaseModel):
     stream_id: str
