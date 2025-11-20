@@ -45,7 +45,7 @@ async def analyze_stream_for_highlights(request: HighlightRequest):
     try:
         # Initialize AI chat
         chat = LlmChat(
-            api_key=019SOLUTIONS_LLM_KEY,
+            api_key=EMERGENT_LLM_KEY,
             session_id=f"highlight-{request.stream_id}",
             system_message="""You are an expert gaming stream analyst. Your job is to identify the most exciting moments from a stream based on chat reactions, viewer engagement, and game events. 
             
