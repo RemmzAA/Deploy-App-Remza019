@@ -333,6 +333,27 @@ const AdminDashboard = ({ token, onLogout }) => {
     }
   };
 
+  // Refresh YouTube stats
+  const refreshYoutubeStats = async () => {
+    try {
+      setLoading(true);
+      const youtubeStats = await apiCall('/api/youtube/channel-stats');
+      if (youtubeStats) {
+        setChannelStats({
+          subscriber_count: youtubeStats.subscriber_count || '0',
+          video_count: youtubeStats.video_count || '0',
+          total_views: youtubeStats.view_count || '0'
+        });
+        alert('✅ YouTube stats refreshed successfully!');
+      }
+    } catch (error) {
+      console.error('YouTube stats refresh error:', error);
+      alert('❌ Failed to refresh YouTube stats');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Manual YouTube sync
   const triggerYoutubeSync = async () => {
     try {
