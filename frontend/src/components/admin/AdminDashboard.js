@@ -724,6 +724,7 @@ const AdminDashboard = ({ token, onLogout }) => {
           { id: 'overview', label: t('overview'), icon: '📊' },
           { id: 'settings', label: 'SITE SETTINGS', icon: '⚙️' },
           { id: 'youtube', label: t('youtubeSync'), icon: '🎥' },
+          { id: 'obs', label: 'OBS CONTROL', icon: '🎬' },
           { id: 'live', label: t('liveControl'), icon: '🔴' },
           { id: 'content', label: t('content'), icon: '📹' },
           { id: 'site', label: t('siteControl'), icon: '🌐' },
