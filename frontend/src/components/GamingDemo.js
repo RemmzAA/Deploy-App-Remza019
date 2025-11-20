@@ -1048,6 +1048,10 @@ const GamingDemo = () => {
         <p>
           {customization.copyrightText || '© 2025. All rights reserved.'}
         </p>
+        <div className="powered-by-019">
+          <span className="powered-text">MADE BY</span>
+          <span className="company-name-019">019SoluTionS</span>
+        </div>
       </footer>
 
       {/* Version Checker */}
