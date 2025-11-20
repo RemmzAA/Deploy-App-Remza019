@@ -3,7 +3,7 @@ REMZA019 Gaming Admin Dashboard - API Endpoints
 FastAPI endpoints for admin functionality with Real-time YouTube Sync
 Real-time updates via broadcast system
 """
-from fastapi import APIRouter, HTTPException, Depends, Header, BackgroundTasks
+from fastapi import APIRouter, HTTPException, Depends, Header, BackgroundTasks, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import bcrypt
 import jwt
