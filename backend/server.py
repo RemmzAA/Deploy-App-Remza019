@@ -77,13 +77,13 @@ from stats_api import stats_router
 # from remote_management import remote_router
 
 try:
-    from 019solutionsintegrations import 019SolutionsClient
-    from 019solutionsintegrations.llm.chat import LlmChat, UserMessage
-    019SOLUTIONS_AVAILABLE = True
-    print("✅ 019SolutionsIntegrations LLM Chat available")
+    from emergentintegrations import EmergentClient
+    from emergentintegrations.llm.chat import LlmChat, UserMessage
+    EMERGENT_AVAILABLE = True
+    print("✅ EmergentIntegrations LLM Chat available")
     
-    # Initialize real 019SolutionsClient
-    019solutions_client = 019SolutionsClient()
+    # Initialize real EmergentClient
+    emergent_client = EmergentClient()
     
 except ImportError:
     print("⚠️  019SolutionsIntegrations not available, using mock implementation")
