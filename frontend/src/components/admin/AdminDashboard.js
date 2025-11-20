@@ -5,6 +5,7 @@ import AdminCustomizationPanel from '../AdminCustomizationPanel';
 import AdminViewerSystem from './AdminViewerSystem';
 import AdminSchedulePanel from './AdminSchedulePanel';
 import AdminSiteSettings from './AdminSiteSettings';
+import AdminOBSPanel from './AdminOBSPanel';
 import './AdminDashboard.css';
 
 const AdminDashboard = ({ token, onLogout }) => {
