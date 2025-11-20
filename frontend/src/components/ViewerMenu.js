@@ -384,6 +384,56 @@ const ViewerMenu = () => {
               </motion.div>
             </motion.div>
           )}
+
+          {showVerification && (
+            <motion.div 
+              className="login-modal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div 
+                className="login-modal verification-modal"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+              >
+                <h3>📧 Email Verifikacija</h3>
+                <p className="verification-message">
+                  Verifikacioni kod je poslat na:<br/>
+                  <strong>{pendingEmail}</strong>
+                </p>
+                <p className="verification-hint">Proverite inbox ili spam folder</p>
+                
+                <div className="verification-form">
+                  <input
+                    type="text"
+                    className="verification-input"
+                    placeholder="Unesite 6-cifreni kod"
+                    value={verificationCode}
+                    onChange={(e) => setVerificationCode(e.target.value)}
+                    maxLength={6}
+                  />
+                  <div className="verification-buttons">
+                    <button className="verify-btn" onClick={handleVerifyEmail}>
+                      ✅ Verifikuj
+                    </button>
+                    <button className="cancel-btn" onClick={() => {
+                      setShowVerification(false);
+                      setVerificationCode('');
+                      setPendingEmail('');
+                    }}>
+                      ❌ Otkaži
+                    </button>
+                  </div>
+                </div>
+                
+                <p className="resend-link">
+                  Niste dobili kod? <button className="link-btn" onClick={() => alert('🔄 Nova email poslat!')}>Pošalji ponovo</button>
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </motion.section>
     );
