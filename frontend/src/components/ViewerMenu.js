@@ -130,29 +130,26 @@ const ViewerMenu = () => {
         },
         body: JSON.stringify({
           username: username,
-          email: email
+          email: email,
+          password: 'temppass123' // Temporary password
         }),
       });
 
       const data = await response.json();
 
       if (data.success && data.viewer) {
-        const newUser = {
-          id: data.viewer.id,
-          username: data.viewer.username,
-          email: data.viewer.email,
-          points: data.viewer.points || 0,
-          level: data.viewer.level || 1,
-          joinedAt: new Date().toISOString(),
-          lastActive: new Date().toISOString()
-        };
-        
-        setUser(newUser);
-        setPoints(data.viewer.points || 0);
-        setLevel(data.viewer.level || 1);
+        // Show verification dialog
+        setPendingEmail(email);
         setShowLogin(false);
-        
-        console.log('✅ Viewer registered successfully:', newUser);
+        setShowVerification(true);
+        alert('✅ Registracija uspešna! Proverite email za verifikacioni kod.');
+        console.log('✅ Viewer registered, verification email sent');
+      } else if (data.message && data.message.includes('verification email sent')) {
+        // Email already registered, show verification
+        setPendingEmail(email);
+        setShowLogin(false);
+        setShowVerification(true);
+        alert('📧 Verifikacioni email poslat! Proverite inbox.');
       } else {
         // User already exists, just login locally
         const newUser = {
