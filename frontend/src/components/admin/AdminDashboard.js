@@ -834,6 +834,10 @@ const AdminDashboard = ({ token, onLogout }) => {
           </div>
         )}
 
+        {activeTab === 'obs' && (
+          <AdminOBSPanel token={token} />
+        )}
+
         {activeTab === 'site' && (
           <div className="site-section">
             <h2>🌐 {t('completeSiteControl')}</h2>
