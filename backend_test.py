@@ -90,8 +90,8 @@ class BackendTester:
             }
         )
         
-        if response['status'] == 200 and 'access_token' in response['data']:
-            self.admin_token = response['data']['access_token']
+        if response['status'] == 200 and ('access_token' in response['data'] or 'token' in response['data']):
+            self.admin_token = response['data'].get('access_token') or response['data'].get('token')
             self.log_test_result(
                 "Admin Login", 
                 True, 
