@@ -143,15 +143,18 @@ async def get_current_admin(credentials: HTTPAuthorizationCredentials = Depends(
 
 # Authentication Endpoints
 @admin_router.post("/auth/login", response_model=LoginResponse)
-async def admin_login(login_data: LoginRequest):
+async def admin_login(login_data: LoginRequest, request: Request):
     """Admin login endpoint"""
     try:
         db = get_database()
+        ip_address = request.client.host if request.client else "unknown"
         
         # Find admin user
         admin = await db.admin_users.find_one({'username': login_data.username, 'is_active': True})
         
         if not admin or not verify_password(login_data.password, admin['password_hash']):
+            # Audit log failed attempt
+            audit_log.log_auth_attempt(login_data.username, False, ip_address, "Invalid credentials")
             return LoginResponse(success=False, message="Invalid credentials")
         
         # Create access token
@@ -167,9 +170,11 @@ async def admin_login(login_data: LoginRequest):
         await db.admin_activity.insert_one(AdminActivity(
             admin_id=admin['id'],
             action="login",
-            details={"ip": "admin_login", "success": True}
+            details={"ip": ip_address, "success": True}
         ).dict())
         
+        # Audit log successful login
+        audit_log.log_auth_attempt(admin['username'], True, ip_address)
         logger.info(f"✅ Admin login successful: {admin['username']}")
         
         return LoginResponse(
