@@ -608,7 +608,7 @@ const ActivitiesTab = ({ activities, addPoints }) => {
     
     // Additional actions based on activity type
     if (activity.name === 'Share Stream') {
-      const shareUrl = 'https://gaming-creator-pwa.preview.emergentagent.com';
+      const shareUrl = 'https://gaming-creator-pwa.preview.019solutionsagent.com';
       navigator.clipboard.writeText(shareUrl).then(() => {
         alert('📋 Stream link copied to clipboard!');
       });
