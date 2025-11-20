@@ -666,6 +666,51 @@ const GamingDemo = () => {
     fetchSchedule();
   }, []);
 
+  // Fetch YouTube videos from backend
+  useEffect(() => {
+    const fetchYouTubeVideos = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/youtube/latest-videos`);
+        if (response.ok) {
+          const videos = await response.json();
+          if (videos && videos.length > 0) {
+            // Map YouTube API response to recentStreams format
+            const mappedStreams = videos.slice(0, 6).map(video => ({
+              id: video.video_id,
+              title: video.title,
+              game: 'FORTNITE', // Default game
+              thumbnail: video.thumbnail_url,
+              duration: formatDuration(video.duration),
+              views: video.view_count || '0',
+              videoUrl: video.watch_url
+            }));
+            setRecentStreams(mappedStreams);
+            console.log('✅ YouTube videos loaded:', mappedStreams.length);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch YouTube videos:', error);
+      }
+    };
+    fetchYouTubeVideos();
+  }, []);
+
+  // Helper function to format ISO 8601 duration to readable format
+  const formatDuration = (isoDuration) => {
+    if (!isoDuration) return '0:00';
+    const match = isoDuration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+    if (!match) return '0:00';
+    
+    const hours = (match[1] || '').replace('H', '');
+    const minutes = (match[2] || '0M').replace('M', '');
+    const seconds = (match[3] || '0S').replace('S', '');
+    
+    if (hours) {
+      return `${hours}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+    }
+    return `${minutes}:${seconds.padStart(2, '0')}`;
+  };
+
   return (
     <div className="gaming-demo">
       {/* Neon Fade Line at Top */}
