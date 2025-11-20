@@ -783,10 +783,10 @@ const AdminDashboard = ({ token, onLogout }) => {
                 
                 <button 
                   className="sync-button"
-                  onClick={triggerYoutubeSync}
+                  onClick={refreshYoutubeStats}
                   disabled={loading}
                 >
-                  🔄 {t('syncNow')}
+                  🔄 Refresh Stats
                 </button>
               </div>
 
