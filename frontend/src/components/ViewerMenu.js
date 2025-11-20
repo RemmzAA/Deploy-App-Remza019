@@ -413,7 +413,7 @@ const ViewerMenu = () => {
         )}
         
         {activeTab === 'activities' && (
-          <ActivitiesTab activities={activities} addPoints={addPoints} />
+          <ActivitiesTab activities={activities} addPoints={addPoints} user={user} setShowLogin={setShowLogin} />
         )}
         
         {activeTab === 'rewards' && (
