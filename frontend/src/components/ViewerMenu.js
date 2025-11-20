@@ -561,7 +561,7 @@ const ChatTab = ({ messages, newMessage, setNewMessage, sendMessage, user, level
 );
 
 // Activities Tab Component
-const ActivitiesTab = ({ activities, addPoints }) => {
+const ActivitiesTab = ({ activities, addPoints, user, setShowLogin }) => {
   const handleActivityClick = async (activity) => {
     if (!user) {
       alert('⚠️ Please join community first to earn points!');
