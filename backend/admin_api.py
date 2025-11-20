@@ -14,6 +14,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import logging
 from dotenv import load_dotenv
 from pathlib import Path
+from audit_logger import audit_log
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / '.env')
