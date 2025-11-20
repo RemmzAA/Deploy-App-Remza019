@@ -187,6 +187,56 @@ const ViewerMenu = () => {
     }
   };
 
+  const handleVerifyEmail = async () => {
+    if (!verificationCode.trim()) {
+      alert('⚠️ Unesite verifikacioni kod!');
+      return;
+    }
+
+    try {
+      // Verify email with backend
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/viewer/verify-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: pendingEmail,
+          code: verificationCode
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Email verified, create user session
+        const newUser = {
+          id: data.viewer_id || Date.now(),
+          username: data.username || pendingEmail.split('@')[0],
+          email: pendingEmail,
+          email_verified: true,
+          points: 10, // Welcome bonus
+          level: 1,
+          joinedAt: new Date().toISOString(),
+          lastActive: new Date().toISOString()
+        };
+        
+        setUser(newUser);
+        setPoints(10);
+        setLevel(1);
+        setShowVerification(false);
+        setVerificationCode('');
+        setPendingEmail('');
+        
+        alert('🎉 Email verifikovan! Dobili ste 10 welcome points!');
+        console.log('✅ Email verified successfully:', newUser);
+      } else {
+        alert('❌ Nevažeći verifikacioni kod. Pokušajte ponovo.');
+      }
+    } catch (error) {
+      console.error('❌ Verification error:', error);
+      alert('❌ Greška pri verifikaciji. Pokušajte ponovo.');
+    }
+  };
+
   const addPoints = (activity) => {
     const newPoints = points + activity.points;
     setPoints(newPoints);
