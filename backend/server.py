@@ -86,8 +86,8 @@ try:
     emergent_client = EmergentClient()
     
 except ImportError:
-    print("⚠️  019SolutionsIntegrations not available, using mock implementation")
-    019SOLUTIONS_AVAILABLE = False
+    print("⚠️  EmergentIntegrations not available, using mock implementation")
+    EMERGENT_AVAILABLE = False
     # Mock classes for testing
     class LlmChat:
         def __init__(self, api_key, session_id, system_message):
