@@ -10,6 +10,9 @@ const ViewerMenu = () => {
   const [points, setPoints] = useState(0);
   const [level, setLevel] = useState(1);
   const [showLogin, setShowLogin] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [pendingEmail, setPendingEmail] = useState('');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
