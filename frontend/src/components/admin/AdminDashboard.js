@@ -235,6 +235,21 @@ const AdminDashboard = ({ token, onLogout }) => {
         console.warn('YouTube sync status not available:', syncError);
       }
 
+      // Load YouTube channel stats directly
+      try {
+        const youtubeStats = await apiCall('/api/youtube/channel-stats');
+        if (youtubeStats) {
+          setChannelStats({
+            subscriber_count: youtubeStats.subscriber_count || '0',
+            video_count: youtubeStats.video_count || '0',
+            total_views: youtubeStats.view_count || '0'
+          });
+          console.log('✅ YouTube stats loaded:', youtubeStats);
+        }
+      } catch (youtubeError) {
+        console.warn('YouTube channel stats not available:', youtubeError);
+      }
+
       // Load schedule
       try {
         const schedule = await apiCall('/api/admin/schedule');
