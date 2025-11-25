@@ -250,7 +250,7 @@ async def apply_theme(
             "customFonts": data.customFonts or data.fonts or {},
             "customEffects": data.customEffects or {},
             "updated_at": datetime.utcnow().isoformat(),
-            "updated_by": admin["username"]
+            "updated_by": "system"
         }
         
         # Save to database
@@ -260,7 +260,7 @@ async def apply_theme(
             upsert=True
         )
         
-        logger.info(f"✅ Theme applied: {theme_id} by {admin['username']}")
+        logger.info(f"✅ Theme applied: {theme_id}")
         
         # Broadcast to all clients
         from admin_api import broadcast_admin_update
