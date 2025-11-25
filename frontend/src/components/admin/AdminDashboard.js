@@ -840,6 +840,10 @@ const AdminDashboard = ({ token, onLogout }) => {
           <AdminOBSPanel token={token} />
         )}
 
+        {activeTab === 'streamlabs' && (
+          <AdminStreamlabsPanel token={token} />
+        )}
+
         {activeTab === 'site' && (
           <div className="site-section">
             <h2>🌐 {t('completeSiteControl')}</h2>
