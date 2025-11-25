@@ -720,6 +720,9 @@ const GamingDemo = () => {
       {/* Language Switcher - Floating Left */}
       <LanguageSwitcher />
       
+      {/* License Activation Badge - Top Right */}
+      <LicenseActivation />
+      
       {/* Trial Status removed from top - moved to bottom */}
       
       {/* Matrix Rain Background - ENABLED */}
