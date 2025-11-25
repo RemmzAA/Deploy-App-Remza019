@@ -284,3 +284,88 @@ async def delete_license(license_key: str):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting license: {str(e)}")
+
+
+@router.get("/api/license/status")
+async def get_license_status():
+    """
+    Get current active license status
+    Returns the most recently activated license
+    """
+    try:
+        # Find most recently activated license
+        license_doc = await licenses_collection.find_one(
+            {"is_active": True},
+            sort=[("activated_at", -1)]
+        )
+        
+        if not license_doc:
+            return {
+                "is_active": False,
+                "message": "No active license found"
+            }
+        
+        # Remove MongoDB _id
+        if "_id" in license_doc:
+            del license_doc["_id"]
+        
+        return license_doc
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching license status: {str(e)}")
+
+@router.post("/api/license/activate")
+async def activate_license(request: VerifyLicenseRequest):
+    """
+    Activate a license key
+    Same as verify but with activation semantics
+    """
+    try:
+        license_key = request.license_key.strip().upper()
+        
+        # Find license in database
+        license_doc = await licenses_collection.find_one({"license_key": license_key})
+        
+        if not license_doc:
+            return {
+                "success": False,
+                "message": "License key not found"
+            }
+        
+        # Check if already active
+        if not license_doc.get("is_active", False):
+            return {
+                "success": False,
+                "message": "License key has been deactivated"
+            }
+        
+        # Check if expired (for TRIAL keys)
+        if license_doc.get("license_type") == "TRIAL":
+            expires_at = license_doc.get("expires_at")
+            if expires_at:
+                expiry_date = datetime.fromisoformat(expires_at)
+                if datetime.utcnow() > expiry_date:
+                    return {
+                        "success": False,
+                        "message": "Trial license has expired"
+                    }
+        
+        # Update activation timestamp
+        now = datetime.utcnow().isoformat()
+        await licenses_collection.update_one(
+            {"license_key": license_key},
+            {"$set": {"activated_at": now}}
+        )
+        
+        # Refresh license data
+        license_doc = await licenses_collection.find_one({"license_key": license_key}, {"_id": 0})
+        
+        return {
+            "success": True,
+            "message": "License activated successfully",
+            "license": license_doc
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error activating license: {str(e)}")
+
