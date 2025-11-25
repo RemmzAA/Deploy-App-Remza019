@@ -835,7 +835,7 @@ const GamingDemo = () => {
           <div className="streams-grid">
             {recentStreams.map((stream, index) => (
               <motion.div 
-                key={stream.id}
+                key={`${stream.id}-${index}`}
                 className="stream-card matrix-card"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
