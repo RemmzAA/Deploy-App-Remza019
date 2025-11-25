@@ -141,13 +141,39 @@ async def get_current_admin(credentials: HTTPAuthorizationCredentials = Depends(
         logger.error(f"Auth error: {e}")
         raise HTTPException(status_code=401, detail="Authentication failed")
 
+# Rate limiting storage (in-memory, for production use Redis)
+from collections import defaultdict
+from datetime import datetime, timedelta
+
+login_attempts = defaultdict(list)
+MAX_LOGIN_ATTEMPTS = 5
+LOCKOUT_DURATION = timedelta(minutes=15)
+
+def check_rate_limit(ip_address: str) -> bool:
+    """Check if IP has exceeded login attempts"""
+    now = datetime.now()
+    # Clean old attempts
+    login_attempts[ip_address] = [
+        attempt_time for attempt_time in login_attempts[ip_address]
+        if now - attempt_time < LOCKOUT_DURATION
+    ]
+    return len(login_attempts[ip_address]) < MAX_LOGIN_ATTEMPTS
+
 # Authentication Endpoints
 @admin_router.post("/auth/login", response_model=LoginResponse)
 async def admin_login(login_data: LoginRequest, request: Request):
-    """Admin login endpoint"""
+    """Admin login endpoint with rate limiting"""
     try:
         db = get_database()
         ip_address = request.client.host if request.client else "unknown"
+        
+        # Rate limiting check
+        if not check_rate_limit(ip_address):
+            logger.warning(f"🚫 Rate limit exceeded for IP: {ip_address}")
+            raise HTTPException(
+                status_code=429,
+                detail=f"Too many login attempts. Please try again in 15 minutes."
+            )
         
         # Find admin user
         admin = await db.admin_users.find_one({'username': login_data.username, 'is_active': True})
