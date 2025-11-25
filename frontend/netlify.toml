@@ -1,0 +1,62 @@
+# Netlify Configuration for REMZA019 Gaming
+# React + FastAPI Full-Stack Application
+
+[build]
+  # Build command
+  command = "yarn build"
+  
+  # Publish directory (React build output)
+  publish = "build"
+  
+  # Base directory
+  base = ""
+
+# Environment variables (set these in Netlify UI)
+[build.environment]
+  NODE_VERSION = "18"
+  YARN_VERSION = "1.22.19"
+  CI = "false"
+
+# Redirect rules for React Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# API Proxy to Backend (Render.com)
+[[redirects]]
+  from = "/api/*"
+  to = "https://YOUR_BACKEND_URL.onrender.com/api/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Service Worker
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# Optimize images
+[build.processing.images]
+  compress = true
+
+# Plugin - Enable forms (if needed)
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
