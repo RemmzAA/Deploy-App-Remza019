@@ -1514,11 +1514,12 @@
 
 .tag-edit-row input {
   padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.7);
   border: 1px solid var(--matrix-color);
   border-radius: 8px;
-  color: var(--matrix-color);
+  color: #ffffff !important;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .save-tags-btn {
