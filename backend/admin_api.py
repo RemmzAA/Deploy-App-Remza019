@@ -1160,5 +1160,3 @@ async def get_admin_events():
         "events": [],
         "message": "No recent events"
     }
-
-        logger.error(f"❌ Create default admin error: {e}")
