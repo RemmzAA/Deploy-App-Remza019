@@ -1148,6 +1148,7 @@ async def create_default_admin():
             logger.info("✅ Default admin user created - Username: admin, Password: remza019admin")
             
     except Exception as e:
+        logger.error(f"❌ Error creating default admin: {e}")
 
 @admin_router.get("/events")
 async def get_admin_events():
