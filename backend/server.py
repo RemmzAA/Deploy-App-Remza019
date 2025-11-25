@@ -180,7 +180,8 @@ app.include_router(email_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
 
 # Include version management router
-# app.include_router(version_router, prefix="/api")
+from version_api import version_router
+app.include_router(version_router, prefix="/api")
 
 # Include remote management router
 # app.include_router(remote_router, prefix="/api")
