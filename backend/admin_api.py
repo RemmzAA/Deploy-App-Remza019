@@ -179,6 +179,9 @@ async def admin_login(login_data: LoginRequest, request: Request):
         admin = await db.admin_users.find_one({'username': login_data.username, 'is_active': True})
         
         if not admin or not verify_password(login_data.password, admin['password_hash']):
+            # Record failed attempt for rate limiting
+            login_attempts[ip_address].append(datetime.now())
+            
             # Audit log failed attempt
             audit_log.log_auth_attempt(login_data.username, False, ip_address, "Invalid credentials")
             return LoginResponse(success=False, message="Invalid credentials")
