@@ -14,6 +14,7 @@ import Logo3D from './Logo3D';
 import LanguageSwitcher from './LanguageSwitcher';
 import TrialStatus from './TrialStatus';
 import LicenseModal from './LicenseModal';
+import LicenseActivation from './LicenseActivation';
 import CustomizationModal from './CustomizationModal';
 import SocialLinks from './SocialLinks';
 import SocialLinksFooter from './SocialLinksFooter';
