@@ -198,6 +198,10 @@ try:
 except ImportError as e:
     print(f"⚠️ Theme API not available: {e}")
 
+# Import and include Streams API
+from streams_api import streams_router
+app.include_router(streams_router, prefix="/api")
+
 # Import and include new API modules
 try:
     from analytics_api import analytics_router
