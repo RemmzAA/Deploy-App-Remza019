@@ -600,7 +600,7 @@ class BackendTester:
 async def main():
     """Main test execution"""
     # Configuration
-    BASE_URL = "https://remzadeck.preview.emergentagent.com"
+    BASE_URL = "https://gamepanel-dash-1.preview.emergentagent.com"
     ADMIN_USERNAME = "admin"
     ADMIN_PASSWORD = "remza019admin"
     
