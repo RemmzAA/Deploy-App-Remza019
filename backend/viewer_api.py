@@ -2,7 +2,7 @@
 REMZA019 Gaming - Viewer Menu System API
 Point-based rewards, activity tracking, and group chat functionality
 """
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Response
 from pydantic import BaseModel, EmailStr, Field
 from typing import List, Dict, Optional
 from datetime import datetime, timedelta
