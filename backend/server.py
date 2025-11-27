@@ -232,6 +232,13 @@ except ImportError as e:
     print(f"⚠️ Referral API not available: {e}")
 
 try:
+    from user_management_api import user_mgmt_router
+    app.include_router(user_mgmt_router)  # Already has /api prefix
+    print("✅ User Management API loaded")
+except ImportError as e:
+    print(f"⚠️ User Management API not available: {e}")
+
+try:
     from social_api import social_router
     app.include_router(social_router)  # Already has /api prefix
     print("✅ Social API loaded")
