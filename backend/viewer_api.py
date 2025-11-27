@@ -270,6 +270,7 @@ async def logout_viewer(request: Request, response: Response):
     """Logout viewer and clear session"""
     from fastapi import Response, Request
     from session_manager import get_session_manager, clear_session_cookie, get_current_user_from_cookie
+    from user_memory_system import get_user_memory_system
     
     try:
         # Get current session
@@ -279,6 +280,16 @@ async def logout_viewer(request: Request, response: Response):
             # Invalidate session
             session_manager = get_session_manager()
             await session_manager.invalidate_session(user["session_id"])
+            
+            # Log logout activity
+            memory_system = get_user_memory_system()
+            await memory_system.log_user_activity(
+                user_id=user["user_id"],
+                activity_type="logout",
+                details={"username": user["username"]},
+                ip_address=request.client.host if request.client else None,
+                user_agent=request.headers.get("user-agent")
+            )
             logger.info(f"✅ Viewer logged out: {user['username']}")
         
         # Clear cookie
