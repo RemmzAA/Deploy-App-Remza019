@@ -157,6 +157,16 @@ async def register_viewer(registration: ViewerRegistration, response: Response, 
         
         logger.info(f"✅ New viewer registered: {registration.username} (ID: {viewer['user_id']})")
         
+        # Log registration activity
+        memory_system = get_user_memory_system()
+        await memory_system.log_user_activity(
+            user_id=viewer["user_id"],
+            activity_type="registration",
+            details={"username": registration.username, "email": registration.email},
+            ip_address=request.client.host if request.client else None,
+            user_agent=request.headers.get("user-agent")
+        )
+        
         # Create session and set cookie
         from session_manager import get_session_manager, set_session_cookie
         session_manager = get_session_manager()
