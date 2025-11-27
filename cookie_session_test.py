@@ -292,7 +292,7 @@ class CookieSessionTester:
                 
                 # Step 2: Test activity logging during login
                 logger.info("🔐 Testing activity logging during login...")
-                login_response = await self.make_request('POST', '/api/viewer/login', {'username': test_username})
+                login_response = await self.make_request('POST', f'/api/viewer/login?username={test_username}')
                 
                 if login_response['status'] == 200:
                     self.log_test_result(
