@@ -339,7 +339,7 @@ class CookieSessionTester:
                 # Step 4: Test failed login attempt tracking
                 logger.info("❌ Testing failed login attempt tracking...")
                 invalid_username = "nonexistentuser123"
-                failed_login_response = await self.make_request('POST', '/api/viewer/login', {'username': invalid_username})
+                failed_login_response = await self.make_request('POST', f'/api/viewer/login?username={invalid_username}')
                 
                 if failed_login_response['status'] == 404:
                     self.log_test_result(
