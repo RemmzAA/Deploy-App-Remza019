@@ -236,6 +236,16 @@ async def login_viewer(username: str, response: Response, request: Request):
         # Set cookie
         set_session_cookie(response, token)
         
+        # Log successful login
+        memory_system = get_user_memory_system()
+        await memory_system.log_user_activity(
+            user_id=viewer["user_id"],
+            activity_type="login",
+            details={"username": username},
+            ip_address=request.client.host if request.client else None,
+            user_agent=request.headers.get("user-agent")
+        )
+        
         logger.info(f"✅ Viewer logged in: {username}")
         
         return {
