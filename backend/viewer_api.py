@@ -156,6 +156,17 @@ async def register_viewer(registration: ViewerRegistration, response: Response):
         
         logger.info(f"✅ New viewer registered: {registration.username} (ID: {viewer['user_id']})")
         
+        # Create session and set cookie
+        from session_manager import get_session_manager, set_session_cookie
+        session_manager = get_session_manager()
+        token = await session_manager.create_session(
+            user_id=viewer["user_id"],
+            username=viewer["username"],
+            role="viewer",
+            extra_data={"email": viewer["email"], "email_verified": False}
+        )
+        set_session_cookie(response, token)
+        
         return {
             "success": True,
             "viewer": {
@@ -163,11 +174,119 @@ async def register_viewer(registration: ViewerRegistration, response: Response):
                 "user_id": viewer["user_id"],
                 "username": viewer["username"],
                 "points": 10,  # Including registration bonus
+
+@viewer_router.post("/login")
+async def login_viewer(username: str, response: Response):
+    """Login viewer and create session"""
+    from fastapi import Response
+    from session_manager import get_session_manager, set_session_cookie
+    
+    try:
+        db = await get_database()
+        
+        # Find viewer
+        viewer = await db.viewers.find_one({"username": username}, {"_id": 0})
+        
+        if not viewer:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        # Create session
+        session_manager = get_session_manager()
+        token = await session_manager.create_session(
+            user_id=viewer["user_id"],
+            username=viewer["username"],
+            role="viewer",
+            extra_data={
+                "email": viewer["email"],
+                "email_verified": viewer.get("email_verified", False),
+                "points": viewer.get("points", 0),
+                "level": viewer.get("level", 1)
+            }
+        )
+        
+        # Set cookie
+        set_session_cookie(response, token)
+        
+        logger.info(f"✅ Viewer logged in: {username}")
+        
+        return {
+            "success": True,
+            "viewer": {
+                "id": viewer["user_id"],
+                "username": viewer["username"],
+                "email": viewer["email"],
+                "points": viewer.get("points", 0),
+                "level": viewer.get("level", 1),
+                "email_verified": viewer.get("email_verified", False)
+            },
+            "message": "Logged in successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Login error: {e}")
+        raise HTTPException(status_code=500, detail="Login failed")
+
+@viewer_router.post("/logout")
+async def logout_viewer(request: Request, response: Response):
+    """Logout viewer and clear session"""
+    from fastapi import Response, Request
+    from session_manager import get_session_manager, clear_session_cookie, get_current_user_from_cookie
+    
+    try:
+        # Get current session
+        user = await get_current_user_from_cookie(request)
+        
+        if user:
+            # Invalidate session
+            session_manager = get_session_manager()
+            await session_manager.invalidate_session(user["session_id"])
+            logger.info(f"✅ Viewer logged out: {user['username']}")
+        
+        # Clear cookie
+        clear_session_cookie(response)
+        
+        return {"success": True, "message": "Logged out successfully"}
+        
+    except Exception as e:
+        logger.error(f"Logout error: {e}")
+        raise HTTPException(status_code=500, detail="Logout failed")
+
+@viewer_router.get("/me")
+async def get_current_viewer(request: Request):
+    """Get current logged-in viewer"""
+    from fastapi import Request
+    from session_manager import get_current_user_from_cookie
+    
+    try:
+        user = await get_current_user_from_cookie(request)
+        
+        if not user:
+            raise HTTPException(status_code=401, detail="Not authenticated")
+        
+        # Get full viewer data from database
+        db = await get_database()
+        viewer = await db.viewers.find_one({"user_id": user["user_id"]}, {"_id": 0})
+        
+        if not viewer:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        return {
+            "success": True,
+            "viewer": viewer
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Get current viewer error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get viewer data")
+
                 "level": 1,
                 "unlocked_features": ["chat"],
                 "email_verified": False
             },
-            "message": "Please check your email to verify your account"
+            "message": "Please check your email to verify your account",
+            "session_created": True
         }
         
     except Exception as e:
