@@ -71,8 +71,12 @@ class CookieSessionTester:
                 
                 # Extract cookies from response
                 cookies = {}
-                for cookie in response.cookies:
-                    cookies[cookie.key] = cookie.value
+                if hasattr(response, 'cookies') and response.cookies:
+                    for cookie in response.cookies:
+                        if hasattr(cookie, 'key') and hasattr(cookie, 'value'):
+                            cookies[cookie.key] = cookie.value
+                        elif hasattr(cookie, 'name') and hasattr(cookie, 'value'):
+                            cookies[cookie.name] = cookie.value
                 
                 try:
                     response_data = json.loads(response_text) if response_text else {}
