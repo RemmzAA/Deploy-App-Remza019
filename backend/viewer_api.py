@@ -97,10 +97,31 @@ def get_unlocked_features(level: int) -> List[str]:
 
 @viewer_router.post("/register")
 async def register_viewer(registration: ViewerRegistration, response: Response, request: Request):
-    """Register new viewer account with session cookie"""
+    """Register new viewer account with session cookie and enhanced security"""
     from fastapi import Response, Request
     from user_memory_system import get_user_memory_system
+    from security_audit import security_auditor
+    
     try:
+        # Validate username
+        username_validation = security_auditor.validate_username(registration.username)
+        if not username_validation["is_valid"]:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Invalid username: {', '.join(username_validation['issues'])}"
+            )
+        
+        # Validate email
+        email_validation = security_auditor.validate_email(registration.email)
+        if not email_validation["is_valid"]:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid email: {', '.join(email_validation['issues'])}"
+            )
+        
+        # Validate password strength (if password field exists)
+        # Note: Currently ViewerRegistration doesn't have password, but we can add it
+        
         db = await get_database()
         
         # Check if username or email already exists
