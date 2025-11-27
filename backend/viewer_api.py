@@ -174,6 +174,14 @@ async def register_viewer(registration: ViewerRegistration, response: Response):
                 "user_id": viewer["user_id"],
                 "username": viewer["username"],
                 "points": 10,  # Including registration bonus
+                "email": viewer["email"],
+                "email_verified": viewer["email_verified"]
+            },
+            "message": "Registration successful! Please check your email to verify your account."
+        }
+    except Exception as e:
+        logger.error(f"Registration error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @viewer_router.post("/login")
 async def login_viewer(username: str, response: Response):
