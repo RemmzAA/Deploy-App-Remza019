@@ -195,10 +195,11 @@ async def register_viewer(registration: ViewerRegistration, response: Response, 
         raise HTTPException(status_code=500, detail=str(e))
 
 @viewer_router.post("/login")
-async def login_viewer(username: str, response: Response):
+async def login_viewer(username: str, response: Response, request: Request):
     """Login viewer and create session"""
-    from fastapi import Response
+    from fastapi import Response, Request
     from session_manager import get_session_manager, set_session_cookie
+    from user_memory_system import get_user_memory_system
     
     try:
         db = await get_database()
@@ -207,6 +208,15 @@ async def login_viewer(username: str, response: Response):
         viewer = await db.viewers.find_one({"username": username}, {"_id": 0})
         
         if not viewer:
+            # Log failed login attempt
+            memory_system = get_user_memory_system()
+            await memory_system.log_user_activity(
+                user_id=username,  # Use username as ID for failed attempts
+                activity_type="failed_login",
+                details={"reason": "user_not_found", "attempted_username": username},
+                ip_address=request.client.host if request.client else None,
+                user_agent=request.headers.get("user-agent")
+            )
             raise HTTPException(status_code=404, detail="User not found")
         
         # Create session
