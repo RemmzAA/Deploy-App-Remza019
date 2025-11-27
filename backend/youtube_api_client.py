@@ -31,38 +31,14 @@ class YouTubeAPIClient:
     async def get_channel_by_handle(self) -> Optional[str]:
         """Get channel ID from handle @remza019"""
         try:
-            # TEMPORARY: Use direct channel search instead of handle
-            # Search for REMZA019 gaming content
-            search_response = self.youtube.search().list(
-                q='REMZA019 gaming serbia fortnite',
-                type='channel',
-                part='id,snippet',
-                maxResults=5
-            ).execute()
-            
-            if search_response['items']:
-                # Look for the most relevant channel
-                for item in search_response['items']:
-                    snippet = item['snippet']
-                    title = snippet.get('title', '').lower()
-                    description = snippet.get('description', '').lower()
-                    
-                    # Check if this is likely REMZA019 channel
-                    if 'remza019' in title or 'remza019' in description:
-                        channel_id = item['id']['channelId']
-                        logger.info(f"✅ Found REMZA019 channel ID: {channel_id}")
-                        return channel_id
-                
-                # If no exact match, take first result as fallback
-                channel_id = search_response['items'][0]['id']['channelId']
-                logger.info(f"✅ Using first search result: {channel_id}")
-                return channel_id
-            else:
-                logger.warning("⚠️  No channels found for REMZA019")
-                return None
+            # DIRECT CHANNEL ID - verified from YouTube @remza019
+            # Channel: Remza TM© (https://www.youtube.com/@remza019)
+            channel_id = "UCU3BKtciRJRU3RdA4duJbnQ"
+            logger.info(f"✅ Using verified REMZA019 channel ID: {channel_id}")
+            return channel_id
                 
         except Exception as e:
-            logger.error(f"❌ Error finding channel: {str(e)}")
+            logger.error(f"❌ Error getting channel ID: {str(e)}")
             return None
     
     async def get_channel_stats(self) -> Dict:
