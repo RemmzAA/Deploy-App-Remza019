@@ -96,9 +96,10 @@ def get_unlocked_features(level: int) -> List[str]:
 # API Endpoints
 
 @viewer_router.post("/register")
-async def register_viewer(registration: ViewerRegistration, response: Response):
+async def register_viewer(registration: ViewerRegistration, response: Response, request: Request):
     """Register new viewer account with session cookie"""
-    from fastapi import Response
+    from fastapi import Response, Request
+    from user_memory_system import get_user_memory_system
     try:
         db = await get_database()
         
