@@ -154,21 +154,22 @@ class CookieSessionTester:
             )
             return False
         
-        # Check if session cookie is set
-        session_cookie_set = bool(response['cookies'])
+        # Check if session cookie is set (check Set-Cookie header)
+        set_cookie_header = response['headers'].get('set-cookie', '')
+        session_cookie_set = 'remza_session' in set_cookie_header
         if not session_cookie_set:
             self.log_test_result(
                 "Session Cookie Creation",
                 False,
                 "No session cookie set during registration",
-                {'cookies': response['cookies']}
+                {'set_cookie_header': set_cookie_header}
             )
         else:
             self.log_test_result(
                 "Session Cookie Creation",
                 True,
                 "Session cookie successfully set during registration",
-                {'cookies': list(response['cookies'].keys())}
+                {'set_cookie_header': 'remza_session cookie found'}
             )
         
         # Store session cookies for later use
