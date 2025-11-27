@@ -180,14 +180,14 @@ class CookieSessionTester:
         login_response = await self.make_request('POST', f'/api/viewer/login?username={test_username}')
         
         if login_response['status'] == 200:
-            login_cookie_set = bool(login_response['cookies'])
+            login_set_cookie = login_response['headers'].get('set-cookie', '')
+            login_cookie_set = 'remza_session' in login_set_cookie
             self.log_test_result(
                 "Login Session Cookie",
                 login_cookie_set,
                 "Session cookie set during login" if login_cookie_set else "No session cookie set during login",
-                {'cookies': list(login_response['cookies'].keys()) if login_cookie_set else {}}
+                {'set_cookie_header': 'remza_session cookie found' if login_cookie_set else login_set_cookie}
             )
-            self.session_cookies.update(login_response['cookies'])
         else:
             self.log_test_result(
                 "Login Session Cookie",
