@@ -176,7 +176,7 @@ class CookieSessionTester:
         
         # Step 2: Test login with session cookie creation
         logger.info("🔐 Testing login with session cookie creation...")
-        login_response = await self.make_request('POST', '/api/viewer/login', {'username': test_username})
+        login_response = await self.make_request('POST', f'/api/viewer/login?username={test_username}')
         
         if login_response['status'] == 200:
             login_cookie_set = bool(login_response['cookies'])
