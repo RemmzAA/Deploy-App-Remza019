@@ -155,7 +155,7 @@ class CookieSessionTester:
             return False
         
         # Check if session cookie is set (check Set-Cookie header)
-        set_cookie_header = response['headers'].get('set-cookie', '')
+        set_cookie_header = response['headers'].get('Set-Cookie', response['headers'].get('set-cookie', ''))
         session_cookie_set = 'remza_session' in set_cookie_header
         if not session_cookie_set:
             self.log_test_result(
