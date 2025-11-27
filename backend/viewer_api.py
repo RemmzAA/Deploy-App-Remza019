@@ -289,18 +289,6 @@ async def get_current_viewer(request: Request):
         logger.error(f"Get current viewer error: {e}")
         raise HTTPException(status_code=500, detail="Failed to get viewer data")
 
-                "level": 1,
-                "unlocked_features": ["chat"],
-                "email_verified": False
-            },
-            "message": "Please check your email to verify your account",
-            "session_created": True
-        }
-        
-    except Exception as e:
-        logger.error(f"Viewer registration error: {e}")
-        raise HTTPException(status_code=500, detail="Registration failed")
-
 @viewer_router.post("/verify")
 async def verify_email(email: str, code: str):
     """Verify user email with verification code"""
