@@ -447,9 +447,48 @@ async def update_channel_stats(update_data: UpdateChannelStatsRequest, admin = D
         raise HTTPException(status_code=500, detail="Failed to update channel stats")
 
 # Stream Schedule Management
+
+# PUBLIC ENDPOINT - Schedule accessible to everyone
+@app.get("/api/schedule", response_model=List[StreamSchedule])
+async def get_public_schedule():
+    """Get stream schedule - PUBLIC ENDPOINT"""
+    try:
+        db = get_database()
+        
+        schedule = await db.stream_schedule.find({'is_active': True}, {"_id": 0}).to_list(length=None)
+        
+        # If no schedule exists, return default schedule
+        if not schedule:
+            default_schedule = [
+                {'day': 'MON', 'time': '19:00', 'game': 'FORTNITE', 'is_active': True},
+                {'day': 'TUE', 'time': '20:00', 'game': 'FORTNITE ROCKET RACING', 'is_active': True},
+                {'day': 'WED', 'time': '19:30', 'game': 'FORTNITE CREATIVE', 'is_active': True},
+                {'day': 'THU', 'time': '20:00', 'game': 'FORTNITE BATTLE ROYALE', 'is_active': True},
+                {'day': 'FRI', 'time': '19:00', 'game': 'COD WARZONE', 'is_active': True},
+                {'day': 'SAT', 'time': '15:00', 'game': 'FORTNITE TOURNAMENT', 'is_active': True},
+                {'day': 'SUN', 'time': '18:00', 'game': 'FORTNITE', 'is_active': True}
+            ]
+            return [StreamSchedule(**item) for item in default_schedule]
+        
+        return [StreamSchedule(**item) for item in schedule]
+        
+    except Exception as e:
+        logger.error(f"❌ Get public schedule error: {e}")
+        # Return default schedule on error
+        default_schedule = [
+            {'day': 'MON', 'time': '19:00', 'game': 'FORTNITE', 'is_active': True},
+            {'day': 'TUE', 'time': '20:00', 'game': 'FORTNITE ROCKET RACING', 'is_active': True},
+            {'day': 'WED', 'time': '19:30', 'game': 'FORTNITE CREATIVE', 'is_active': True},
+            {'day': 'THU', 'time': '20:00', 'game': 'FORTNITE BATTLE ROYALE', 'is_active': True},
+            {'day': 'FRI', 'time': '19:00', 'game': 'COD WARZONE', 'is_active': True},
+            {'day': 'SAT', 'time': '15:00', 'game': 'FORTNITE TOURNAMENT', 'is_active': True},
+            {'day': 'SUN', 'time': '18:00', 'game': 'FORTNITE', 'is_active': True}
+        ]
+        return [StreamSchedule(**item) for item in default_schedule]
+
 @admin_router.get("/schedule", response_model=List[StreamSchedule])
 async def get_stream_schedule(admin = Depends(get_current_admin)):
-    """Get stream schedule"""
+    """Get stream schedule - ADMIN ENDPOINT"""
     try:
         db = get_database()
         
