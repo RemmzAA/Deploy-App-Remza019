@@ -1450,22 +1450,29 @@ class BackendTester:
         return results_summary
 
 async def main():
-    """Main test execution"""
+    """Main test execution for Member & License System"""
     # Configuration
     BASE_URL = "https://memberhub-21.preview.emergentagent.com"
     ADMIN_USERNAME = "admin"
     ADMIN_PASSWORD = "remza019admin"
     
-    logger.info("🎮 REMZA019 Gaming - Comprehensive Backend E2E Testing")
+    logger.info("🎮 REMZA019 Gaming - Member & License System Testing")
     logger.info(f"Backend URL: {BASE_URL}")
     logger.info(f"Admin User: {ADMIN_USERNAME}")
+    logger.info("\n📋 Testing Flows:")
+    logger.info("1. Member Registration with Email Verification")
+    logger.info("2. Email Verification Code Validation")
+    logger.info("3. Member Login with JWT Authentication")
+    logger.info("4. License Key Generation and Activation")
+    logger.info("5. Member Profile Management")
+    logger.info("6. Admin Member Management Functions")
     
     async with BackendTester(BASE_URL, ADMIN_USERNAME, ADMIN_PASSWORD) as tester:
         results = await tester.run_comprehensive_tests()
         
         # Print final results
         logger.info("\n" + "="*80)
-        logger.info("🏁 FINAL TEST RESULTS")
+        logger.info("🏁 MEMBER & LICENSE SYSTEM TEST RESULTS")
         logger.info("="*80)
         logger.info(f"Total Tests: {results['total_tests']}")
         logger.info(f"Passed: {results['passed']} ✅")
@@ -1480,10 +1487,10 @@ async def main():
         
         # Determine overall success
         if results['success_rate'] >= 70:
-            logger.info("\n🎉 OVERALL: TESTS PASSED (≥70% success rate)")
+            logger.info("\n🎉 OVERALL: MEMBER & LICENSE SYSTEM TESTS PASSED (≥70% success rate)")
             return 0
         else:
-            logger.error("\n💥 OVERALL: TESTS FAILED (<70% success rate)")
+            logger.error("\n💥 OVERALL: MEMBER & LICENSE SYSTEM TESTS FAILED (<70% success rate)")
             return 1
 
 if __name__ == "__main__":
