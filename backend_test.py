@@ -573,65 +573,119 @@ class BackendTester:
         
         return True
     
-    async def test_email_configuration(self) -> bool:
-        """Test email configuration and SMTP settings"""
-        logger.info("🧪 Testing email configuration...")
+    async def test_member_profile_api(self) -> bool:
+        """Test Case 5: Member Profile API"""
+        logger.info("🧪 Testing member profile API...")
         
-        # Test if email service is properly configured by checking environment
-        # This is indirect testing since we can't directly access env vars
-        
-        # Test the email verification system which uses SMTP
-        test_email = f"config_test_{uuid.uuid4().hex[:8]}@example.com"
-        
-        response = await self.make_request(
-            'POST',
-            '/api/auth/send-verification',
-            {
-                'email': test_email,
-                'username': 'config_test'
-            }
-        )
-        
-        if response['status'] == 200:
+        if not hasattr(self, 'test_member_data') or not self.test_member_data.get('login_token'):
             self.log_test_result(
-                "Email Configuration",
-                True,
-                "Email system is configured and accepting requests",
-                {'test_email': test_email}
-            )
-        else:
-            self.log_test_result(
-                "Email Configuration",
+                "Member Profile API",
                 False,
-                f"Email system configuration issue: {response['status']}",
-                {'response': response['data']}
+                "No authenticated member token available for profile testing",
+                {}
             )
             return False
         
-        # Test email verification status check
-        status_response = await self.make_request(
+        headers = {'Authorization': f'Bearer {self.test_member_data["login_token"]}'}
+        
+        # Step 1: Test GET /api/member/profile with valid JWT token
+        profile_response = await self.make_request(
             'GET',
-            f'/api/auth/check-verification/{test_email}'
+            '/api/member/profile',
+            headers=headers
         )
         
-        if status_response['status'] == 200:
-            status_data = status_response['data']
+        if profile_response['status'] == 200:
+            profile_data = profile_response['data']
+            if profile_data.get('success') and profile_data.get('member'):
+                member_info = profile_data['member']
+                self.log_test_result(
+                    "Member Profile - Valid Token",
+                    True,
+                    "Successfully retrieved member profile",
+                    {
+                        'member_id': member_info.get('member_id'),
+                        'nickname': member_info.get('nickname'),
+                        'email': member_info.get('email'),
+                        'points': member_info.get('points', 0),
+                        'level': member_info.get('level', 1),
+                        'license_type': member_info.get('license_type', 'NONE')
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "Member Profile - Valid Token",
+                    False,
+                    "Profile response missing success or member data",
+                    {'response': profile_data}
+                )
+        else:
             self.log_test_result(
-                "Email Verification Status Check",
+                "Member Profile - Valid Token",
+                False,
+                f"Profile retrieval failed: {profile_response['status']}",
+                {'response': profile_response['data']}
+            )
+        
+        # Step 2: Test with invalid/expired token
+        invalid_headers = {'Authorization': 'Bearer invalid_token_12345'}
+        
+        invalid_profile_response = await self.make_request(
+            'GET',
+            '/api/member/profile',
+            headers=invalid_headers
+        )
+        
+        if invalid_profile_response['status'] == 401:
+            self.log_test_result(
+                "Member Profile - Invalid Token",
                 True,
-                f"Email verification status system working",
-                {
-                    'email': test_email,
-                    'verified': status_data.get('verified', False),
-                    'exists': status_data.get('exists', False)
-                }
+                "Correctly rejected invalid JWT token",
+                {'status': invalid_profile_response['status']}
             )
         else:
             self.log_test_result(
-                "Email Verification Status Check",
+                "Member Profile - Invalid Token",
                 False,
-                f"Email verification status check failed: {status_response['status']}",
-                {'response': status_response['data']}
+                f"Should reject invalid token but got: {invalid_profile_response['status']}",
+                {'response': invalid_profile_response['data']}
+            )
+        
+        # Step 3: Test profile update
+        update_response = await self.make_request(
+            'PUT',
+            '/api/member/profile',
+            {
+                'nickname': f"updated_{uuid.uuid4().hex[:6]}",
+                'avatar_url': 'https://example.com/avatar.jpg'
+            },
+            headers
+        )
+        
+        if update_response['status'] == 200:
+            update_data = update_response['data']
+            if update_data.get('success'):
+                self.log_test_result(
+                    "Member Profile - Update",
+                    True,
+                    "Successfully updated member profile",
+                    {
+                        'updated_member': update_data.get('member', {})
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "Member Profile - Update",
+                    False,
+                    "Profile update response missing success",
+                    {'response': update_data}
+                )
+        else:
+            self.log_test_result(
+                "Member Profile - Update",
+                False,
+                f"Profile update failed: {update_response['status']}",
+                {'response': update_response['data']}
             )
         
         return True
