@@ -2,15 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Logo3D.css';
 
 const Logo3D = ({ logoUrl = '/remza-logo.png', userName = 'REMZA019', licenseType = 'NONE' }) => {
-  const [showWatermark, setShowWatermark] = useState(true);
-  
-  // Show 3D "R" watermark only if user doesn't have PREMIUM license
-  useEffect(() => {
-    const isPremium = licenseType === 'PREMIUM';
-    setShowWatermark(!isPremium);
-    console.log('🎨 Logo3D - License Type:', licenseType);
-    console.log('🎨 Show Watermark (3D R):', !isPremium);
-  }, [licenseType]);
+  // Always show the custom logo in 3D rotating cube
+  console.log('🎨 Logo3D - License Type:', licenseType);
+  console.log('🎨 Logo URL:', logoUrl);
   
   useEffect(() => {
     console.log('🎨 Logo3D Rendered - Logo URL:', logoUrl);
