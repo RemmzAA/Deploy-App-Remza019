@@ -337,8 +337,8 @@ class BackendTester:
         
         member_data = self.test_member_data
         
-        # Step 1: Test login with unverified member (should fail or warn)
-        unverified_response = await self.make_request(
+        # Step 1: Test login (behavior depends on verification status)
+        login_response = await self.make_request(
             'POST',
             '/api/member/login',
             {
@@ -346,35 +346,53 @@ class BackendTester:
             }
         )
         
-        # This might fail if member is not verified yet
-        if unverified_response['status'] in [403, 400]:
-            self.log_test_result(
-                "Member Login - Unverified Account",
-                True,
-                "Correctly handled unverified member login attempt",
-                {'status': unverified_response['status']}
-            )
-        elif unverified_response['status'] == 200:
-            data = unverified_response['data']
-            if data.get('requires_verification'):
-                self.log_test_result(
-                    "Member Login - Verification Code Sent",
-                    True,
-                    "Login sent verification code for unverified member",
-                    {
-                        'verification_code': data.get('verification_code'),
-                        'requires_verification': True
-                    }
-                )
-                # Store the new verification code
-                if data.get('verification_code'):
-                    member_data['login_verification_code'] = data['verification_code']
+        # Check if member was admin-verified or not
+        if member_data.get('admin_verified'):
+            # Member is verified, should get verification code for login
+            if login_response['status'] == 200:
+                data = login_response['data']
+                if data.get('requires_verification'):
+                    self.log_test_result(
+                        "Member Login - Verified Account",
+                        True,
+                        "Verified member login sent verification code",
+                        {
+                            'verification_code': data.get('verification_code'),
+                            'requires_verification': True
+                        }
+                    )
+                    # Store the new verification code
+                    if data.get('verification_code'):
+                        member_data['login_verification_code'] = data['verification_code']
+                else:
+                    self.log_test_result(
+                        "Member Login - Verified Account",
+                        False,
+                        "Verified member login should require verification code",
+                        {'response': data}
+                    )
             else:
                 self.log_test_result(
-                    "Member Login - Unexpected Success",
+                    "Member Login - Verified Account",
                     False,
-                    "Unverified member login succeeded unexpectedly",
-                    {'response': data}
+                    f"Verified member login failed: {login_response['status']}",
+                    {'response': login_response['data']}
+                )
+        else:
+            # Member is not verified, should fail
+            if login_response['status'] in [403, 400]:
+                self.log_test_result(
+                    "Member Login - Unverified Account",
+                    True,
+                    "Correctly handled unverified member login attempt",
+                    {'status': login_response['status']}
+                )
+            else:
+                self.log_test_result(
+                    "Member Login - Unverified Account",
+                    False,
+                    f"Unverified member login should fail but got: {login_response['status']}",
+                    {'response': login_response['data']}
                 )
         
         # Step 2: Test login with verification code (if available)
