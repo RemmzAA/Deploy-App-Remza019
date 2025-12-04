@@ -647,7 +647,25 @@ const GamingDemo = () => {
     { day: 'SUN', time: 'REST', game: 'No Stream' }
   ]);
   
-  // Schedule is loaded via SSE (lines 446-457) - No separate fetch needed here
+  // Fetch schedule from backend on mount - PUBLIC endpoint
+  useEffect(() => {
+    const fetchSchedule = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/schedule`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.schedule && data.schedule.length > 0) {
+            setSchedule(data.schedule);
+            console.log('✅ Schedule loaded from backend:', data.schedule);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch schedule:', error);
+        // Keep default schedule on error
+      }
+    };
+    fetchSchedule();
+  }, []);
 
   // Fetch YouTube videos from backend
   useEffect(() => {
