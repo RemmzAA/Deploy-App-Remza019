@@ -108,6 +108,71 @@
   }
 }
 
+/* Watermark "R" Letter Styling */
+.letter-r {
+  font-size: 48px;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 
+    0 0 10px rgba(16, 185, 129, 0.8),
+    0 0 20px rgba(16, 185, 129, 0.6),
+    0 0 30px rgba(16, 185, 129, 0.4);
+  font-family: 'Arial Black', sans-serif;
+  animation: letter-glow 2s infinite alternate;
+}
+
+@keyframes letter-glow {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(16, 185, 129, 0.8),
+      0 0 20px rgba(16, 185, 129, 0.6),
+      0 0 30px rgba(16, 185, 129, 0.4);
+  }
+  100% {
+    text-shadow: 
+      0 0 20px rgba(16, 185, 129, 1),
+      0 0 30px rgba(16, 185, 129, 0.8),
+      0 0 40px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Watermark Badge */
+.watermark-badge {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 193, 7, 0.2);
+  border: 1px solid #ffc107;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffc107;
+  white-space: nowrap;
+  animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+  }
+}
+
+/* Premium Cube Styling */
+.logo-3d-cube.premium .cube-face {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.logo-3d-cube.premium .logo-img {
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 1));
+}
+
 /* Hover effects */
 .logo-3d-container:hover .logo-glow-effect {
   animation: pulse-glow 1s infinite;
