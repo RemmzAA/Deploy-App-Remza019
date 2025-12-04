@@ -82,12 +82,14 @@ const MemberAuth = ({ onAuthSuccess }) => {
             onAuthSuccess(data.member, data.token);
           }
         } else if (data.requires_verification) {
-          // Show verification code (in production, this would be sent via email)
-          setSuccess(`Verification code sent! Code: ${data.verification_code}`);
-          setStep(2);
+          setError('⏳ Your account is pending admin verification. Please wait for approval.');
         }
       } else {
-        setError(data.detail || 'Login failed');
+        if (data.detail && data.detail.includes('verify')) {
+          setError('⏳ Your account is pending admin verification. Please contact admin.');
+        } else {
+          setError(data.detail || 'Login failed');
+        }
       }
     } catch (err) {
       setError('Network error. Please try again.');
