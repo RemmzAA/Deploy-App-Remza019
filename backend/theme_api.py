@@ -251,7 +251,7 @@ async def apply_theme(
             "customFonts": data.customFonts or data.fonts or {},
             "customEffects": data.customEffects or {},
             "updated_at": datetime.utcnow().isoformat(),
-            "updated_by": "system"
+            "updated_by": admin["username"]
         }
         
         # Save to database
