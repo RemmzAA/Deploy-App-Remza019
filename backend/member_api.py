@@ -148,15 +148,30 @@ async def register_member(data: MemberRegistration):
         # Insert to database
         await members_collection.insert_one(member_doc)
         
-        # TODO: Send verification email with code
-        logger.info(f"Member registered: {data.email} - Verification code: {verification_code}")
+        # Send verification email
+        base_url = os.environ.get('FRONTEND_URL', 'https://gamer-toolkit-3.preview.emergentagent.com')
+        email_sent = await email_service.send_verification_email(
+            to_email=data.email,
+            username=data.nickname,
+            verification_code=verification_code,
+            base_url=base_url
+        )
         
-        return {
-            "success": True,
-            "message": "Registration successful! Please check your email for verification code.",
-            "member_id": member_id,
-            "verification_code": verification_code  # In production, remove this and send via email
-        }
+        if email_sent:
+            logger.info(f"✅ Member registered: {data.email} - Verification email sent")
+            return {
+                "success": True,
+                "message": "Registration successful! Please check your email for verification code.",
+                "member_id": member_id
+            }
+        else:
+            logger.warning(f"⚠️ Member registered but email failed: {data.email}")
+            return {
+                "success": True,
+                "message": "Registration successful! Verification code (email failed):",
+                "member_id": member_id,
+                "verification_code": verification_code  # Fallback if email fails
+            }
     
     except HTTPException:
         raise
