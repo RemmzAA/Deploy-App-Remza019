@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-REMZA019 Gaming - Comprehensive Backend E2E Testing
-Testing email notification system and viewer registration flows
+REMZA019 Gaming - Member & License System Testing
+Complete testing of member registration, email verification, login, and license activation flows
 """
 
 import asyncio
