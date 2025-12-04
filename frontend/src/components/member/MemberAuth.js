@@ -83,11 +83,17 @@ const MemberAuth = ({ onAuthSuccess }) => {
             onAuthSuccess(data.member, data.token);
           }
         } else if (data.requires_verification) {
-          setError('⏳ Your account is pending admin verification. Please wait for approval.');
+          // Show verification code if email failed, otherwise show sent message
+          if (data.verification_code) {
+            setSuccess(`Verification code: ${data.verification_code}`);
+          } else {
+            setSuccess('Verification code sent to your email!');
+          }
+          setStep(2);
         }
       } else {
-        if (data.detail && data.detail.includes('verify')) {
-          setError('⏳ Your account is pending admin verification. Please contact admin.');
+        if (data.detail && data.detail.includes('pending')) {
+          setError('⏳ Your account is pending admin verification. Please wait for approval.');
         } else {
           setError(data.detail || 'Login failed');
         }
