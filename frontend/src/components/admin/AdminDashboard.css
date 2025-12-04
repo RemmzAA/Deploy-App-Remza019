@@ -728,18 +728,20 @@
   background: linear-gradient(135deg, var(--matrix-color), #06b6d4);
   border: none;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.3rem !important;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
   margin-top: 1rem;
+  text-transform: uppercase;
 }
 
 .add-schedule-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
 }
 
 .schedule-list {
