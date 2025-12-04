@@ -284,6 +284,9 @@ const GamingDemo = () => {
     // Initialize license on first visit
     initializeLicense();
     
+    // Load license status
+    loadLicenseStatus();
+    
     // Load customization FIRST (for logo, social links, etc.)
     loadCustomizationFromBackend().then(() => {
       // THEN load theme (this will override customization colors if needed)
