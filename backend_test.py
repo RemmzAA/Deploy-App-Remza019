@@ -690,68 +690,203 @@ class BackendTester:
         
         return True
     
-    async def test_admin_panel_functionality(self) -> bool:
-        """Test admin panel data retrieval"""
-        logger.info("🧪 Testing admin panel functionality...")
+    async def test_admin_member_management(self) -> bool:
+        """Test Case 6: Admin Member Management"""
+        logger.info("🧪 Testing admin member management...")
         
-        if not self.admin_token:
-            self.log_test_result(
-                "Admin Panel Test",
-                False,
-                "Admin token required for admin panel testing",
-                {}
-            )
-            return False
-        
-        headers = {'Authorization': f'Bearer {self.admin_token}'}
-        
-        # Test admin dashboard data
-        dashboard_response = await self.make_request(
-            'GET',
-            '/api/admin/dashboard',
-            headers=headers
-        )
-        
-        if dashboard_response['status'] == 200:
-            dashboard_data = dashboard_response['data']
-            self.log_test_result(
-                "Admin Dashboard",
-                True,
-                "Admin dashboard data retrieved successfully",
-                {
-                    'has_data': bool(dashboard_data),
-                    'keys': list(dashboard_data.keys()) if isinstance(dashboard_data, dict) else []
-                }
-            )
-        else:
-            self.log_test_result(
-                "Admin Dashboard",
-                False,
-                f"Admin dashboard failed: {dashboard_response['status']}",
-                {'response': dashboard_response['data']}
-            )
-        
-        # Test admin stats
+        # Step 1: Test /api/member/admin/member-stats
         stats_response = await self.make_request(
             'GET',
-            '/api/admin/stats',
-            headers=headers
+            '/api/member/admin/member-stats'
         )
         
         if stats_response['status'] == 200:
-            self.log_test_result(
-                "Admin Stats",
-                True,
-                "Admin stats retrieved successfully",
-                {'stats_available': bool(stats_response['data'])}
-            )
+            stats_data = stats_response['data']
+            if stats_data.get('success') and stats_data.get('stats'):
+                stats = stats_data['stats']
+                self.log_test_result(
+                    "Admin Member Stats",
+                    True,
+                    f"Successfully retrieved member statistics",
+                    {
+                        'total': stats.get('total', 0),
+                        'verified': stats.get('verified', 0),
+                        'pending': stats.get('pending', 0),
+                        'active': stats.get('active', 0),
+                        'banned': stats.get('banned', 0),
+                        'with_license': stats.get('with_license', 0)
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "Admin Member Stats",
+                    False,
+                    "Member stats response missing success or stats data",
+                    {'response': stats_data}
+                )
         else:
             self.log_test_result(
-                "Admin Stats",
+                "Admin Member Stats",
                 False,
-                f"Admin stats failed: {stats_response['status']}",
+                f"Member stats retrieval failed: {stats_response['status']}",
                 {'response': stats_response['data']}
             )
+        
+        # Step 2: Test /api/member/admin/pending-members
+        pending_response = await self.make_request(
+            'GET',
+            '/api/member/admin/pending-members'
+        )
+        
+        if pending_response['status'] == 200:
+            pending_data = pending_response['data']
+            if pending_data.get('success'):
+                members = pending_data.get('members', [])
+                self.log_test_result(
+                    "Admin Pending Members",
+                    True,
+                    f"Successfully retrieved {len(members)} pending members",
+                    {
+                        'pending_count': len(members),
+                        'total': pending_data.get('total', 0)
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "Admin Pending Members",
+                    False,
+                    "Pending members response missing success",
+                    {'response': pending_data}
+                )
+        else:
+            self.log_test_result(
+                "Admin Pending Members",
+                False,
+                f"Pending members retrieval failed: {pending_response['status']}",
+                {'response': pending_response['data']}
+            )
+        
+        # Step 3: Test /api/member/admin/all-members
+        all_members_response = await self.make_request(
+            'GET',
+            '/api/member/admin/all-members'
+        )
+        
+        if all_members_response['status'] == 200:
+            all_data = all_members_response['data']
+            if all_data.get('success'):
+                members = all_data.get('members', [])
+                self.log_test_result(
+                    "Admin All Members",
+                    True,
+                    f"Successfully retrieved {len(members)} total members",
+                    {
+                        'member_count': len(members),
+                        'total': all_data.get('total', 0)
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "Admin All Members",
+                    False,
+                    "All members response missing success",
+                    {'response': all_data}
+                )
+        else:
+            self.log_test_result(
+                "Admin All Members",
+                False,
+                f"All members retrieval failed: {all_members_response['status']}",
+                {'response': all_members_response['data']}
+            )
+        
+        # Step 4: Test manual member verification (if we have a test member)
+        if hasattr(self, 'test_member_data') and self.test_member_data.get('member_id'):
+            verify_response = await self.make_request(
+                'POST',
+                '/api/member/admin/verify-member',
+                {
+                    'member_id': self.test_member_data['member_id']
+                }
+            )
+            
+            if verify_response['status'] == 200:
+                verify_data = verify_response['data']
+                if verify_data.get('success'):
+                    self.log_test_result(
+                        "Admin Manual Verification",
+                        True,
+                        f"Successfully verified member via admin",
+                        {
+                            'member_id': self.test_member_data['member_id'],
+                            'message': verify_data.get('message')
+                        }
+                    )
+                else:
+                    self.log_test_result(
+                        "Admin Manual Verification",
+                        False,
+                        "Manual verification response missing success",
+                        {'response': verify_data}
+                    )
+            else:
+                self.log_test_result(
+                    "Admin Manual Verification",
+                    False,
+                    f"Manual verification failed: {verify_response['status']}",
+                    {'response': verify_response['data']}
+                )
+        
+        # Step 5: Test member ban/unban functionality
+        if hasattr(self, 'test_member_data') and self.test_member_data.get('member_id'):
+            # Test ban
+            ban_response = await self.make_request(
+                'POST',
+                '/api/member/admin/ban-member',
+                {
+                    'member_id': self.test_member_data['member_id'],
+                    'reason': 'Testing ban functionality'
+                }
+            )
+            
+            if ban_response['status'] == 200:
+                self.log_test_result(
+                    "Admin Member Ban",
+                    True,
+                    "Successfully banned member via admin",
+                    {'member_id': self.test_member_data['member_id']}
+                )
+                
+                # Test unban
+                unban_response = await self.make_request(
+                    'POST',
+                    '/api/member/admin/unban-member',
+                    {
+                        'member_id': self.test_member_data['member_id']
+                    }
+                )
+                
+                if unban_response['status'] == 200:
+                    self.log_test_result(
+                        "Admin Member Unban",
+                        True,
+                        "Successfully unbanned member via admin",
+                        {'member_id': self.test_member_data['member_id']}
+                    )
+                else:
+                    self.log_test_result(
+                        "Admin Member Unban",
+                        False,
+                        f"Member unban failed: {unban_response['status']}",
+                        {'response': unban_response['data']}
+                    )
+            else:
+                self.log_test_result(
+                    "Admin Member Ban",
+                    False,
+                    f"Member ban failed: {ban_response['status']}",
+                    {'response': ban_response['data']}
+                )
         
         return True
     
