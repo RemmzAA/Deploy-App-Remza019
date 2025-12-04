@@ -18,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<GamingDemo />} />
               <Route path="/gaming" element={<GamingDemo />} />
+              <Route path="/pricing" element={<PricingPage />} />
               <Route path="/admin" element={<AdminPanelWrapper />} />
               <Route path="/admin/*" element={<AdminPanelWrapper />} />
               <Route path="/member/login" element={<MemberAuth onAuthSuccess={() => window.location.href = '/member/dashboard'} />} />
