@@ -261,7 +261,7 @@ async def apply_theme(
             upsert=True
         )
         
-        logger.info(f"✅ Theme applied: {theme_id}")
+        logger.info(f"✅ Theme applied: {theme_id} by {admin['username']}")
         
         # Broadcast to all clients
         from admin_api import broadcast_admin_update
