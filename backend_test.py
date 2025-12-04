@@ -1398,24 +1398,20 @@ class BackendTester:
         return True
 
     async def run_comprehensive_tests(self) -> Dict:
-        """Run all comprehensive tests as per review request"""
-        logger.info("🚀 Starting comprehensive backend testing as per review request...")
+        """Run all comprehensive Member & License System tests as per review request"""
+        logger.info("🚀 Starting comprehensive Member & License System testing as per review request...")
         
-        # Step 1: Admin login
+        # Step 1: Admin login (for admin endpoints)
         admin_login_success = await self.admin_login()
         
         # Step 2: Run all test cases as per review request
         test_cases = [
-            ("Admin Authentication & Authorization", self.test_admin_authentication_authorization),
-            ("Theme Management (CRITICAL - Just Fixed)", self.test_theme_management_critical),
-            ("User Registration & Email", self.test_viewer_registration_with_email_verification),
-            ("Schedule Management", self.test_schedule_management),
-            ("Content Management", self.test_content_management),
-            ("YouTube Integration", self.test_youtube_integration),
-            ("Email Subscription for Live Notifications", self.test_email_subscription_for_live_notifications),
-            ("Live Stream Alert Emails", self.test_live_stream_alert_emails),
-            ("Leaderboard Notification System", self.test_leaderboard_notification_system),
-            ("Email Configuration", self.test_email_configuration),
+            ("Member Registration Flow", self.test_member_registration_flow),
+            ("Email Verification Flow", self.test_email_verification_flow),
+            ("Member Login Flow", self.test_member_login_flow),
+            ("License Activation Flow", self.test_license_activation_flow),
+            ("Member Profile API", self.test_member_profile_api),
+            ("Admin Member Management", self.test_admin_member_management),
         ]
         
         results_summary = {
