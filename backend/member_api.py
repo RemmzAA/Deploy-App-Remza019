@@ -423,3 +423,167 @@ async def get_member_stats(member = Depends(verify_token)):
     except Exception as e:
         logger.error(f"Stats error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+# ============ ADMIN ENDPOINTS ============
+
+@router.get("/admin/pending-members")
+async def get_pending_members():
+    """
+    Get all members pending email verification (Admin only)
+    """
+    try:
+        pending = await members_collection.find(
+            {"email_verified": False},
+            {"_id": 0}
+        ).sort("created_at", -1).to_list(length=100)
+        
+        return {
+            "success": True,
+            "members": pending,
+            "total": len(pending)
+        }
+    except Exception as e:
+        logger.error(f"Get pending members error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/admin/all-members")
+async def get_all_members():
+    """
+    Get all members (Admin only)
+    """
+    try:
+        members = await members_collection.find(
+            {},
+            {"_id": 0}
+        ).sort("created_at", -1).to_list(length=1000)
+        
+        return {
+            "success": True,
+            "members": members,
+            "total": len(members)
+        }
+    except Exception as e:
+        logger.error(f"Get all members error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/admin/verify-member")
+async def admin_verify_member(member_id: str):
+    """
+    Admin manually verifies a member (bypasses email verification)
+    """
+    try:
+        member = await members_collection.find_one({"member_id": member_id})
+        
+        if not member:
+            raise HTTPException(status_code=404, detail="Member not found")
+        
+        # Verify member
+        await members_collection.update_one(
+            {"member_id": member_id},
+            {"$set": {
+                "email_verified": True,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        return {
+            "success": True,
+            "message": f"Member {member['nickname']} verified successfully"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Admin verify member error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/admin/ban-member")
+async def admin_ban_member(member_id: str, reason: str = "Admin decision"):
+    """
+    Admin bans a member
+    """
+    try:
+        member = await members_collection.find_one({"member_id": member_id})
+        
+        if not member:
+            raise HTTPException(status_code=404, detail="Member not found")
+        
+        # Ban member
+        await members_collection.update_one(
+            {"member_id": member_id},
+            {"$set": {
+                "is_active": False,
+                "is_banned": True,
+                "ban_reason": reason,
+                "banned_at": datetime.now(timezone.utc).isoformat(),
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        return {
+            "success": True,
+            "message": f"Member {member['nickname']} banned"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Admin ban member error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/admin/unban-member")
+async def admin_unban_member(member_id: str):
+    """
+    Admin unbans a member
+    """
+    try:
+        member = await members_collection.find_one({"member_id": member_id})
+        
+        if not member:
+            raise HTTPException(status_code=404, detail="Member not found")
+        
+        # Unban member
+        await members_collection.update_one(
+            {"member_id": member_id},
+            {"$set": {
+                "is_active": True,
+                "is_banned": False,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        return {
+            "success": True,
+            "message": f"Member {member['nickname']} unbanned"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Admin unban member error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/admin/member-stats")
+async def get_admin_member_stats():
+    """
+    Get member statistics for admin dashboard
+    """
+    try:
+        total = await members_collection.count_documents({})
+        verified = await members_collection.count_documents({"email_verified": True})
+        pending = await members_collection.count_documents({"email_verified": False})
+        active = await members_collection.count_documents({"is_active": True})
+        banned = await members_collection.count_documents({"is_banned": True})
+        with_license = await members_collection.count_documents({"license_type": {"$ne": "NONE"}})
+        
+        return {
+            "success": True,
+            "stats": {
+                "total": total,
+                "verified": verified,
+                "pending": pending,
+                "active": active,
+                "banned": banned,
+                "with_license": with_license
+            }
+        }
+    except Exception as e:
+        logger.error(f"Get member stats error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
