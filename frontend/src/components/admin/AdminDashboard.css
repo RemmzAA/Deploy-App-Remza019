@@ -187,8 +187,9 @@
 
 .nav-tab.active {
   background: linear-gradient(135deg, var(--matrix-color), #06b6d4);
-  color: white;
+  color: #000000 !important;
   border-color: transparent;
+  font-weight: 700;
 }
 
 .tab-icon {
