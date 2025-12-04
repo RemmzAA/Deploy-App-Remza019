@@ -830,6 +830,7 @@ const AdminDashboard = ({ token, onLogout }) => {
           { id: 'settings', label: 'SITE SETTINGS', icon: '⚙️' },
           { id: 'licenses', label: 'LICENSE MANAGER', icon: '🔑' },
           { id: 'members', label: 'MEMBERS', icon: '👥' },
+          { id: 'features', label: 'FEATURES', icon: '🎯' },
           { id: 'youtube', label: t('youtubeSync'), icon: '🎥' },
           { id: 'obs', label: 'OBS CONTROL', icon: '🎬' },
           { id: 'streamlabs', label: 'STREAMLABS', icon: '💰' },
