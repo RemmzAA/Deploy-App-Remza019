@@ -288,6 +288,48 @@ except ImportError as e:
     print(f"⚠️ Email Verification API not available: {e}")
 
 
+# ============== PUBLIC SCHEDULE ENDPOINT ==============
+@app.get("/api/schedule")
+async def get_public_schedule():
+    """Get stream schedule - PUBLIC ENDPOINT (no auth required)"""
+    try:
+        from models import StreamSchedule
+        db = get_database()
+        
+        schedule = await db.stream_schedule.find({'is_active': True}, {"_id": 0}).to_list(length=None)
+        
+        # If no schedule exists, return default schedule
+        if not schedule:
+            logger.info("No schedule found in DB, returning default schedule")
+            default_schedule = [
+                {'day': 'MON', 'time': '19:00', 'game': 'FORTNITE', 'is_active': True},
+                {'day': 'TUE', 'time': '20:00', 'game': 'FORTNITE ROCKET RACING', 'is_active': True},
+                {'day': 'WED', 'time': '19:30', 'game': 'FORTNITE CREATIVE', 'is_active': True},
+                {'day': 'THU', 'time': '20:00', 'game': 'FORTNITE BATTLE ROYALE', 'is_active': True},
+                {'day': 'FRI', 'time': '19:00', 'game': 'COD WARZONE', 'is_active': True},
+                {'day': 'SAT', 'time': '15:00', 'game': 'FORTNITE TOURNAMENT', 'is_active': True},
+                {'day': 'SUN', 'time': '18:00', 'game': 'FORTNITE', 'is_active': True}
+            ]
+            return {"success": True, "schedule": default_schedule}
+        
+        logger.info(f"✅ Returned {len(schedule)} schedule items")
+        return {"success": True, "schedule": schedule}
+        
+    except Exception as e:
+        logger.error(f"❌ Get public schedule error: {e}")
+        # Return default schedule on error
+        default_schedule = [
+            {'day': 'MON', 'time': '19:00', 'game': 'FORTNITE', 'is_active': True},
+            {'day': 'TUE', 'time': '20:00', 'game': 'FORTNITE ROCKET RACING', 'is_active': True},
+            {'day': 'WED', 'time': '19:30', 'game': 'FORTNITE CREATIVE', 'is_active': True},
+            {'day': 'THU', 'time': '20:00', 'game': 'FORTNITE BATTLE ROYALE', 'is_active': True},
+            {'day': 'FRI', 'time': '19:00', 'game': 'COD WARZONE', 'is_active': True},
+            {'day': 'SAT', 'time': '15:00', 'game': 'FORTNITE TOURNAMENT', 'is_active': True},
+            {'day': 'SUN', 'time': '18:00', 'game': 'FORTNITE', 'is_active': True}
+        ]
+        return {"success": True, "schedule": default_schedule}
+
+
 # Download page endpoint
 @app.get("/download")
 async def download_page():
