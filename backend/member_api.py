@@ -286,15 +286,46 @@ async def login_member(data: MemberLogin):
             {"$set": {"verification_code": new_code}}
         )
         
-        # TODO: Send verification code via email
-        logger.info(f"Login attempt for {data.email} - Verification code: {new_code}")
+        # Send verification code via email (simpler email for login)
+        subject = "🎮 REMZA019 Gaming - Login Verification Code"
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {{ font-family: Arial, sans-serif; background-color: #000; color: #00ff00; margin: 0; padding: 20px; }}
+                .container {{ max-width: 600px; margin: 0 auto; background: #0a0a0a; border: 2px solid #00ff00; border-radius: 10px; padding: 30px; text-align: center; }}
+                .code {{ font-size: 32px; font-weight: bold; color: #00ff00; background: #000; padding: 20px; border-radius: 10px; letter-spacing: 10px; margin: 20px 0; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>🎮 Login Verification</h1>
+                <p>Your verification code is:</p>
+                <div class="code">{new_code}</div>
+                <p>This code expires in 15 minutes.</p>
+            </div>
+        </body>
+        </html>
+        """
         
-        return {
-            "success": True,
-            "message": "Verification code sent to your email!",
-            "verification_code": new_code,  # In production, remove this
-            "requires_verification": True
-        }
+        email_sent = await email_service.send_email(data.email, subject, html_content)
+        
+        if email_sent:
+            logger.info(f"✅ Login code sent to {data.email}")
+            return {
+                "success": True,
+                "message": "Verification code sent to your email!",
+                "requires_verification": True
+            }
+        else:
+            logger.warning(f"⚠️ Email failed for {data.email}, showing code")
+            return {
+                "success": True,
+                "message": "Verification code (email failed):",
+                "verification_code": new_code,  # Fallback if email fails
+                "requires_verification": True
+            }
     
     except HTTPException:
         raise
