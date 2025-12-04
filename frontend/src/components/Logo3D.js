@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Logo3D.css';
 
 const Logo3D = ({ logoUrl = '/remza-logo.png', userName = 'REMZA019' }) => {
   // Use custom logo if provided, otherwise use default
   const displayLogo = logoUrl && logoUrl !== '/remza-logo.png' ? logoUrl : '/remza-logo.png';
+  
+  useEffect(() => {
+    console.log('🎨 Logo3D Rendered - Logo URL:', displayLogo);
+    console.log('🎨 Logo3D Props:', { logoUrl, userName });
+  }, [displayLogo, logoUrl, userName]);
   
   return (
     <div className="logo-3d-container">
