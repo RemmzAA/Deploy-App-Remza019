@@ -164,12 +164,13 @@
 
 .admin-main h2 {
   color: var(--matrix-color);
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  letter-spacing: 0.5px;
 }
 
 /* Overview Section */
