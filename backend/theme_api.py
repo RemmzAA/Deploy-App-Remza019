@@ -227,9 +227,10 @@ async def get_current_theme():
 
 @theme_router.post("/apply")
 async def apply_theme(
-    data: ThemeData
+    data: ThemeData,
+    admin = Depends(get_current_admin)
 ):
-    """Apply a theme (PUBLIC - theme changes visible to all)"""
+    """Apply a theme (ADMIN ONLY - theme changes visible to all)"""
     try:
         db = get_database()
         
