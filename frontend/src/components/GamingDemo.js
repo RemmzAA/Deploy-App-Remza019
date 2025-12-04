@@ -38,6 +38,7 @@ const GamingDemo = () => {
   }); // For polls/predictions and points system
   const [featuredVideo, setFeaturedVideo] = useState(null); // Featured video
   const [aboutTags, setAboutTags] = useState([]); // Load from backend, no hardcoded default!
+  const [licenseType, setLicenseType] = useState('NONE'); // License type for watermark control
   
   // PWA Install State
   const [deferredPrompt, setDeferredPrompt] = useState(null);
