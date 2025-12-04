@@ -101,6 +101,184 @@
   font-weight: 700;
 }
 
+.view-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.view-tab {
+  flex: 1;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-tab:hover {
+  border-color: var(--theme-primary, #00ff00);
+  background: rgba(0, 255, 0, 0.1);
+  color: #ffffff;
+}
+
+.view-tab.active {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: var(--theme-primary, #00ff00);
+  color: var(--theme-primary, #00ff00);
+}
+
+.members-table {
+  overflow-x: auto;
+}
+
+.members-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.members-table th {
+  background: rgba(0, 255, 0, 0.1);
+  padding: 1rem;
+  text-align: left;
+  color: var(--theme-primary, #00ff00);
+  font-weight: 700;
+  border-bottom: 2px solid rgba(0, 255, 0, 0.3);
+}
+
+.members-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.nickname-cell {
+  font-weight: 700;
+  color: var(--theme-primary, #00ff00);
+}
+
+.members-table code {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  color: var(--theme-primary, #00ff00);
+  font-size: 0.85rem;
+}
+
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-badge.pending {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+}
+
+.status-badge.active {
+  background: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+}
+
+.status-badge.banned {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+.license-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: rgba(128, 128, 128, 0.2);
+  color: #888888;
+}
+
+.license-badge.trial {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+}
+
+.license-badge.basic {
+  background: rgba(0, 191, 255, 0.2);
+  color: #00bfff;
+}
+
+.license-badge.premium {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+}
+
+.verify-button,
+.ban-button,
+.unban-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.verify-button {
+  background: rgba(0, 255, 0, 0.2);
+  border: 1px solid #00ff00;
+  color: #00ff00;
+}
+
+.verify-button:hover {
+  background: rgba(0, 255, 0, 0.4);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.ban-button {
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid #ff0000;
+  color: #ff0000;
+}
+
+.ban-button:hover {
+  background: rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.unban-button {
+  background: rgba(0, 191, 255, 0.2);
+  border: 1px solid #00bfff;
+  color: #00bfff;
+}
+
+.unban-button:hover {
+  background: rgba(0, 191, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+}
+
+.admin-message {
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.admin-message.success {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  color: #00ff00;
+}
+
+.admin-message.error {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff0000;
+}
+
 @media (max-width: 768px) {
   .admin-member-panel {
     padding: 1rem;
@@ -108,5 +286,18 @@
 
   .member-stats-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .view-tabs {
+    flex-direction: column;
+  }
+
+  .members-table {
+    font-size: 0.85rem;
+  }
+
+  .members-table th,
+  .members-table td {
+    padding: 0.7rem 0.5rem;
   }
 }
