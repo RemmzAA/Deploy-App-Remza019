@@ -9,6 +9,7 @@ import AdminOBSPanel from './AdminOBSPanel';
 import AdminStreamlabsPanel from './AdminStreamlabsPanel';
 import AdminLicensePanel from './AdminLicensePanel';
 import AdminMemberPanel from './AdminMemberPanel';
+import AdminFeaturesPanel from './AdminFeaturesPanel';
 import './AdminDashboard.css';
 
 const AdminDashboard = ({ token, onLogout }) => {
