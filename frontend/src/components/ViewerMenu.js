@@ -339,41 +339,13 @@ const ViewerMenu = () => {
           
           <div className="login-preview">
             <div className="features-grid">
-              <div className="feature-card" data-tooltip="Earn 5 points for every 10 minutes of stream watching. Build your points by being an active viewer!">
-                <span className="feature-icon">📺</span>
-                <h4>{t('watchEarn')}</h4>
-                <p>{t('watchEarnDesc')}</p>
-              </div>
-              
-              <div className="feature-card" data-tooltip="Participate in live chat and earn 2 points per message. Connect with other viewers in real-time!">
-                <span className="feature-icon">💬</span>
-                <h4>{t('liveChat')}</h4>
-                <p>{t('liveChatDesc')}</p>
-              </div>
-              
-              <div className="feature-card" data-tooltip="Vote in live polls and make predictions. Earn 3 points for each poll participation!">
-                <span className="feature-icon">🗳️</span>
-                <h4>{t('votePredict')}</h4>
-                <p>{t('votePredictDesc')}</p>
-              </div>
-              
-              <div className="feature-card" data-tooltip="Reach Level 4 to unlock VIP features: private chat, custom emotes, and priority support!">
-                <span className="feature-icon">⭐</span>
-                <h4>{t('vipAccess')}</h4>
-                <p>{t('vipAccessDesc')}</p>
-              </div>
-              
-              <div className="feature-card" data-tooltip="Progress through 6 levels: Rookie Viewer → Active Watcher → Engaged Fan → VIP Member → Elite Supporter → Gaming Legend!">
-                <span className="feature-icon">🏆</span>
-                <h4>{t('levelSystem')}</h4>
-                <p>{t('levelSystemDesc')}</p>
-              </div>
-              
-              <div className="feature-card" data-tooltip="Get special perks and badges as you level up. Unlock moderator access at Level 6!">
-                <span className="feature-icon">🎯</span>
-                <h4>{t('rewards')}</h4>
-                <p>{t('rewardsDesc')}</p>
-              </div>
+              {features.map((feature) => (
+                <div key={feature.id} className="feature-card" data-tooltip={feature.tooltip}>
+                  <span className="feature-icon">{feature.icon}</span>
+                  <h4>{feature.title}</h4>
+                  <p>{feature.description}</p>
+                </div>
+              ))}
             </div>
             
             <button 
