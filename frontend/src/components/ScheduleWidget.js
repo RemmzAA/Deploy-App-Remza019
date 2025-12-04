@@ -28,14 +28,16 @@ const ScheduleWidget = () => {
     loadSchedules();
 
     // Listen for real-time schedule updates via SSE
-    const eventSource = new EventSource(`${process.env.REACT_APP_BACKEND_URL}/api/admin/events`);
+    const clientId = `schedule-widget-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const eventSource = new EventSource(`${process.env.REACT_APP_BACKEND_URL}/api/sse/${clientId}`);
     
     eventSource.addEventListener('schedule_update', (event) => {
       try {
         const data = JSON.parse(event.data);
         console.log('📅 Schedule update received:', data);
-        if (data.schedules) {
-          setSchedules(data.schedules);
+        if (data.schedule) {
+          setSchedules(data.schedule);
+          console.log('✅ Schedule updated in ScheduleWidget:', data.schedule);
         }
       } catch (e) {
         console.error('Failed to parse schedule update:', e);
