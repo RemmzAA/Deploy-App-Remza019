@@ -6,6 +6,7 @@ import GamingDemo from './components/GamingDemo';
 import AdminPanelWrapper from './components/admin/AdminPanelWrapper';
 import MemberAuth from './components/member/MemberAuth';
 import MemberDashboard from './components/member/MemberDashboard';
+import PricingPage from './components/PricingPage';
 import './App.css';
 
 function App() {
