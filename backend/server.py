@@ -190,6 +190,14 @@ app.include_router(version_router, prefix="/api")
 from license_api import router as license_router
 app.include_router(license_router)
 
+# Member System
+from member_api import router as member_router
+app.include_router(member_router)
+
+# Support System
+from support_api import router as support_router
+app.include_router(support_router)
+
 # Import and include Theme API
 try:
     from theme_api import theme_router
