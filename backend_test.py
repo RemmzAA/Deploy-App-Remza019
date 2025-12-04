@@ -252,11 +252,7 @@ class BackendTester:
         if member_data.get('verification_code'):
             valid_response = await self.make_request(
                 'POST',
-                '/api/member/verify-email',
-                {
-                    'email': member_data['email'],
-                    'code': member_data['verification_code']
-                }
+                f'/api/member/verify-email?email={member_data["email"]}&code={member_data["verification_code"]}'
             )
             
             if valid_response['status'] == 200:
