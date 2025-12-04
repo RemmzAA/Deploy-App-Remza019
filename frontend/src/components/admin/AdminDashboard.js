@@ -574,18 +574,10 @@ const AdminDashboard = ({ token, onLogout }) => {
 
   const applyTheme = async () => {
     try {
-      // Use direct fetch for public endpoint (no auth required for theme changes)
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/themes/apply`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          themeId: selectedTheme
-        })
+      // Use apiCall with authentication
+      const data = await apiCall('/api/themes/apply', 'POST', {
+        themeId: selectedTheme
       });
-      
-      const data = await response.json();
       
       if (data.success) {
         alert('✅ Theme applied! Homepage will reload with new theme.');
