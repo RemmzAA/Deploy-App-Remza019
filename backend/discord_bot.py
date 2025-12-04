@@ -9,6 +9,11 @@ import asyncio
 import aiohttp
 from datetime import datetime
 import logging
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load environment variables
+load_dotenv(Path(__file__).parent / '.env')
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
