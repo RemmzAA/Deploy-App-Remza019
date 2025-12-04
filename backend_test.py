@@ -230,11 +230,7 @@ class BackendTester:
         # Step 1: Test verification with invalid code
         invalid_response = await self.make_request(
             'POST',
-            '/api/member/verify-email',
-            {
-                'email': member_data['email'],
-                'code': 'INVALID123'
-            }
+            f'/api/member/verify-email?email={member_data["email"]}&code=INVALID123'
         )
         
         if invalid_response['status'] == 400:
