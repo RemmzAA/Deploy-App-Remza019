@@ -314,7 +314,7 @@
   color: white;
 }
 
-/* Form Styles */
+/* Form Styles - FIXED: Improved text visibility */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -329,21 +329,35 @@
 }
 
 .input-group input,
-.input-group textarea {
-  background: rgba(0, 0, 0, 0.3);
+.input-group textarea,
+.input-group select {
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(16, 185, 129, 0.3);
-  color: white;
+  color: #ffffff !important;
   padding: 0.8rem;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
 .input-group input:focus,
-.input-group textarea:focus {
+.input-group textarea:focus,
+.input-group select:focus {
   outline: none;
   border-color: var(--matrix-color);
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Fix for autofill */
+.input-group input:-webkit-autofill,
+.input-group textarea:-webkit-autofill,
+.input-group select:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.5) inset !important;
+  box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.5) inset !important;
+  caret-color: #ffffff;
 }
 
 .form-grid {
@@ -548,7 +562,7 @@
 
 .content-textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7) !important;
   border: 1px solid rgba(16, 185, 129, 0.3);
   color: #ffffff !important;
   padding: 1rem;
@@ -564,6 +578,7 @@
   outline: none;
   border-color: var(--matrix-color);
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  background: rgba(0, 0, 0, 0.8) !important;
 }
 
 .update-content-btn,
@@ -655,9 +670,9 @@
 }
 
 .schedule-form select {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(16, 185, 129, 0.3);
-  color: white;
+  color: #ffffff !important;
   padding: 0.8rem;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
@@ -922,6 +937,7 @@
   to {
     transform: rotate(360deg);
   }
+}
 
 
 /* COMPREHENSIVE MOBILE OPTIMIZATION */
@@ -947,6 +963,7 @@
   input[type="text"],
   input[type="email"],
   input[type="number"],
+  input[type="time"],
   textarea,
   select {
     padding: 1rem !important;
@@ -955,6 +972,7 @@
     -moz-appearance: none;
     appearance: none;
     min-height: 44px;
+    color: #ffffff !important;
   }
   
   /* Buttons touch-friendly */
@@ -1056,11 +1074,11 @@
 
 .poll-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--matrix-color);
   border-radius: 8px;
   padding: 12px;
-  color: white;
+  color: #ffffff !important;
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -1281,168 +1299,6 @@
   }
 }
 
-}
-/* Engagement Tab - Polls & Predictions */
-.engagement-tab {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-
-.engagement-section {
-  background: rgba(26, 26, 26, 0.8);
-  border: 2px solid var(--matrix-color);
-  border-radius: 15px;
-  padding: 25px;
-}
-
-.engagement-section h2 {
-  color: var(--matrix-color);
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-}
-
-.create-poll-card,
-.create-prediction-card {
-  background: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.create-poll-card h3,
-.create-prediction-card h3 {
-  color: var(--matrix-color);
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-.poll-input {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--matrix-color);
-  border-radius: 8px;
-  padding: 12px;
-  color: white;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.poll-input:focus {
-  outline: none;
-  border-color: #059669;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-}
-
-.poll-option-input {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.remove-option-btn {
-  background: rgba(220, 38, 38, 0.2);
-  border: 1px solid #dc2626;
-  color: #dc2626;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.remove-option-btn:hover {
-  background: rgba(220, 38, 38, 0.4);
-}
-
-.add-option-btn {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid var(--matrix-color);
-  color: var(--matrix-color);
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 15px;
-  transition: all 0.3s;
-}
-
-.add-option-btn:hover {
-  background: rgba(16, 185, 129, 0.2);
-}
-
-.create-poll-btn {
-  width: 100%;
-  background: linear-gradient(135deg, var(--matrix-color) 0%, #059669 100%);
-  border: none;
-  color: black;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.create-poll-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
-}
-
-.prediction-options {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.vs-text {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--matrix-color);
-}
-
-.active-polls-list h3 {
-  color: var(--matrix-color);
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-.poll-card {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 15px;
-  transition: all 0.3s;
-}
-
-.poll-card:hover {
-  border-color: var(--matrix-color);
-  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
-}
-
-.poll-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.poll-header h4 {
-  color: var(--matrix-color);
-  font-size: 18px;
-  margin: 0;
-}
-
-.poll-votes {
-  background: rgba(16, 185, 129, 0.2);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  color: var(--matrix-color);
-
 /* About Management Card */
 .about-management-card {
   background: rgba(0, 0, 0, 0.5);
@@ -1460,10 +1316,10 @@
 .about-management-card textarea {
   width: 100%;
   padding: 12px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--matrix-color);
   border-radius: 8px;
-  color: var(--matrix-color);
+  color: #ffffff !important;
   font-size: 14px;
   resize: vertical;
 }
@@ -1514,7 +1370,7 @@
 
 .tag-edit-row input {
   padding: 10px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7) !important;
   border: 1px solid var(--matrix-color);
   border-radius: 8px;
   color: #ffffff !important;
@@ -1536,109 +1392,6 @@
 .save-tags-btn:hover {
   background: #00cc00;
   box-shadow: 0 0 20px rgba(var(--theme-primary-rgb), 0.5);
-}
-
-}
-
-.poll-options {
-  margin-bottom: 15px;
-}
-
-.poll-option {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 5px;
-  background: rgba(16, 185, 129, 0.05);
-  border-radius: 5px;
-}
-
-.option-votes {
-  color: var(--matrix-color);
-  font-weight: bold;
-}
-
-.prediction-display {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 15px;
-  padding: 15px;
-  background: rgba(16, 185, 129, 0.05);
-  border-radius: 8px;
-}
-
-.pred-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.pred-label {
-  font-weight: bold;
-  color: var(--matrix-color);
-}
-
-.poll-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.end-poll-btn,
-.resolve-btn,
-.delete-poll-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-}
-
-.end-poll-btn {
-  background: rgba(251, 191, 36, 0.2);
-  border: 1px solid #fbbf24;
-  color: #fbbf24;
-}
-
-.end-poll-btn:hover {
-  background: rgba(251, 191, 36, 0.4);
-}
-
-.resolve-btn {
-  background: rgba(16, 185, 129, 0.2);
-  border: 1px solid var(--matrix-color);
-  color: var(--matrix-color);
-}
-
-.resolve-btn:hover {
-  background: rgba(16, 185, 129, 0.4);
-}
-
-.delete-poll-btn {
-  background: rgba(220, 38, 38, 0.2);
-  border: 1px solid #dc2626;
-  color: #dc2626;
-}
-
-.delete-poll-btn:hover {
-  background: rgba(220, 38, 38, 0.4);
-}
-
-.resolved-text {
-  flex: 1;
-  text-align: center;
-  color: var(--matrix-color);
-  font-weight: bold;
-}
-
-@media (max-width: 1024px) {
-  .engagement-tab {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ==========================================

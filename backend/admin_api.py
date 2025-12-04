@@ -1,4 +1,4 @@
-"""
+"""  
 REMZA019 Gaming Admin Dashboard - API Endpoints
 FastAPI endpoints for admin functionality with Real-time YouTube Sync
 Real-time updates via broadcast system
@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException, Depends, Header, BackgroundTasks, 
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import bcrypt
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional, List
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -38,7 +38,7 @@ async def broadcast_admin_update(event_type: str, data: dict):
         event = {
             "type": event_type,
             "data": data,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
         
         logger.info(f"🔔 BROADCASTING: {event_type}")
@@ -107,11 +107,11 @@ def verify_password(password: str, hashed: str) -> bool:
 
 def create_access_token(admin_id: str) -> str:
     """Create JWT access token"""
-    expire = datetime.utcnow() + timedelta(hours=TOKEN_EXPIRE_HOURS)
+    expire = datetime.now(timezone.utc) + timedelta(hours=TOKEN_EXPIRE_HOURS)
     payload = {
         'admin_id': admin_id,
         'exp': expire,
-        'iat': datetime.utcnow()
+        'iat': datetime.now(timezone.utc)
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
@@ -192,7 +192,7 @@ async def admin_login(login_data: LoginRequest, request: Request):
         # Update last login
         await db.admin_users.update_one(
             {'id': admin['id']}, 
-            {'$set': {'last_login': datetime.now()}}
+            {'$set': {'last_login': datetime.now(timezone.utc)}}
         )
         
         # Log activity
@@ -227,7 +227,7 @@ async def admin_logout(admin = Depends(get_current_admin)):
         await db.admin_activity.insert_one(AdminActivity(
             admin_id=admin['id'],
             action="logout",
-            details={"timestamp": datetime.now().isoformat()}
+            details={"timestamp": datetime.now(timezone.utc).isoformat()}
         ).dict())
         
         return {"success": True, "message": "Logged out successfully"}
@@ -267,7 +267,7 @@ async def get_dashboard_stats(admin = Depends(get_current_admin)):
             recent_streams_count=recent_streams_count,
             scheduled_streams_count=scheduled_streams_count,
             total_videos=total_videos,
-            last_updated=datetime.now()
+            last_updated=datetime.now(timezone.utc)
         )
         
     except Exception as e:
@@ -290,7 +290,7 @@ async def toggle_live_status(update_data: UpdateLiveStatusRequest, admin = Depen
                     'current_viewers': update_data.current_viewers or "0",
                     'live_game': update_data.live_game,
                     'admin_override': True,  # MARK AS ADMIN OVERRIDE
-                    'updated_at': datetime.now()
+                    'updated_at': datetime.now(timezone.utc)
                 }
             },
             upsert=True
@@ -355,7 +355,7 @@ async def update_viewer_count(viewers: str, admin = Depends(get_current_admin)):
             {
                 '$set': {
                     'current_viewers': viewers,
-                    'updated_at': datetime.now()
+                    'updated_at': datetime.now(timezone.utc)
                 }
             }
         )
@@ -377,7 +377,7 @@ async def reset_admin_override(admin = Depends(get_current_admin)):
             {
                 '$set': {
                     'admin_override': False,
-                    'updated_at': datetime.now()
+                    'updated_at': datetime.now(timezone.utc)
                 }
             }
         )
@@ -388,7 +388,7 @@ async def reset_admin_override(admin = Depends(get_current_admin)):
             {
                 '$set': {
                     'admin_override': False,
-                    'updated_at': datetime.now()
+                    'updated_at': datetime.now(timezone.utc)
                 }
             }
         )
@@ -417,7 +417,7 @@ async def update_channel_stats(update_data: UpdateChannelStatsRequest, admin = D
     try:
         db = get_database()
         
-        update_fields = {'updated_at': datetime.now()}
+        update_fields = {'updated_at': datetime.now(timezone.utc)}
         if update_data.subscriber_count:
             update_fields['subscriber_count'] = update_data.subscriber_count
         if update_data.video_count:
@@ -453,7 +453,7 @@ async def get_stream_schedule(admin = Depends(get_current_admin)):
     try:
         db = get_database()
         
-        schedule = await db.stream_schedule.find({'is_active': True}).to_list(length=None)
+        schedule = await db.stream_schedule.find({'is_active': True}, {"_id": 0}).to_list(length=None)
         
         # If no schedule exists, create default schedule
         if not schedule:
@@ -472,7 +472,7 @@ async def get_stream_schedule(admin = Depends(get_current_admin)):
                 await db.stream_schedule.insert_one(schedule_obj.dict())
             
             # Reload schedule
-            schedule = await db.stream_schedule.find({'is_active': True}).to_list(length=None)
+            schedule = await db.stream_schedule.find({'is_active': True}, {"_id": 0}).to_list(length=None)
         
         return [StreamSchedule(**item) for item in schedule]
         
@@ -482,7 +482,7 @@ async def get_stream_schedule(admin = Depends(get_current_admin)):
 
 @admin_router.post("/schedule/update")
 async def update_schedule_day(schedule_data: UpdateScheduleRequest, admin = Depends(get_current_admin)):
-    """Update schedule for specific day"""
+    """Update schedule for specific day - FIXED: DateTime serialization"""
     try:
         db = get_database()
         
@@ -495,18 +495,20 @@ async def update_schedule_day(schedule_data: UpdateScheduleRequest, admin = Depe
                     'time': schedule_data.time,
                     'game': schedule_data.game,
                     'is_active': True,
-                    'updated_at': datetime.now()
+                    'updated_at': datetime.now(timezone.utc)
                 }
             },
             upsert=True
         )
         
-        # Get updated full schedule
-        schedule_cursor = db.stream_schedule.find({'is_active': True})
+        # Get updated full schedule - EXCLUDE _id and SERIALIZE datetime
+        schedule_cursor = db.stream_schedule.find({'is_active': True}, {"_id": 0})
         schedule_list = await schedule_cursor.to_list(length=100)
+        
+        # Convert datetime objects to ISO strings for JSON serialization
         for item in schedule_list:
-            if '_id' in item:
-                del item['_id']
+            if 'updated_at' in item and isinstance(item['updated_at'], datetime):
+                item['updated_at'] = item['updated_at'].isoformat()
         
         # Broadcast schedule update
         await broadcast_admin_update("schedule_update", {
@@ -523,6 +525,8 @@ async def update_schedule_day(schedule_data: UpdateScheduleRequest, admin = Depe
         
     except Exception as e:
         logger.error(f"❌ Update schedule error: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
         raise HTTPException(status_code=500, detail="Failed to update schedule")
 
 @admin_router.delete("/schedule/{day}")
@@ -533,18 +537,20 @@ async def delete_schedule_day(day: str, admin = Depends(get_current_admin)):
         
         result = await db.stream_schedule.update_one(
             {'day': day.upper()},
-            {'$set': {'is_active': False, 'updated_at': datetime.now()}}
+            {'$set': {'is_active': False, 'updated_at': datetime.now(timezone.utc)}}
         )
         
         if result.modified_count == 0:
             raise HTTPException(status_code=404, detail="Schedule not found")
         
         # Get updated schedule
-        schedule_cursor = db.stream_schedule.find({'is_active': True})
+        schedule_cursor = db.stream_schedule.find({'is_active': True}, {"_id": 0})
         schedule_list = await schedule_cursor.to_list(length=100)
+        
+        # Convert datetime objects to ISO strings
         for item in schedule_list:
-            if '_id' in item:
-                del item['_id']
+            if 'updated_at' in item and isinstance(item['updated_at'], datetime):
+                item['updated_at'] = item['updated_at'].isoformat()
         
         # Broadcast schedule update
         await broadcast_admin_update("schedule_update", {
@@ -602,7 +608,7 @@ async def update_about_content(content_data: UpdateAboutRequest, admin = Depends
         # Create AboutContent with timestamp
         about_content = AboutContent(
             content=content_list,
-            updated_at=datetime.now()
+            updated_at=datetime.now(timezone.utc)
         )
         
         # Update with complete replacement (not merge)
@@ -727,7 +733,7 @@ async def get_recent_streams(admin = Depends(get_current_admin)):
     """Get recent streams"""
     try:
         db = get_database()
-        streams = await db.recent_streams.find({}).sort([('created_at', -1)]).to_list(length=None)
+        streams = await db.recent_streams.find({}, {"_id": 0}).sort([('created_at', -1)]).to_list(length=None)
         return [RecentStream(**stream) for stream in streams]
         
     except Exception as e:
@@ -787,79 +793,6 @@ async def delete_stream(stream_id: str, admin = Depends(get_current_admin)):
     except Exception as e:
         logger.error(f"❌ Delete stream error: {e}")
         raise HTTPException(status_code=500, detail="Failed to delete stream")
-@admin_router.get("/streams", response_model=List[RecentStream])
-async def get_recent_streams(admin = Depends(get_current_admin)):
-    """Get recent streams"""
-    try:
-        db = get_database()
-        streams = await db.recent_streams.find({}).sort([('created_at', -1)]).to_list(length=None)
-        return [RecentStream(**stream) for stream in streams]
-        
-    except Exception as e:
-        logger.error(f"❌ Get streams error: {e}")
-        raise HTTPException(status_code=500, detail="Failed to fetch streams")
-
-@admin_router.post("/streams/add")
-async def add_recent_stream(stream_data: AddStreamRequest, admin = Depends(get_current_admin)):
-    """Add new recent stream"""
-    try:
-        db = get_database()
-        
-        # Generate thumbnail if not provided
-        thumbnail_url = stream_data.thumbnail
-        if not thumbnail_url and 'youtube.com/watch?v=' in stream_data.video_url:
-            video_id = stream_data.video_url.split('v=')[1].split('&')[0]
-            thumbnail_url = f'https://img.youtube.com/vi/{video_id}/hqdefault.jpg'
-        
-        new_stream = RecentStream(
-            title=stream_data.title,
-            game=stream_data.game,
-            duration=stream_data.duration,
-            views=stream_data.views,
-            video_url=stream_data.video_url,
-            thumbnail=thumbnail_url or ''
-        )
-        
-        await db.recent_streams.insert_one(new_stream.dict())
-        
-        # Log activity
-        await db.admin_activity.insert_one(AdminActivity(
-            admin_id=admin['id'],
-            action="add_stream",
-            details=stream_data.dict()
-        ).dict())
-        
-        logger.info(f"✅ Stream added: {stream_data.title} by admin {admin['username']}")
-        
-        return {"success": True, "message": "Stream added successfully"}
-        
-    except Exception as e:
-        logger.error(f"❌ Add stream error: {e}")
-        raise HTTPException(status_code=500, detail="Failed to add stream")
-
-@admin_router.delete("/streams/{stream_id}")
-async def delete_stream(stream_id: str, admin = Depends(get_current_admin)):
-    """Delete a stream"""
-    try:
-        db = get_database()
-        
-        result = await db.recent_streams.delete_one({'id': stream_id})
-        
-        if result.deleted_count == 0:
-            raise HTTPException(status_code=404, detail="Stream not found")
-        
-        # Log activity
-        await db.admin_activity.insert_one(AdminActivity(
-            admin_id=admin['id'],
-            action="delete_stream",
-            details={"stream_id": stream_id}
-        ).dict())
-        
-        return {"success": True, "message": "Stream deleted successfully"}
-        
-    except Exception as e:
-        logger.error(f"❌ Delete stream error: {e}")
-        raise HTTPException(status_code=500, detail="Failed to delete stream")
 
 # Admin Activity Log
 @admin_router.get("/activity", response_model=List[AdminActivity])
@@ -868,7 +801,7 @@ async def get_admin_activity(limit: int = 50, admin = Depends(get_current_admin)
     try:
         db = get_database()
         
-        activities = await db.admin_activity.find({}).sort([('timestamp', -1)]).limit(limit).to_list(length=None)
+        activities = await db.admin_activity.find({}, {"_id": 0}).sort([('timestamp', -1)]).limit(limit).to_list(length=None)
         return [AdminActivity(**activity) for activity in activities]
         
     except Exception as e:
@@ -947,7 +880,7 @@ async def force_youtube_update(update_data: dict, admin = Depends(get_current_ad
         # Update channel stats if provided
         if 'channel_stats' in update_data:
             stats_data = update_data['channel_stats']
-            stats_data['updated_at'] = datetime.now()
+            stats_data['updated_at'] = datetime.now(timezone.utc)
             stats_data['manual_override'] = True
             
             await db.channel_stats.update_one(
@@ -959,7 +892,7 @@ async def force_youtube_update(update_data: dict, admin = Depends(get_current_ad
         # Update videos if provided
         if 'videos' in update_data:
             for video in update_data['videos']:
-                video['updated_at'] = datetime.now()
+                video['updated_at'] = datetime.now(timezone.utc)
                 video['manual_override'] = True
                 
                 await db.recent_videos.update_one(
@@ -989,7 +922,7 @@ async def get_real_time_stats(admin = Depends(get_current_admin)):
         
         sync_needed = True
         if channel_stats and 'last_updated' in channel_stats:
-            time_diff = datetime.now() - channel_stats['last_updated']
+            time_diff = datetime.now(timezone.utc) - channel_stats['last_updated']
             if time_diff.total_seconds() < 300:  # Less than 5 minutes old
                 sync_needed = False
         
@@ -1021,7 +954,7 @@ async def get_real_time_stats(admin = Depends(get_current_admin)):
             "recent_streams_count": recent_streams_count,
             "scheduled_streams_count": scheduled_streams_count,
             "recent_videos_count": recent_videos_count,
-            "last_updated": datetime.now(),
+            "last_updated": datetime.now(timezone.utc),
             "sync_status": "active"
         }
         
@@ -1041,6 +974,7 @@ async def log_admin_activity(admin_id: str, action: str, details: dict):
         ).dict())
     except Exception as e:
         logger.error(f"❌ Activity logging error: {e}")
+
 @admin_router.get("/settings", response_model=SiteSettings)
 async def get_site_settings(admin = Depends(get_current_admin)):
     """Get site settings"""
@@ -1136,7 +1070,7 @@ async def update_about_tags(
             {},
             {"$set": {
                 "tags": tags,
-                "updated_at": datetime.now(),
+                "updated_at": datetime.now(timezone.utc),
                 "updated_by": admin['username']
             }},
             upsert=True
