@@ -253,9 +253,11 @@ async def get_license_stats():
     try:
         total = await licenses_collection.count_documents({})
         active = await licenses_collection.count_documents({"is_active": True})
-        full = await licenses_collection.count_documents({"license_type": "FULL"})
         trial = await licenses_collection.count_documents({"license_type": "TRIAL"})
+        basic = await licenses_collection.count_documents({"license_type": "BASIC"})
+        premium = await licenses_collection.count_documents({"license_type": "PREMIUM"})
         activated = await licenses_collection.count_documents({"activated_at": {"$ne": None}})
+        assigned = await licenses_collection.count_documents({"assigned_to": {"$ne": None}})
         
         return {
             "success": True,
@@ -263,10 +265,12 @@ async def get_license_stats():
                 "total": total,
                 "active": active,
                 "inactive": total - active,
-                "full": full,
                 "trial": trial,
+                "basic": basic,
+                "premium": premium,
                 "activated": activated,
-                "never_activated": total - activated
+                "never_activated": total - activated,
+                "assigned_to_members": assigned
             }
         }
     
