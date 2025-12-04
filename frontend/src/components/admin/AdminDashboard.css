@@ -1477,7 +1477,8 @@
   color: var(--matrix-color);
   font-weight: bold;
   margin-bottom: 5px;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
 }
 
 .theme-description {
