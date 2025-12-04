@@ -289,6 +289,13 @@ except ImportError as e:
     print(f"⚠️ Multi-Streamer API not available: {e}")
 
 try:
+    from features_api import router as features_router
+    app.include_router(features_router)  # Already has /api prefix
+    print("✅ Features API loaded")
+except ImportError as e:
+    print(f"⚠️ Features API not available: {e}")
+
+try:
     from email_verification_api import email_verification_router
     app.include_router(email_verification_router)  # Already has /api prefix
     print("✅ Email Verification API loaded")
