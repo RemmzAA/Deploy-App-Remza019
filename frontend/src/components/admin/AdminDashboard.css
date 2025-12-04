@@ -8,29 +8,33 @@
   font-size: 16px;
 }
 
-/* GLOBALNO POVEĆANJE FONTOVA */
+/* GLOBALNO POVEĆANJE FONTOVA - MAKSIMALNO */
 .admin-dashboard * {
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 
 .admin-dashboard p,
 .admin-dashboard span,
 .admin-dashboard div:not(.tab-icon) {
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1.2rem !important;
+  line-height: 1.7;
+  font-weight: 500;
 }
 
 .admin-dashboard label {
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: var(--matrix-color) !important;
+  text-shadow: 0 0 5px rgba(16, 185, 129, 0.3);
 }
 
 .admin-dashboard input,
 .admin-dashboard textarea,
 .admin-dashboard select,
 .admin-dashboard button {
-  font-size: 1.1rem !important;
-  font-weight: 500 !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
 }
 
 /* Loading State */
