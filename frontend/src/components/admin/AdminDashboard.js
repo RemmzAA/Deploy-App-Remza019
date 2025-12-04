@@ -1870,6 +1870,16 @@ const AdminDashboard = ({ token, onLogout }) => {
           <AdminSiteSettings />
         )}
 
+        {/* License Manager Tab */}
+        {activeTab === 'licenses' && (
+          <AdminLicensePanel token={token} />
+        )}
+
+        {/* Members Tab */}
+        {activeTab === 'members' && (
+          <AdminMemberPanel token={token} />
+        )}
+
       </motion.main>
 
       {error && (
