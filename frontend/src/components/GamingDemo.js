@@ -772,7 +772,7 @@ const GamingDemo = () => {
         <div className="header-brand">
           <h1>
             {customization.userName}
-            <Logo3D logoUrl={customization.logoUrl} userName={customization.userName} />
+            <Logo3D logoUrl={customization.logoUrl} userName={customization.userName} licenseType={licenseType} />
           </h1>
         </div>
         
