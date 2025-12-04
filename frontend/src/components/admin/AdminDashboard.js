@@ -567,16 +567,33 @@ const AdminDashboard = ({ token, onLogout }) => {
 
   const applyTheme = async () => {
     try {
-      const response = await apiCall('/api/themes/apply', 'POST', {
-        themeId: selectedTheme
+      // Use direct fetch for public endpoint (no auth required for theme changes)
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/themes/apply`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          themeId: selectedTheme
+        })
       });
-      if (response.success) {
+      
+      const data = await response.json();
+      
+      if (data.success) {
         alert('✅ Theme applied! Homepage will reload with new theme.');
         await loadCurrentTheme();
+        
+        // Reload homepage to show new theme
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else {
+        alert('❌ Failed to apply theme: ' + (data.detail || 'Unknown error'));
       }
     } catch (error) {
       console.error('Apply theme error:', error);
-      alert('❌ Failed to apply theme');
+      alert('❌ Failed to apply theme: ' + error.message);
     }
   };
 
