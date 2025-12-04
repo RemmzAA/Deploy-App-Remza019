@@ -119,6 +119,10 @@
     0 0 30px rgba(16, 185, 129, 0.4);
   font-family: 'Arial Black', sans-serif;
   animation: letter-glow 2s infinite alternate;
+  position: relative;
+  z-index: 10;
+  display: block;
+  line-height: 1;
 }
 
 @keyframes letter-glow {
