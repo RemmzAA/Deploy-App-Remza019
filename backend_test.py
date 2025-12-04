@@ -427,93 +427,148 @@ class BackendTester:
         
         return True
     
-    async def test_leaderboard_notification_system(self) -> bool:
-        """Test Case 4: Award Points and Check Leaderboard Notification"""
-        logger.info("🧪 Testing leaderboard notification system...")
+    async def test_license_activation_flow(self) -> bool:
+        """Test Case 4: License Activation Flow"""
+        logger.info("🧪 Testing license activation flow...")
         
-        # First, we need a registered viewer to award points to
-        test_username = f"leaderboard_test_{uuid.uuid4().hex[:8]}"
-        test_email = f"leaderboard_{uuid.uuid4().hex[:8]}@example.com"
-        
-        # Register viewer
-        registration_response = await self.make_request(
+        # Step 1: Generate a TRIAL license key via admin API
+        license_generation_response = await self.make_request(
             'POST',
-            '/api/viewer/register',
+            '/api/license/generate',
             {
-                'username': test_username,
-                'email': test_email
+                'license_type': 'TRIAL',
+                'duration_days': 7,
+                'user_email': 'test@example.com',
+                'user_name': 'Test User'
             }
         )
         
-        if registration_response['status'] != 200:
+        if license_generation_response['status'] != 200:
             self.log_test_result(
-                "Leaderboard Test Setup",
+                "License Generation",
                 False,
-                "Failed to register test viewer for leaderboard testing",
-                {'status': registration_response['status']}
+                f"Failed to generate license: {license_generation_response['status']}",
+                {'response': license_generation_response['data']}
             )
             return False
         
-        viewer_data = registration_response['data'].get('viewer', {})
-        user_id = viewer_data.get('user_id') or viewer_data.get('id')
-        
-        if not user_id:
+        license_data = license_generation_response['data']
+        if not license_data.get('success') or not license_data.get('license_key'):
             self.log_test_result(
-                "Leaderboard Test Setup",
+                "License Generation",
                 False,
-                "No user_id received from registration",
-                {'response': registration_response['data']}
+                "License generation response missing success or license_key",
+                {'response': license_data}
             )
             return False
         
-        # Award points to trigger potential leaderboard notification
-        points_response = await self.make_request(
-            'POST',
-            f'/api/viewer/activity/{user_id}',
+        license_key = license_data['license_key']
+        self.log_test_result(
+            "License Generation",
+            True,
+            f"Successfully generated TRIAL license: {license_key}",
             {
-                'activity_type': 'stream_view',
-                'metadata': {'test': True}
+                'license_key': license_key,
+                'license_type': license_data.get('license_type')
             }
         )
         
-        if points_response['status'] == 200:
-            points_data = points_response['data']
+        # Step 2: Test member activating the license key
+        if not hasattr(self, 'test_member_data') or not self.test_member_data.get('login_token'):
             self.log_test_result(
-                "Points Award System",
-                True,
-                f"Successfully awarded points: {points_data.get('points_awarded', 0)}",
-                {
-                    'total_points': points_data.get('total_points', 0),
-                    'level': points_data.get('level', 1),
-                    'level_up': points_data.get('level_up', False)
-                }
-            )
-        else:
-            self.log_test_result(
-                "Points Award System",
+                "License Activation - No Auth Token",
                 False,
-                f"Failed to award points: {points_response['status']}",
-                {'response': points_response['data']}
+                "No authenticated member token available for license activation",
+                {}
             )
             return False
         
-        # Test leaderboard endpoint
-        leaderboard_response = await self.make_request('GET', '/api/viewer/leaderboard')
+        headers = {'Authorization': f'Bearer {self.test_member_data["login_token"]}'}
         
-        if leaderboard_response['status'] == 200:
-            leaderboard = leaderboard_response['data'].get('leaderboard', [])
+        activation_response = await self.make_request(
+            'POST',
+            '/api/member/activate-license',
+            {
+                'license_key': license_key
+            },
+            headers
+        )
+        
+        if activation_response['status'] == 200:
+            activation_data = activation_response['data']
+            if activation_data.get('success'):
+                self.log_test_result(
+                    "License Activation - Valid Key",
+                    True,
+                    f"Successfully activated license: {activation_data.get('license_type')}",
+                    {
+                        'license_type': activation_data.get('license_type'),
+                        'expires_at': activation_data.get('expires_at')
+                    }
+                )
+            else:
+                self.log_test_result(
+                    "License Activation - Valid Key",
+                    False,
+                    "License activation response missing success",
+                    {'response': activation_data}
+                )
+        else:
             self.log_test_result(
-                "Leaderboard System",
+                "License Activation - Valid Key",
+                False,
+                f"License activation failed: {activation_response['status']}",
+                {'response': activation_response['data']}
+            )
+        
+        # Step 3: Test activating already-assigned license (should fail)
+        duplicate_activation_response = await self.make_request(
+            'POST',
+            '/api/member/activate-license',
+            {
+                'license_key': license_key
+            },
+            headers
+        )
+        
+        if duplicate_activation_response['status'] == 400:
+            self.log_test_result(
+                "License Activation - Already Assigned",
                 True,
-                f"Leaderboard retrieved with {len(leaderboard)} entries",
-                {'leaderboard_size': len(leaderboard)}
+                "Correctly prevented duplicate license activation",
+                {'status': duplicate_activation_response['status']}
             )
         else:
             self.log_test_result(
-                "Leaderboard System",
+                "License Activation - Already Assigned",
                 False,
-                f"Failed to get leaderboard: {leaderboard_response['status']}",
-                {'response': leaderboard_response['data']}
+                f"Should prevent duplicate activation but got: {duplicate_activation_response['status']}",
+                {'response': duplicate_activation_response['data']}
+            )
+        
+        # Step 4: Test activating invalid license key
+        invalid_activation_response = await self.make_request(
+            'POST',
+            '/api/member/activate-license',
+            {
+                'license_key': 'INVALID-12345-67890-ABCDE'
+            },
+            headers
+        )
+        
+        if invalid_activation_response['status'] == 404:
+            self.log_test_result(
+                "License Activation - Invalid Key",
+                True,
+                "Correctly rejected invalid license key",
+                {'status': invalid_activation_response['status']}
+            )
+        else:
+            self.log_test_result(
+                "License Activation - Invalid Key",
+                False,
+                f"Should reject invalid key but got: {invalid_activation_response['status']}",
+                {'response': invalid_activation_response['data']}
             )
         
         return True
