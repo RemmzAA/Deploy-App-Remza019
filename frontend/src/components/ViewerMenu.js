@@ -18,6 +18,7 @@ const ViewerMenu = () => {
   const [newMessage, setNewMessage] = useState('');
   const [unlockedFeatures, setUnlockedFeatures] = useState(['chat']);
   const [chatWs, setChatWs] = useState(null);
+  const [features, setFeatures] = useState([]);
   
   // Load user from cookies on mount
   useEffect(() => {
