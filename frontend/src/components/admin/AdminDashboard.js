@@ -60,7 +60,58 @@ const AdminDashboard = ({ token, onLogout }) => {
   ]);
 
   // Theme management state
-  const [availableThemes, setAvailableThemes] = useState([]);
+  const [availableThemes, setAvailableThemes] = useState([
+    {
+      id: 'matrix_green',
+      name: 'Matrix Green',
+      description: 'Classic hacker aesthetic',
+      preview: {
+        primary: 'linear-gradient(135deg, #000000 0%, #0a0a0a 100%)',
+        accent: '#10b981',
+        text: '#10b981'
+      }
+    },
+    {
+      id: 'cyber_purple',
+      name: 'Cyber Purple',
+      description: 'Futuristic purple vibes',
+      preview: {
+        primary: 'linear-gradient(135deg, #1a0a2e 0%, #0f051d 100%)',
+        accent: '#a855f7',
+        text: '#c084fc'
+      }
+    },
+    {
+      id: 'neon_blue',
+      name: 'Neon Blue',
+      description: 'Electric blue energy',
+      preview: {
+        primary: 'linear-gradient(135deg, #001f3f 0%, #000814 100%)',
+        accent: '#06b6d4',
+        text: '#22d3ee'
+      }
+    },
+    {
+      id: 'fire_red',
+      name: 'Fire Red',
+      description: 'Intense gaming red',
+      preview: {
+        primary: 'linear-gradient(135deg, #1a0000 0%, #0a0000 100%)',
+        accent: '#ef4444',
+        text: '#f87171'
+      }
+    },
+    {
+      id: 'toxic_yellow',
+      name: 'Toxic Yellow',
+      description: 'Radioactive yellow glow',
+      preview: {
+        primary: 'linear-gradient(135deg, #1a1a00 0%, #0a0a00 100%)',
+        accent: '#fbbf24',
+        text: '#fde047'
+      }
+    }
+  ]);
   const [currentTheme, setCurrentTheme] = useState(null);
   const [selectedTheme, setSelectedTheme] = useState('matrix_green');
   
