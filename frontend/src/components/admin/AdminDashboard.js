@@ -7,6 +7,8 @@ import AdminSchedulePanel from './AdminSchedulePanel';
 import AdminSiteSettings from './AdminSiteSettings';
 import AdminOBSPanel from './AdminOBSPanel';
 import AdminStreamlabsPanel from './AdminStreamlabsPanel';
+import AdminLicensePanel from './AdminLicensePanel';
+import AdminMemberPanel from './AdminMemberPanel';
 import './AdminDashboard.css';
 
 const AdminDashboard = ({ token, onLogout }) => {
