@@ -112,26 +112,32 @@ const MemberAuth = ({ onAuthSuccess }) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/member/verify-email?email=${formData.email}&code=${formData.verification_code}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/member/verify-email?email=${encodeURIComponent(formData.email)}&code=${formData.verification_code}`,
         { method: 'POST' }
       );
 
       const data = await response.json();
+      console.log('Verify email response:', data);
 
       if (data.success && data.token) {
         localStorage.setItem('member_token', data.token);
         localStorage.setItem('member_data', JSON.stringify(data.member));
-        setSuccess('Email verified! Redirecting...');
+        setSuccess('✅ Email verified! Redirecting to dashboard...');
         
         setTimeout(() => {
-          if (onAuthSuccess) {
-            onAuthSuccess(data.member, data.token);
-          }
-        }, 1000);
+          window.location.href = '/member/dashboard';
+        }, 1500);
+      } else if (data.success && data.already_verified) {
+        setError('✅ Email already verified! Please login.');
+        setTimeout(() => {
+          setMode('login');
+          setStep(1);
+        }, 2000);
       } else {
-        setError(data.detail || 'Verification failed');
+        setError(data.detail || 'Verification failed. Please check your code.');
       }
     } catch (err) {
+      console.error('Verify email error:', err);
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);
