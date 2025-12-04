@@ -797,10 +797,7 @@ class BackendTester:
         if hasattr(self, 'test_member_data') and self.test_member_data.get('member_id'):
             verify_response = await self.make_request(
                 'POST',
-                '/api/member/admin/verify-member',
-                {
-                    'member_id': self.test_member_data['member_id']
-                }
+                f'/api/member/admin/verify-member?member_id={self.test_member_data["member_id"]}'
             )
             
             if verify_response['status'] == 200:
