@@ -45,6 +45,14 @@
   border-color: #00bfff;
 }
 
+.stat-card.pending {
+  border-color: #ffa500;
+}
+
+.stat-card.banned {
+  border-color: #ff0000;
+}
+
 .stat-card.licensed {
   border-color: #ffd700;
 }
