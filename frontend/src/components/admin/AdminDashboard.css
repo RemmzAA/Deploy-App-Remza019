@@ -729,28 +729,41 @@
 .schedule-item {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr auto;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.schedule-item:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateX(5px);
 }
 
 .schedule-day {
   color: var(--matrix-color);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
 .schedule-time {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.3px;
 }
 
 .schedule-game {
   color: white;
   font-weight: 600;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.3px;
 }
 
 .delete-schedule-btn {
