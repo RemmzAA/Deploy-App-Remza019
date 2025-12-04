@@ -115,19 +115,21 @@
 
 /* Watermark "R" Letter Styling */
 .letter-r {
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 900;
-  color: #10b981;
+  color: #fff;
   text-shadow: 
-    0 0 10px rgba(16, 185, 129, 0.8),
-    0 0 20px rgba(16, 185, 129, 0.6),
-    0 0 30px rgba(16, 185, 129, 0.4);
-  font-family: 'Arial Black', sans-serif;
+    0 0 15px rgba(16, 185, 129, 1),
+    0 0 25px rgba(16, 185, 129, 0.8),
+    0 0 35px rgba(16, 185, 129, 0.6),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-family: 'Arial Black', 'Arial', sans-serif;
   animation: letter-glow 2s infinite alternate;
   position: relative;
   z-index: 10;
   display: block;
   line-height: 1;
+  user-select: none;
 }
 
 @keyframes letter-glow {
