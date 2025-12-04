@@ -228,6 +228,10 @@ async def login_member(data: MemberLogin):
         if not member.get('is_active', True) or member.get('is_banned', False):
             raise HTTPException(status_code=403, detail="Account is banned or inactive")
         
+        # Check if email is verified (by admin)
+        if not member.get('email_verified', False):
+            raise HTTPException(status_code=403, detail="Account pending admin verification. Please wait for approval.")
+        
         # If verification code provided, verify and login
         if data.verification_code:
             if member.get('verification_code') != data.verification_code:
