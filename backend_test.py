@@ -436,6 +436,13 @@ class BackendTester:
                     f"Login with verification code failed: {login_with_code_response['status']}",
                     {'response': login_with_code_response['data']}
                 )
+        else:
+            self.log_test_result(
+                "Member Login - With Verification Code",
+                False,
+                "No verification code available for login testing",
+                {}
+            )
         
         # Step 3: Test login with invalid credentials
         invalid_login_response = await self.make_request(
