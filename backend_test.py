@@ -846,10 +846,7 @@ class BackendTester:
                 # Test unban
                 unban_response = await self.make_request(
                     'POST',
-                    '/api/member/admin/unban-member',
-                    {
-                        'member_id': self.test_member_data['member_id']
-                    }
+                    f'/api/member/admin/unban-member?member_id={self.test_member_data["member_id"]}'
                 )
                 
                 if unban_response['status'] == 200:
