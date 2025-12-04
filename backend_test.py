@@ -25,6 +25,7 @@ class BackendTester:
         self.session = None
         self.admin_token = None
         self.test_results = []
+        self.test_member_data = {}  # Store test member data across tests
         
     async def __aenter__(self):
         self.session = aiohttp.ClientSession()
