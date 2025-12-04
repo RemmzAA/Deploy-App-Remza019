@@ -747,15 +747,6 @@ const GamingDemo = () => {
         </div>
         
         <div className="header-brand">
-          {customization.logoUrl && customization.logoUrl !== '/remza-logo.png' ? (
-            <div className="logo-container">
-              <img 
-                src={customization.logoUrl} 
-                alt={customization.userName}
-                className="custom-logo"
-              />
-            </div>
-          ) : null}
           <h1>
             {customization.userName}
             <Logo3D logoUrl={customization.logoUrl} userName={customization.userName} />
