@@ -1,7 +1,7 @@
 // REMZA019 Gaming - Service Worker for PWA
 // Version 1.4.0 - USER MENU & TAGS FIX
 
-const CACHE_NAME = 'remza019-gaming-v1.4.0-user-menu-fixed';
+const CACHE_NAME = 'remza019-gaming-v3';  // Updated version to force cache refresh
 const urlsToCache = [
   '/',
   '/index.html',
