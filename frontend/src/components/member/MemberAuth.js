@@ -39,12 +39,11 @@ const MemberAuth = ({ onAuthSuccess }) => {
       const data = await response.json();
 
       if (data.success) {
-        setSuccess('Registration successful! Check your email for verification code.');
-        // For demo purposes, show the code
-        if (data.verification_code) {
-          setSuccess(`Registration successful! Your verification code is: ${data.verification_code}`);
+        setSuccess('✅ Registration successful! Please wait for admin approval. You will be notified when your account is verified.');
+        // Show member ID for reference
+        if (data.member_id) {
+          setSuccess(`✅ Registration successful! Your Member ID is: ${data.member_id}. Please wait for admin approval to access your account.`);
         }
-        setStep(2);
       } else {
         setError(data.detail || 'Registration failed');
       }
