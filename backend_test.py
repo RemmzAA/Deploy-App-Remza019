@@ -304,71 +304,125 @@ class BackendTester:
         
         return True
     
-    async def test_live_stream_alert_emails(self) -> bool:
-        """Test Case 3: Live Stream Alert Emails"""
-        logger.info("🧪 Testing live stream alert email system...")
+    async def test_member_login_flow(self) -> bool:
+        """Test Case 3: Member Login Flow"""
+        logger.info("🧪 Testing member login flow...")
         
-        if not self.admin_token:
+        if not hasattr(self, 'test_member_data'):
             self.log_test_result(
-                "Live Stream Alerts",
+                "Member Login Flow",
                 False,
-                "Admin token required for live stream testing",
+                "No test member data available - run registration test first",
                 {}
             )
             return False
         
-        headers = {'Authorization': f'Bearer {self.admin_token}'}
+        member_data = self.test_member_data
         
-        # Test the live notification endpoint
-        response = await self.make_request(
+        # Step 1: Test login with unverified member (should fail or warn)
+        unverified_response = await self.make_request(
             'POST',
-            '/api/email/notify-live',
-            {},
-            headers
+            '/api/member/login',
+            {
+                'email': member_data['email']
+            }
         )
         
-        if response['status'] == 200:
-            data = response['data']
+        # This might fail if member is not verified yet
+        if unverified_response['status'] in [403, 400]:
             self.log_test_result(
-                "Live Stream Email Notifications",
+                "Member Login - Unverified Account",
                 True,
-                f"Live notification system working: {data.get('message', 'Success')}",
+                "Correctly handled unverified member login attempt",
+                {'status': unverified_response['status']}
+            )
+        elif unverified_response['status'] == 200:
+            data = unverified_response['data']
+            if data.get('requires_verification'):
+                self.log_test_result(
+                    "Member Login - Verification Code Sent",
+                    True,
+                    "Login sent verification code for unverified member",
+                    {
+                        'verification_code': data.get('verification_code'),
+                        'requires_verification': True
+                    }
+                )
+                # Store the new verification code
+                if data.get('verification_code'):
+                    member_data['login_verification_code'] = data['verification_code']
+            else:
+                self.log_test_result(
+                    "Member Login - Unexpected Success",
+                    False,
+                    "Unverified member login succeeded unexpectedly",
+                    {'response': data}
+                )
+        
+        # Step 2: Test login with verification code (if available)
+        verification_code = member_data.get('login_verification_code') or member_data.get('verification_code')
+        
+        if verification_code:
+            login_with_code_response = await self.make_request(
+                'POST',
+                '/api/member/login',
                 {
-                    'count': data.get('count', 0),
-                    'success': data.get('success', False)
+                    'email': member_data['email'],
+                    'verification_code': verification_code
                 }
             )
-        else:
-            self.log_test_result(
-                "Live Stream Email Notifications",
-                False,
-                f"Live notification failed: {response['data'].get('detail', 'Unknown error')}",
-                {'status': response['status'], 'response': response['data']}
-            )
-            return False
+            
+            if login_with_code_response['status'] == 200:
+                data = login_with_code_response['data']
+                if data.get('success') and data.get('token'):
+                    self.log_test_result(
+                        "Member Login - With Verification Code",
+                        True,
+                        "Successfully logged in with verification code",
+                        {
+                            'token_received': True,
+                            'member_info': data.get('member', {})
+                        }
+                    )
+                    # Store token for later tests
+                    member_data['login_token'] = data['token']
+                else:
+                    self.log_test_result(
+                        "Member Login - With Verification Code",
+                        False,
+                        "Login response missing success or token",
+                        {'response': data}
+                    )
+            else:
+                self.log_test_result(
+                    "Member Login - With Verification Code",
+                    False,
+                    f"Login with verification code failed: {login_with_code_response['status']}",
+                    {'response': login_with_code_response['data']}
+                )
         
-        # Test email template endpoint
-        test_email = f"test_{uuid.uuid4().hex[:8]}@example.com"
-        
-        test_response = await self.make_request(
+        # Step 3: Test login with invalid credentials
+        invalid_login_response = await self.make_request(
             'POST',
-            '/api/email/test',
-            {'email': test_email}
+            '/api/member/login',
+            {
+                'email': 'nonexistent@example.com'
+            }
         )
         
-        if test_response['status'] == 200:
+        if invalid_login_response['status'] == 404:
             self.log_test_result(
-                "Test Email System",
+                "Member Login - Invalid Email",
                 True,
-                "Test email system is functional",
-                {'test_email': test_email}
+                "Correctly rejected login with non-existent email",
+                {'status': invalid_login_response['status']}
             )
         else:
             self.log_test_result(
-                "Test Email System",
+                "Member Login - Invalid Email",
                 False,
-                f"Test email failed: {test_response['status']}",
-                {'response': test_response['data']}
+                f"Should reject invalid email but got: {invalid_login_response['status']}",
+                {'response': invalid_login_response['data']}
             )
         
         return True
