@@ -740,7 +740,7 @@ const GamingDemo = () => {
           ) : null}
           <h1>
             {customization.userName}
-            <Logo3D />
+            <Logo3D logoUrl={customization.logoUrl} userName={customization.userName} />
           </h1>
         </div>
         
