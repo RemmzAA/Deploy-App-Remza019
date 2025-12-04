@@ -10,11 +10,11 @@ const ScheduleWidget = () => {
   // Load schedules from backend
   const loadSchedules = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/schedule/list`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/schedule`);
       const data = await response.json();
       
-      if (data.success && data.schedules) {
-        setSchedules(data.schedules);
+      if (data.success && data.schedule) {
+        setSchedules(data.schedule);
       }
       setLoading(false);
     } catch (err) {
