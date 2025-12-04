@@ -98,14 +98,17 @@ const ViewerMenu = () => {
   };
 
   const activities = [
-    { name: 'Stream View (5min)', points: 5 },
-    { name: 'Chat Message', points: 2 },
-    { name: 'Like Video', points: 3 },
-    { name: 'Share Stream', points: 10 },
-    { name: 'Subscribe', points: 25 },
-    { name: 'Daily Visit', points: 5 },
-    { name: 'Vote in Poll', points: 3 },
-    { name: 'Stream Prediction', points: 7 }
+    // Fully implemented activities - award points immediately
+    { name: 'Chat Message', points: 2, implemented: true },
+    { name: 'Like Video', points: 3, implemented: true },
+    { name: 'Share Stream', points: 10, implemented: true },
+    { name: 'Subscribe', points: 25, implemented: true },
+    
+    // Not yet implemented - require backend functionality
+    // { name: 'Stream View (5min)', points: 5, implemented: false },
+    // { name: 'Daily Visit', points: 5, implemented: false },
+    // { name: 'Vote in Poll', points: 3, implemented: false },
+    // { name: 'Stream Prediction', points: 7, implemented: false }
   ];
 
   useEffect(() => {
