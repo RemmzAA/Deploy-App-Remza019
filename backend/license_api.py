@@ -21,7 +21,7 @@ licenses_collection = db['licenses']
 # Pydantic Models
 class LicenseKey(BaseModel):
     license_key: str
-    license_type: str  # "TRIAL" or "FULL"
+    license_type: str  # "TRIAL", "BASIC", or "PREMIUM"
     user_email: Optional[str] = None
     user_name: Optional[str] = None
     created_at: str
@@ -30,11 +30,15 @@ class LicenseKey(BaseModel):
     is_active: bool = True
     payment_id: Optional[str] = None
     customization: Optional[dict] = None
+    assigned_to: Optional[str] = None  # member_id
+    assigned_email: Optional[str] = None
+    assigned_nickname: Optional[str] = None
 
 class GenerateLicenseRequest(BaseModel):
     user_email: Optional[str] = None
     user_name: Optional[str] = None
-    license_type: str = "FULL"  # "TRIAL" or "FULL"
+    license_type: str = "TRIAL"  # "TRIAL", "BASIC", or "PREMIUM"
+    duration_days: Optional[int] = None  # For TRIAL licenses
 
 class VerifyLicenseRequest(BaseModel):
     license_key: str
