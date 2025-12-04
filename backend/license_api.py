@@ -81,6 +81,12 @@ async def generate_license(request: GenerateLicenseRequest):
         # Create license document
         now = datetime.utcnow().isoformat()
         
+        # Calculate expiration for TRIAL licenses
+        expires_at = None
+        if request.license_type == "TRIAL":
+            trial_days = request.duration_days if request.duration_days else 7
+            expires_at = (datetime.utcnow() + timedelta(days=trial_days)).isoformat()
+        
         license_doc = {
             "license_key": license_key,
             "license_type": request.license_type,
@@ -88,10 +94,13 @@ async def generate_license(request: GenerateLicenseRequest):
             "user_name": request.user_name,
             "created_at": now,
             "activated_at": None,
-            "expires_at": None if request.license_type == "FULL" else (datetime.utcnow() + timedelta(days=7)).isoformat(),
+            "expires_at": expires_at,
             "is_active": True,
             "payment_id": None,
-            "customization": None
+            "customization": None,
+            "assigned_to": None,
+            "assigned_email": None,
+            "assigned_nickname": None
         }
         
         # Insert to database
