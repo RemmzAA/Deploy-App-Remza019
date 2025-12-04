@@ -4,6 +4,8 @@ import { LanguageProvider } from './i18n/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
 import GamingDemo from './components/GamingDemo';
 import AdminPanelWrapper from './components/admin/AdminPanelWrapper';
+import MemberAuth from './components/member/MemberAuth';
+import MemberDashboard from './components/member/MemberDashboard';
 import './App.css';
 
 function App() {
