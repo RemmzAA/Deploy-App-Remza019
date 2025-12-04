@@ -287,7 +287,7 @@
 .quick-action-btn {
   background: linear-gradient(135deg, var(--matrix-color), #06b6d4);
   border: none;
-  color: white;
+  color: #000000 !important;
   padding: 0.8rem 1.5rem;
   border-radius: 10px;
   cursor: pointer;
@@ -298,10 +298,16 @@
 .quick-action-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+  color: #000000 !important;
 }
 
 .quick-action-btn.live-toggle {
   background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff !important;
+}
+
+.quick-action-btn.live-toggle:hover {
+  color: #ffffff !important;
 }
 
 /* Live Control Section */
