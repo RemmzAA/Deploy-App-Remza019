@@ -832,11 +832,7 @@ class BackendTester:
             # Test ban
             ban_response = await self.make_request(
                 'POST',
-                '/api/member/admin/ban-member',
-                {
-                    'member_id': self.test_member_data['member_id'],
-                    'reason': 'Testing ban functionality'
-                }
+                f'/api/member/admin/ban-member?member_id={self.test_member_data["member_id"]}&reason=Testing ban functionality'
             )
             
             if ban_response['status'] == 200:
