@@ -149,7 +149,7 @@ async def register_member(data: MemberRegistration):
         await members_collection.insert_one(member_doc)
         
         # Send verification email
-        base_url = os.environ.get('FRONTEND_URL', 'https://gamer-toolkit-3.preview.emergentagent.com')
+        base_url = os.environ.get('FRONTEND_URL', 'https://memberhub-21.preview.emergentagent.com')
         email_sent = await email_service.send_verification_email(
             to_email=data.email,
             username=data.nickname,
