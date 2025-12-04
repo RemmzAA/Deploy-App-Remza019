@@ -1482,8 +1482,9 @@
 }
 
 .theme-description {
-  color: rgba(var(--theme-primary-rgb), 0.6);
-  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+  letter-spacing: 0.2px;
 }
 
 .theme-selected-badge {
