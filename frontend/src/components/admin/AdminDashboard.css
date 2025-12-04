@@ -653,6 +653,12 @@
   gap: 2rem;
 }
 
+.schedule-section h2 {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+}
+
 .schedule-management {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -665,6 +671,14 @@
   border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 2rem;
   border-radius: 16px;
+}
+
+.add-schedule-card h3,
+.current-schedule-card h3 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  letter-spacing: 0.5px !important;
 }
 
 .schedule-form {
