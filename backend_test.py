@@ -211,58 +211,96 @@ class BackendTester:
         
         return True
     
-    async def test_email_subscription_for_live_notifications(self) -> bool:
-        """Test Case 2: Email Subscription for Live Notifications"""
-        logger.info("🧪 Testing email subscription for live notifications...")
+    async def test_email_verification_flow(self) -> bool:
+        """Test Case 2: Email Verification Flow"""
+        logger.info("🧪 Testing email verification flow...")
         
-        test_email = f"subscriber_{uuid.uuid4().hex[:8]}@example.com"
-        
-        # Check if there's a subscription endpoint
-        # Based on the code review, let's test the email verification system which handles subscriptions
-        
-        response = await self.make_request(
-            'POST',
-            '/api/auth/send-verification',
-            {
-                'email': test_email,
-                'username': f'testuser_{uuid.uuid4().hex[:6]}'
-            }
-        )
-        
-        if response['status'] == 200:
+        if not hasattr(self, 'test_member_data'):
             self.log_test_result(
-                "Email Subscription Setup",
-                True,
-                "Email verification system accepts subscription requests",
-                {'email': test_email, 'status': response['status']}
-            )
-        else:
-            self.log_test_result(
-                "Email Subscription Setup",
+                "Email Verification Flow",
                 False,
-                f"Email subscription failed: {response['data'].get('detail', 'Unknown error')}",
-                {'status': response['status'], 'response': response['data']}
+                "No test member data available - run registration test first",
+                {}
             )
             return False
         
-        # Test getting subscriber count
-        count_response = await self.make_request('GET', '/api/email/subscribers/count')
+        member_data = self.test_member_data
         
-        if count_response['status'] == 200:
-            count = count_response['data'].get('count', 0)
+        # Step 1: Test verification with invalid code
+        invalid_response = await self.make_request(
+            'POST',
+            '/api/member/verify-email',
+            {
+                'email': member_data['email'],
+                'code': 'INVALID123'
+            }
+        )
+        
+        if invalid_response['status'] == 400:
             self.log_test_result(
-                "Subscriber Count Check",
+                "Email Verification - Invalid Code",
                 True,
-                f"Successfully retrieved subscriber count: {count}",
-                {'count': count}
+                "Correctly rejected invalid verification code",
+                {'status': invalid_response['status']}
             )
         else:
             self.log_test_result(
-                "Subscriber Count Check",
+                "Email Verification - Invalid Code",
                 False,
-                f"Failed to get subscriber count: {count_response['status']}",
-                {'response': count_response['data']}
+                f"Should reject invalid code but got: {invalid_response['status']}",
+                {'response': invalid_response['data']}
             )
+        
+        # Step 2: Test verification with valid code (if available from registration)
+        if member_data.get('verification_code'):
+            valid_response = await self.make_request(
+                'POST',
+                '/api/member/verify-email',
+                {
+                    'email': member_data['email'],
+                    'code': member_data['verification_code']
+                }
+            )
+            
+            if valid_response['status'] == 200:
+                data = valid_response['data']
+                if data.get('success') and data.get('token'):
+                    self.log_test_result(
+                        "Email Verification - Valid Code",
+                        True,
+                        "Successfully verified email and received JWT token",
+                        {
+                            'token_received': True,
+                            'member_data': data.get('member', {})
+                        }
+                    )
+                    # Store token for later tests
+                    self.test_member_data['token'] = data['token']
+                else:
+                    self.log_test_result(
+                        "Email Verification - Valid Code",
+                        False,
+                        "Verification response missing success or token",
+                        {'response': data}
+                    )
+            else:
+                self.log_test_result(
+                    "Email Verification - Valid Code",
+                    False,
+                    f"Valid code verification failed: {valid_response['status']}",
+                    {'response': valid_response['data']}
+                )
+        else:
+            self.log_test_result(
+                "Email Verification - Valid Code",
+                False,
+                "No verification code available from registration",
+                {}
+            )
+        
+        # Step 3: Test verification status change
+        # This would require checking the member's is_verified status in database
+        # We can test this indirectly by trying to login
         
         return True
     
