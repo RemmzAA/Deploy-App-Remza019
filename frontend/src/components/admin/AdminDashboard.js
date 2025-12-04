@@ -247,9 +247,41 @@ const AdminDashboard = ({ token, onLogout }) => {
   useEffect(() => {
     loadDashboardData();
     
-    // Removed auto-refresh to prevent interrupting admin work
-    // Manual refresh available via refresh buttons
+    // Real-time live status polling (every 30 seconds)
+    const liveStatusInterval = setInterval(() => {
+      checkLiveStatus();
+    }, 30000); // 30 seconds
+    
+    return () => clearInterval(liveStatusInterval);
   }, []);
+  
+  // Real-time live status check
+  const checkLiveStatus = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/live/status`);
+      const data = await response.json();
+      
+      if (data) {
+        setLiveStatus({
+          is_live: data.is_live || false,
+          current_viewers: data.current_viewers || '0',
+          live_game: data.live_game || 'FORTNITE'
+        });
+        
+        // Update dashboard stats if needed
+        setDashboardStats(prev => ({
+          ...prev,
+          channel_stats: {
+            ...prev.channel_stats,
+            is_live: data.is_live,
+            current_viewers: data.current_viewers
+          }
+        }));
+      }
+    } catch (error) {
+      console.warn('Live status check failed:', error);
+    }
+  };
 
   const loadDashboardData = async () => {
     try {
