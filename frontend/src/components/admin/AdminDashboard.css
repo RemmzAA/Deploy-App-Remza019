@@ -195,22 +195,24 @@
 
 .admin-main h2 {
   color: var(--matrix-color);
-  font-size: 2.5rem !important;
-  font-weight: 700;
+  font-size: 3rem !important;
+  font-weight: 800;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  letter-spacing: 1px;
-  text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  text-transform: uppercase;
 }
 
 .admin-main h3 {
   color: var(--matrix-color);
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
 /* Overview Section */
