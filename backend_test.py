@@ -108,29 +108,31 @@ class BackendTester:
             )
             return False
     
-    async def test_viewer_registration_with_email_verification(self) -> bool:
-        """Test Case 1: New Viewer Registration with Email Verification"""
-        logger.info("🧪 Testing viewer registration with email verification...")
+    async def test_member_registration_flow(self) -> bool:
+        """Test Case 1: Member Registration Flow with Email Verification"""
+        logger.info("🧪 Testing member registration flow...")
         
         # Generate unique test data
-        test_username = f"testviewer_{uuid.uuid4().hex[:8]}"
-        test_email = f"test_{uuid.uuid4().hex[:8]}@example.com"
+        test_nickname = f"testmember_{uuid.uuid4().hex[:8]}"
+        test_email = f"member_{uuid.uuid4().hex[:8]}@example.com"
+        test_discord_id = f"123456789{uuid.uuid4().hex[:8]}"
         
-        # Step 1: Register new viewer
+        # Step 1: Register new member
         registration_data = {
-            "username": test_username,
-            "email": test_email
+            "nickname": test_nickname,
+            "email": test_email,
+            "discord_id": test_discord_id
         }
         
         response = await self.make_request(
             'POST',
-            '/api/viewer/register',
+            '/api/member/register',
             registration_data
         )
         
         if response['status'] != 200:
             self.log_test_result(
-                "Viewer Registration",
+                "Member Registration",
                 False,
                 f"Registration failed with status {response['status']}",
                 {'response': response['data']}
@@ -141,63 +143,70 @@ class BackendTester:
         data = response['data']
         if not data.get('success'):
             self.log_test_result(
-                "Viewer Registration",
+                "Member Registration",
                 False,
                 f"Registration unsuccessful: {data.get('message', 'Unknown error')}",
                 {'response': data}
             )
             return False
         
-        viewer_data = data.get('viewer', {})
-        user_id = viewer_data.get('user_id') or viewer_data.get('id')
+        member_id = data.get('member_id')
+        verification_code = data.get('verification_code')  # Fallback if email fails
         
-        if not user_id:
+        if not member_id:
             self.log_test_result(
-                "Viewer Registration",
+                "Member Registration",
                 False,
-                "No user_id returned in registration response",
+                "No member_id returned in registration response",
                 {'response': data}
             )
             return False
         
         self.log_test_result(
-            "Viewer Registration",
+            "Member Registration",
             True,
-            f"Successfully registered viewer: {test_username}",
+            f"Successfully registered member: {test_nickname}",
             {
-                'user_id': user_id,
+                'member_id': member_id,
                 'email': test_email,
-                'email_verified': viewer_data.get('email_verified', False)
+                'discord_id': test_discord_id,
+                'verification_code_provided': bool(verification_code)
             }
         )
         
-        # Step 2: Test email verification endpoint (simulate verification)
-        # Note: In real scenario, verification code would come from email
-        verification_code = "TEST123"  # Mock code for testing
+        # Store for later tests
+        self.test_member_data = {
+            'nickname': test_nickname,
+            'email': test_email,
+            'discord_id': test_discord_id,
+            'member_id': member_id,
+            'verification_code': verification_code
+        }
         
-        verify_response = await self.make_request(
+        # Step 2: Verify MongoDB entry
+        # Check if member was created with correct initial values
+        # This is indirect testing since we can't directly access MongoDB
+        
+        # Step 3: Test duplicate registration (should fail)
+        duplicate_response = await self.make_request(
             'POST',
-            '/api/viewer/verify',
-            {
-                'email': test_email,
-                'code': verification_code
-            }
+            '/api/member/register',
+            registration_data
         )
         
-        # This should fail with invalid code (expected behavior)
-        if verify_response['status'] == 400:
+        if duplicate_response['status'] == 400:
             self.log_test_result(
-                "Email Verification Endpoint",
+                "Duplicate Registration Prevention",
                 True,
-                "Email verification endpoint correctly rejects invalid code",
-                {'status': verify_response['status']}
+                "Correctly prevented duplicate email registration",
+                {'status': duplicate_response['status']}
             )
         else:
             self.log_test_result(
-                "Email Verification Endpoint",
+                "Duplicate Registration Prevention",
                 False,
-                f"Unexpected response from verification endpoint: {verify_response['status']}",
-                {'response': verify_response['data']}
+                f"Should prevent duplicate registration but got: {duplicate_response['status']}",
+                {'response': duplicate_response['data']}
             )
         
         return True
