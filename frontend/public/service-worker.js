@@ -1,30 +1,34 @@
 // REMZA019 Gaming - Service Worker for PWA
-// Version 1.4.0 - USER MENU & TAGS FIX
+// Version 1.5.0 - FIXED CACHE ERRORS
 
-const CACHE_NAME = 'remza019-gaming-v3';  // Updated version to force cache refresh
+const CACHE_NAME = 'remza019-gaming-v4';  // Updated version to force cache refresh
 const urlsToCache = [
   '/',
   '/index.html',
-  '/static/css/main.css',
-  '/static/js/main.js',
-  '/remza-logo.png',
-  '/logo192.png',
-  '/logo512.png',
-  '/favicon.png',
   '/manifest.json'
 ];
 
-// Install event - cache resources
+// Install event - cache resources with individual error handling
 self.addEventListener('install', (event) => {
   console.log('[Service Worker] Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
+      .then(async (cache) => {
         console.log('[Service Worker] Caching app shell');
-        return cache.addAll(urlsToCache);
+        // Cache each URL individually to avoid total failure
+        const cachePromises = urlsToCache.map(async (url) => {
+          try {
+            await cache.add(url);
+            console.log(`[Service Worker] Cached: ${url}`);
+          } catch (err) {
+            console.warn(`[Service Worker] Failed to cache ${url}:`, err.message);
+          }
+        });
+        await Promise.all(cachePromises);
+        console.log('[Service Worker] Cache initialization complete');
       })
       .catch((err) => {
-        console.log('[Service Worker] Cache failed:', err);
+        console.error('[Service Worker] Cache open failed:', err);
       })
   );
   self.skipWaiting();
