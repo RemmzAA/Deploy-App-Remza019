@@ -1460,6 +1460,11 @@ async def startup_event():
         await create_default_admin()
         logger.info("🚀 Admin system initialized successfully")
         
+        # Initialize default features
+        from features_api import initialize_default_features
+        await initialize_default_features(db)
+        logger.info("🎯 Features system initialized successfully")
+        
         # Start YouTube sync scheduler in background
         # asyncio.create_task(start_sync_scheduler())
         logger.info("🔄 YouTube sync scheduler disabled for testing")
