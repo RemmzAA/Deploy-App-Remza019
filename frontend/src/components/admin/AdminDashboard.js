@@ -511,11 +511,13 @@ const AdminDashboard = ({ token, onLogout }) => {
   const loadThemes = async () => {
     try {
       const response = await apiCall('/api/themes/list');
-      if (response.success) {
+      if (response.success && response.themes) {
         setAvailableThemes(response.themes);
       }
+      // Themes are already initialized with default values, so no action needed if API fails
     } catch (error) {
       console.error('Load themes error:', error);
+      // Themes already initialized with default values in useState
     }
   };
 
