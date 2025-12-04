@@ -201,10 +201,11 @@
 }
 
 .stat-card h3 {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .stat-number {
