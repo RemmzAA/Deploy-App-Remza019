@@ -822,24 +822,24 @@
 
 .schedule-day {
   color: var(--matrix-color);
-  font-weight: 800;
-  font-size: 1.8rem !important;
-  letter-spacing: 1px;
-  text-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
+  font-weight: 700;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
 }
 
 .schedule-time {
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 700;
-  font-size: 1.5rem !important;
-  letter-spacing: 0.5px;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.3px;
 }
 
 .schedule-game {
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem !important;
-  letter-spacing: 0.5px;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.3px;
 }
 
 .delete-schedule-btn {
