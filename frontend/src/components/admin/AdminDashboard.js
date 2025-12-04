@@ -1882,6 +1882,11 @@ const AdminDashboard = ({ token, onLogout }) => {
           <AdminMemberPanel token={token} />
         )}
 
+        {/* Features Tab */}
+        {activeTab === 'features' && (
+          <AdminFeaturesPanel />
+        )}
+
       </motion.main>
 
       {error && (
