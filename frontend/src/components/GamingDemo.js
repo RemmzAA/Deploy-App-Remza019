@@ -246,6 +246,25 @@ const GamingDemo = () => {
     }
   };
   
+  // Load License Status
+  const loadLicenseStatus = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/license/status`);
+      const data = await response.json();
+      
+      if (data.is_active && data.license_type) {
+        setLicenseType(data.license_type);
+        console.log('🔑 License Type:', data.license_type);
+      } else {
+        setLicenseType('NONE');
+        console.log('🔑 No active license - showing watermark');
+      }
+    } catch (error) {
+      console.error('Failed to load license status:', error);
+      setLicenseType('NONE');
+    }
+  };
+  
   // Handle points update from PointsTracker
   const handlePointsUpdate = (updateData) => {
     setCurrentUser(prev => {
