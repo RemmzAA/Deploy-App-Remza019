@@ -20,6 +20,22 @@ const ViewerMenu = () => {
   const [chatWs, setChatWs] = useState(null);
   const [features, setFeatures] = useState([]);
   
+  // Load features from backend
+  useEffect(() => {
+    const fetchFeatures = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/features`);
+        const data = await response.json();
+        setFeatures(data);
+        console.log('✅ Features loaded:', data.length);
+      } catch (error) {
+        console.error('❌ Failed to load features:', error);
+      }
+    };
+    
+    fetchFeatures();
+  }, []);
+  
   // Load user from cookies on mount
   useEffect(() => {
     const savedUser = UserCookies.getUser();
