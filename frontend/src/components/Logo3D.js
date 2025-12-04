@@ -3,13 +3,6 @@ import './Logo3D.css';
 
 const Logo3D = ({ logoUrl = '/remza-logo.png', userName = 'REMZA019', licenseType = 'NONE' }) => {
   // Always show the custom logo in 3D rotating cube
-  console.log('🎨 Logo3D - License Type:', licenseType);
-  console.log('🎨 Logo URL:', logoUrl);
-  
-  useEffect(() => {
-    console.log('🎨 Logo3D Rendered - Logo URL:', logoUrl);
-    console.log('🎨 Logo3D Props:', { logoUrl, userName, licenseType });
-  }, [logoUrl, userName, licenseType]);
   
   return (
     <div className="logo-3d-container">
