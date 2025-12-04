@@ -542,9 +542,13 @@ const AdminDashboard = ({ token, onLogout }) => {
   // Theme Management Functions
   const loadThemes = async () => {
     try {
-      const response = await apiCall('/api/themes/list');
-      if (response.success && response.themes) {
-        setAvailableThemes(response.themes);
+      // Use direct fetch for public endpoint
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/themes/list`);
+      const data = await response.json();
+      
+      if (data.success && data.themes) {
+        // Update available themes with backend data (includes more themes)
+        setAvailableThemes(data.themes);
       }
       // Themes are already initialized with default values, so no action needed if API fails
     } catch (error) {
@@ -555,10 +559,13 @@ const AdminDashboard = ({ token, onLogout }) => {
 
   const loadCurrentTheme = async () => {
     try {
-      const response = await apiCall('/api/themes/current');
-      if (response.success && response.theme) {
-        setCurrentTheme(response.theme);
-        setSelectedTheme(response.theme.id || 'matrix_green');
+      // Use direct fetch for public endpoint
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/themes/current`);
+      const data = await response.json();
+      
+      if (data.success && data.theme) {
+        setCurrentTheme(data.theme);
+        setSelectedTheme(data.theme.id || 'matrix_green');
       }
     } catch (error) {
       console.error('Load current theme error:', error);
