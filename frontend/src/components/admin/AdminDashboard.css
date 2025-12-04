@@ -5,6 +5,32 @@
   background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #111111 50%, #0a0a0a 75%, #000000 100%);
   color: white;
   font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+/* GLOBALNO POVEĆANJE FONTOVA */
+.admin-dashboard * {
+  letter-spacing: 0.3px;
+}
+
+.admin-dashboard p,
+.admin-dashboard span,
+.admin-dashboard div:not(.tab-icon) {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.admin-dashboard label {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.admin-dashboard input,
+.admin-dashboard textarea,
+.admin-dashboard select,
+.admin-dashboard button {
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
 }
 
 /* Loading State */
