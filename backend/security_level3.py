@@ -26,7 +26,8 @@ class SecurityManager:
         
     def _get_or_create_master_key(self) -> bytes:
         """Get or create master encryption key"""
-        key_file = "/app/.security/master.key"
+        # Use /tmp for writable storage on cloud platforms like Render
+        key_file = "/tmp/.security/master.key"
         
         # Create directory if not exists
         os.makedirs(os.path.dirname(key_file), exist_ok=True)
