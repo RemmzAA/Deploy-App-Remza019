@@ -1,4 +1,4 @@
-// REMZA019 Gaming - Complete Multi-language Support
+// 019 Solutions - Complete Multi-language Support
 // English, Serbian, and German translations
 
 export const translations = {
@@ -23,7 +23,7 @@ export const translations = {
     benefitEvents: "🎯 Special event announcements",
     
     // Community Section
-    joinCommunity: "JOIN REMZA019 GAMING COMMUNITY",
+    joinCommunity: "JOIN 019 SOLUTIONS COMMUNITY",
     communitySubtitle: "Unlock exclusive features and level up your gaming experience!",
     watchEarn: "Watch & Earn",
     watchEarnDesc: "Earn points by watching streams",
@@ -72,7 +72,7 @@ export const translations = {
     donateNow: "DONATE NOW",
     
     // Donation Modal
-    supportTitle: "💚 Support REMZA019 Gaming",
+    supportTitle: "💚 Support 019 Solutions",
     totalRaised: "Total Raised",
     totalSupporters: "Total Supporters",
     chooseLevel: "Choose Your Support Level",
@@ -204,7 +204,7 @@ export const translations = {
     benefitEvents: "🎯 Najave specijalnih događaja",
     
     // Community Section
-    joinCommunity: "PRIDRUŽI SE REMZA019 GAMING ZAJEDNICI",
+    joinCommunity: "PRIDRUŽI SE 019 SOLUTIONS ZAJEDNICI",
     communitySubtitle: "Otključaj ekskluzivne funkcije i unapredi svoje gaming iskustvo!",
     watchEarn: "Gledaj i Zarađuj",
     watchEarnDesc: "Zarađuj poene gledanjem strimova",
@@ -253,7 +253,7 @@ export const translations = {
     donateNow: "DONIRAJ SADA",
     
     // Donation Modal
-    supportTitle: "💚 Podrži REMZA019 Gaming",
+    supportTitle: "💚 Podrži 019 Solutions",
     totalRaised: "Ukupno Prikupljeno",
     totalSupporters: "Ukupno Podrška",
     chooseLevel: "Izaberi Svoj Nivo Podrške",
@@ -385,7 +385,7 @@ export const translations = {
     benefitEvents: "🎯 Spezielle Event-Ankündigungen",
     
     // Community Section
-    joinCommunity: "TRITT DER REMZA019 GAMING COMMUNITY BEI",
+    joinCommunity: "TRITT DER 019 SOLUTIONS COMMUNITY BEI",
     communitySubtitle: "Schalte exklusive Funktionen frei und verbessere dein Gaming-Erlebnis!",
     watchEarn: "Zuschauen & Verdienen",
     watchEarnDesc: "Verdiene Punkte durch Zuschauen",
@@ -434,7 +434,7 @@ export const translations = {
     donateNow: "JETZT SPENDEN",
     
     // Donation Modal
-    supportTitle: "💚 Unterstütze REMZA019 Gaming",
+    supportTitle: "💚 Unterstütze 019 Solutions",
     totalRaised: "Gesamt Gesammelt",
     totalSupporters: "Gesamt Unterstützer",
     chooseLevel: "Wähle Dein Unterstützungslevel",

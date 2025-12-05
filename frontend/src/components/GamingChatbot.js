@@ -18,7 +18,7 @@ const GamingChatbot = () => {
     setMessages([
       {
         id: 1,
-        text: "🎮 Hey! I'm REMZA019 Gaming Assistant! Ask me about gaming, streaming schedule, or community links!",
+        text: "🎮 Hey! I'm 019 Solutions Assistant! Ask me about gaming, streaming schedule, or community links!",
         sender: 'bot',
         timestamp: new Date().toLocaleTimeString()
       }
@@ -163,7 +163,7 @@ const GamingChatbot = () => {
               <div className="bot-info">
                 <div className="bot-avatar">🎮</div>
                 <div>
-                  <h4>REMZA019 Gaming Assistant</h4>
+                  <h4>019 Solutions Assistant</h4>
                   <p className="bot-status">
                     <span className="status-dot"></span>
                     Online - Ready to help!

@@ -155,7 +155,7 @@ const AdminCustomizationPanel = () => {
   const handleReset = () => {
     if (window.confirm('Reset to default settings?')) {
       const defaultSettings = {
-        userName: 'REMZA019 Gaming',
+        userName: '019 Solutions',
         matrixColor: '#00ff00',
         textColor: '#00ff00',
         logoUrl: '/remza-logo.png',

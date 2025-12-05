@@ -1,5 +1,5 @@
 // License Manager - Trial & Full Version System
-// REMZA019 Gaming - Customizable Streamer Website
+// 019 Solutions - Customizable Streamer Website
 
 const TRIAL_DURATION_DAYS = 7;
 const LICENSE_STORAGE_KEY = 'remza019_license';
@@ -29,7 +29,7 @@ export const initializeLicense = () => {
       trialStartDate: trialStartDate,
       trialExpired: false,
       customization: {
-        userName: 'REMZA019 Gaming',
+        userName: '019 Solutions',
         matrixColor: '#00ff00',
         textColor: '#00ff00',
         logoUrl: '/remza-logo.png',
@@ -285,7 +285,7 @@ export const getCustomization = () => {
   
   if (!licenseData || !licenseData.customization) {
     return {
-      userName: 'REMZA019 Gaming',
+      userName: '019 Solutions',
       matrixColor: '#00ff00',
       textColor: '#00ff00',
       logoUrl: '/remza-logo.png',

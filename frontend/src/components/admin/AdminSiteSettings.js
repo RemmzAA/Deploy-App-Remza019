@@ -223,7 +223,7 @@ const AdminSiteSettings = () => {
             name="aboutSectionTitle"
             value={settings.aboutSectionTitle}
             onChange={handleInputChange}
-            placeholder="About REMZA019 Gaming"
+            placeholder="About 019 Solutions"
           />
         </div>
 
@@ -234,7 +234,7 @@ const AdminSiteSettings = () => {
             name="pwaInstallTitle"
             value={settings.pwaInstallTitle}
             onChange={handleInputChange}
-            placeholder="📱 Install REMZA019 Gaming App"
+            placeholder="📱 Install 019 Solutions App"
           />
         </div>
 
@@ -256,7 +256,7 @@ const AdminSiteSettings = () => {
             name="copyrightText"
             value={settings.copyrightText}
             onChange={handleInputChange}
-            placeholder="© 2025 REMZA019 Gaming. All rights reserved."
+            placeholder="© 2025 019 Solutions. All rights reserved."
           />
         </div>
 

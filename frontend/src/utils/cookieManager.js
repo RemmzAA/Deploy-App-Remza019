@@ -1,5 +1,5 @@
 /**
- * REMZA019 Gaming - Cookie Management
+ * 019 Solutions - Cookie Management
  * Secure cookie storage for user sessions and preferences
  */
 

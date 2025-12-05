@@ -5,7 +5,7 @@ import './CustomizationModal.css';
 
 const CustomizationModal = ({ isOpen, onClose, onSave }) => {
   const [customization, setCustomization] = useState({
-    userName: 'REMZA019 Gaming',
+    userName: '019 Solutions',
     matrixColor: '#00ff00',
     textColor: '#00ff00',
     logoUrl: '/remza-logo.png'
@@ -56,7 +56,7 @@ const CustomizationModal = ({ isOpen, onClose, onSave }) => {
                 type="text"
                 value={customization.userName}
                 onChange={(e) => setCustomization({...customization, userName: e.target.value})}
-                placeholder="REMZA019 Gaming"
+                placeholder="019 Solutions"
               />
             </div>
 

@@ -18,7 +18,7 @@ const MerchStore = ({ user }) => {
     const demoProducts = [
       {
         id: 'merch_001',
-        name: 'REMZA019 Gaming T-Shirt',
+        name: '019 Solutions T-Shirt',
         description: 'Premium quality Matrix-themed gaming t-shirt',
         price: 29.99,
         currency: 'USD',
@@ -123,7 +123,7 @@ const MerchStore = ({ user }) => {
         animate={{ opacity: 1, y: 0 }}
       >
         <h2>🛍️ Official Merch Store</h2>
-        <p>Support REMZA019 Gaming with exclusive merchandise</p>
+        <p>Support 019 Solutions with exclusive merchandise</p>
       </motion.div>
 
       {cart.length > 0 && (

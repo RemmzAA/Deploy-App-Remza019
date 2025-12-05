@@ -51,15 +51,15 @@ const GamingDemo = () => {
   
   // Customization State
   const [customization, setCustomization] = useState({
-    userName: 'REMZA019 Gaming',
+    userName: '019 Solutions',
     matrixColor: '#00ff00',
     textColor: '#00ff00',
     logoUrl: '/remza-logo.png',
     enablePWAInstall: true,
-    aboutSectionTitle: 'About REMZA019 Gaming',
-    pwaInstallTitle: '📱 Install REMZA019 Gaming App',
+    aboutSectionTitle: 'About 019 Solutions',
+    pwaInstallTitle: '📱 Install 019 Solutions App',
     adminPanelTitle: '🎮 REMZA019 Admin Panel',
-    copyrightText: '© 2025 REMZA019 Gaming. All rights reserved.',
+    copyrightText: '© 2025 019 Solutions. All rights reserved.',
     tagline: '🎮 Professional Gaming Content Creator',
     distributionMode: false,
     communityLinks: {

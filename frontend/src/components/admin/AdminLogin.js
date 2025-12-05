@@ -72,7 +72,7 @@ const AdminLogin = ({ onLogin }) => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            REMZA019 GAMING
+            019 SOLUTIONS
           </motion.h1>
           <motion.h2
             initial={{ y: -20, opacity: 0 }}

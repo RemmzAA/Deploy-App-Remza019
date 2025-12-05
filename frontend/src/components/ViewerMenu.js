@@ -620,7 +620,7 @@ const DashboardTab = ({ user, points, level, unlockedFeatures, levelSystem, addP
 const ChatTab = ({ messages, newMessage, setNewMessage, sendMessage, user, level }) => (
   <div className="chat-content">
     <div className="chat-header">
-      <h4>💬 REMZA019 Gaming Chat</h4>
+      <h4>💬 019 Solutions Chat</h4>
       <span className="online-count">🟢 {Math.floor(Math.random() * 50) + 10} online</span>
     </div>
     

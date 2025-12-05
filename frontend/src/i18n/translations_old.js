@@ -1,4 +1,4 @@
-// REMZA019 Gaming - Multi-language Support
+// 019 Solutions - Multi-language Support
 // English and Serbian translations
 
 export const translations = {
@@ -23,7 +23,7 @@ export const translations = {
     benefitEvents: "🎯 Special event announcements",
     
     // Community Section
-    joinCommunity: "JOIN REMZA019 GAMING COMMUNITY",
+    joinCommunity: "JOIN 019 SOLUTIONS COMMUNITY",
     communitySubtitle: "Unlock exclusive features and level up your gaming experience!",
     watchEarn: "Watch & Earn",
     watchEarnDesc: "Earn points by watching streams",
@@ -65,7 +65,7 @@ export const translations = {
     donateNow: "DONATE NOW",
     
     // Donation Modal
-    supportTitle: "💚 Support REMZA019 Gaming",
+    supportTitle: "💚 Support 019 Solutions",
     totalRaised: "Total Raised",
     totalSupporters: "Total Supporters",
     chooseLevel: "Choose Your Support Level",
@@ -122,7 +122,7 @@ export const translations = {
     benefitEvents: "🎯 Najave specijalnih događaja",
     
     // Community Section
-    joinCommunity: "PRIDRUŽI SE REMZA019 GAMING ZAJEDNICI",
+    joinCommunity: "PRIDRUŽI SE 019 SOLUTIONS ZAJEDNICI",
     communitySubtitle: "Otključaj ekskluzivne funkcije i unapredi svoje gaming iskustvo!",
     watchEarn: "Gledaj i Zarađuj",
     watchEarnDesc: "Zarađuj poene gledanjem strimova",
@@ -164,7 +164,7 @@ export const translations = {
     donateNow: "DONIRAJ SADA",
     
     // Donation Modal
-    supportTitle: "💚 Podrži REMZA019 Gaming",
+    supportTitle: "💚 Podrži 019 Solutions",
     totalRaised: "Ukupno Prikupljeno",
     totalSupporters: "Ukupno Podrška",
     chooseLevel: "Izaberi Svoj Nivo Podrške",
