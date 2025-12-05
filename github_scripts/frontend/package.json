@@ -1,0 +1,120 @@
+{
+  "name": "remza019-gaming-desktop",
+  "version": "1.0.0",
+  "description": "REMZA019 Gaming Desktop Application - Professional gaming platform by 019Solutions",
+  "author": "019Solutions",
+  "private": true,
+  "proxy": "http://localhost:8001",
+  "dependencies": {
+    "@paypal/react-paypal-js": "^8.9.2",
+    "@react-three/drei": "^10.6.1",
+    "@react-three/fiber": "^9.3.0",
+    "axios": "^1.8.4",
+    "cra-template": "1.2.0",
+    "framer-motion": "^12.23.12",
+    "http-proxy-middleware": "^3.0.5",
+    "i18next": "^25.3.2",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "js-cookie": "^3.0.5",
+    "particles.js": "^2.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.6.1",
+    "react-lazy-load-image-component": "^1.6.3",
+    "react-particles-js": "^3.6.0",
+    "react-router-dom": "^7.7.1",
+    "react-scripts": "5.0.1",
+    "three": "^0.178.0"
+  },
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "HOST=0.0.0.0 react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build:production": "GENERATE_SOURCEMAP=false react-scripts build && node obfuscate-build.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "yarn build && electron-builder",
+    "electron:build-win": "yarn build && electron-builder --win",
+    "electron:build-mac": "yarn build && electron-builder --mac",
+    "electron:build-linux": "yarn build && electron-builder --linux",
+    "electron:build-all": "yarn build && electron-builder -mwl"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.019solutions.remza019gaming",
+    "productName": "REMZA019 Gaming",
+    "copyright": "Copyright © 2025 019Solutions",
+    "directories": {
+      "buildResources": "electron/resources",
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "electron/resources/icon.png",
+      "artifactName": "REMZA019-Gaming-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "REMZA019 Gaming"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "electron/resources/icon.png",
+      "category": "public.app-category.entertainment",
+      "artifactName": "REMZA019-Gaming-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "electron/resources/icon.png",
+      "category": "Game",
+      "artifactName": "REMZA019-Gaming-${version}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "9.23.0",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.2.1",
+    "electron": "^38.3.0",
+    "electron-builder": "^26.0.12",
+    "eslint": "9.23.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.4",
+    "globals": "15.15.0",
+    "javascript-obfuscator": "^4.1.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "wait-on": "^9.0.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

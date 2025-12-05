@@ -1,0 +1,2 @@
+b41ecdcbf4bfd3a3b7993bb890908bd64b41a1c7f5f8dcc605d23f0fe7b39c46  REMZA019-Gaming-Portable-1.0.0-Windows.zip
+4bebdc67db7038b9e4f78943582ac0ca319be73b48c8a3943c64872f307b20fa  REMZA019-Gaming-Portable-1.0.0-Linux.tar.gz

@@ -1,0 +1,144 @@
+{
+  "name": "remza019-gaming-desktop",
+  "version": "1.0.0",
+  "description": "REMZA019 Gaming Desktop Application - 019Solutions",
+  "author": "019Solutions",
+  "license": "Commercial",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "yarn build && electron-builder",
+    "electron:build-win": "yarn build && electron-builder --win",
+    "electron:build-mac": "yarn build && electron-builder --mac",
+    "electron:build-linux": "yarn build && electron-builder --linux",
+    "electron:build-all": "yarn build && electron-builder -mwl",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.019solutions.remza019gaming",
+    "productName": "REMZA019 Gaming",
+    "copyright": "Copyright © 2025 019Solutions",
+    "directories": {
+      "buildResources": "electron/resources",
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.js"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "electron/resources/icon.png",
+      "artifactName": "REMZA019-Gaming-Setup-${version}.${ext}",
+      "publisherName": "019Solutions"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "REMZA019 Gaming",
+      "installerIcon": "electron/resources/icon.png",
+      "uninstallerIcon": "electron/resources/icon.png",
+      "installerHeaderIcon": "electron/resources/icon.png",
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "target": ["dmg", "zip"],
+      "icon": "electron/resources/icon.png",
+      "category": "public.app-category.entertainment",
+      "artifactName": "REMZA019-Gaming-${version}.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "electron/resources/entitlements.mac.plist",
+      "entitlementsInherit": "electron/resources/entitlements.mac.plist"
+    },
+    "dmg": {
+      "title": "REMZA019 Gaming Installer",
+      "icon": "electron/resources/icon.png",
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 300
+      }
+    },
+    "linux": {
+      "target": ["AppImage", "deb", "rpm"],
+      "icon": "electron/resources/icon.png",
+      "category": "Game",
+      "artifactName": "REMZA019-Gaming-${version}.${ext}",
+      "desktop": {
+        "Name": "REMZA019 Gaming",
+        "Comment": "Professional Gaming Platform by 019Solutions",
+        "Categories": "Game;Entertainment;"
+      }
+    },
+    "appImage": {
+      "artifactName": "REMZA019-Gaming-${version}.${ext}"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://019solutions.com/downloads"
+    }
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^10.16.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "react-lazy-load-image-component": "^1.6.0",
+    "web-vitals": "^2.1.4",
+    "braintree-web-drop-in-react": "^1.2.1"
+  },
+  "devDependencies": {
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+/* REMZA019 Gaming Website - 100% CLEAN CSS */
+/* NO PURPLE COLORS - ONLY GREEN GAMING THEME */
+
+/* ==========================================
+   DYNAMIC THEME SYSTEM - CSS VARIABLES
+   Applied dynamically by theme switcher
+   NO HARDCODED VALUES - All set via JavaScript!
+   ========================================== */
+:root {
+  /* NOTE: Theme colors are set dynamically via JavaScript! 
+     See GamingDemo.js -> applyTheme() function
+     Default values removed to prevent override conflicts */
+  
+  /* Default Fonts (safe to keep as fallback) */
+  --font-primary: 'Orbitron', 'Space Grotesk', monospace;
+  --font-secondary: 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary), 'Inter', 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, var(--theme-background), var(--theme-secondary)) !important;
+  color: var(--theme-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: all 0.3s ease;
+}
+
+.App {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Gaming Demo Container */
+.gaming-demo {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--theme-background), var(--theme-secondary));
+  overflow-x: hidden;
+  transition: background 0.5s ease;
+}
+
+/* Matrix Background Grid - DISABLED FOR CLEAN BLACK BACKGROUND */
+/* .gaming-demo::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+  pointer-events: none;
+  animation: matrixGrid 20s linear infinite;
+}
+
+@keyframes matrixGrid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+} */
+
+/* Matrix Cards - DYNAMIC THEME COLORS */
+.matrix-card {
+  background: linear-gradient(135deg, 
+    var(--theme-card-bg),
+    rgba(0, 0, 0, 0.3)
+  );
+  border: 1px solid var(--theme-border);
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 5;
+}
+
+.matrix-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--theme-primary);
+  box-shadow: 0 20px 40px var(--theme-primary);
+}
+
+/* Matrix Buttons - PURE GREEN */
+.matrix-button {
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+  color: var(--theme-background);
+  border: none;
+  border-radius: 16px;
+  padding: 1.2rem 2.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.matrix-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px var(--theme-primary);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* Matrix Background Demo */
+.matrix-background-demo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.6;
+  pointer-events: none;
+}

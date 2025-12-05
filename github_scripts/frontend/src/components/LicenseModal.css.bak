@@ -1,0 +1,307 @@
+/* License Activation Modal */
+
+.license-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.license-modal-container {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border: 3px solid #10b981;
+  border-radius: 25px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+  position: relative;
+}
+
+.license-modal-header {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+  padding: 1.5rem;
+  border-bottom: 2px solid #10b981;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 22px 22px 0 0;
+}
+
+.license-modal-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  margin: 0;
+}
+
+.license-modal-close {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.license-modal-close:hover {
+  background: #ef4444;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.license-modal-content {
+  padding: 2rem;
+}
+
+.license-modal-warning {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.license-modal-warning p {
+  color: #ef4444;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.license-modal-info {
+  background: rgba(16, 185, 129, 0.05);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.license-modal-info h3 {
+  color: #10b981;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.license-modal-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.license-modal-info li {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.license-modal-pricing {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.license-price-card {
+  display: inline-flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 1.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+}
+
+.license-price {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.license-price-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.license-modal-purchase {
+  background: rgba(59, 130, 246, 0.05);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.license-modal-purchase h3 {
+  color: #3b82f6;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.license-modal-purchase ol {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.license-modal-purchase li {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.license-modal-purchase a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.license-modal-purchase a:hover {
+  text-decoration: underline;
+}
+
+.license-input-section {
+  margin: 2rem 0;
+}
+
+.license-input-label {
+  display: block;
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.license-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.license-input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.license-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.license-input-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.license-message {
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.license-message-success {
+  background: rgba(16, 185, 129, 0.2);
+  border: 2px solid #10b981;
+  color: #10b981;
+}
+
+.license-message-error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+}
+
+.license-modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.license-btn {
+  flex: 1;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.license-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.license-btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+}
+
+.license-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+  transform: translateY(-2px);
+}
+
+.license-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.license-btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .license-modal-title {
+    font-size: 1.4rem;
+  }
+  
+  .license-modal-content {
+    padding: 1.5rem;
+  }
+  
+  .license-price {
+    font-size: 2.5rem;
+  }
+  
+  .license-modal-actions {
+    flex-direction: column;
+  }
+}

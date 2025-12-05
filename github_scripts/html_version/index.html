@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019 Solutions - Swiss Digital Excellence</title>
+    <meta name="description" content="019 Solutions - Premium digital solutions from Switzerland. Full-stack development, e-commerce, and AI integration with Swiss precision.">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/matrix-effects.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="clean-navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-number">019</span>
+                <span class="brand-text">SOLUTIONS</span>
+                <div class="brand-tagline">Swiss Digital Excellence</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="navigation-dropdown" id="navigationMenu">
+                <div class="nav-items">
+                    <button class="nav-item" onclick="scrollToSection('#hero')">Home</button>
+                    <button class="nav-item" onclick="scrollToSection('#services')">Services</button>
+                    <button class="nav-item" onclick="scrollToSection('#portfolio')">Portfolio</button>
+                    <button class="nav-item" onclick="scrollToSection('#contact')">Contact</button>
+                    
+                    <!-- Modern Language Switcher -->
+                    <div class="nav-language">
+                        <div class="modern-language-switcher">
+                            <button class="modern-lang-toggle" id="langToggle">
+                                <span class="current-flag">🇬🇧</span>
+                                <span class="current-lang-code">EN</span>
+                                <span class="dropdown-arrow">▼</span>
+                            </button>
+                            
+                            <div class="modern-lang-dropdown" id="langDropdown" style="display: none;">
+                                <div class="lang-dropdown-header">
+                                    <span class="dropdown-title">Choose Language</span>
+                                </div>
+                                <button class="modern-lang-option active" onclick="changeLanguage('en')">
+                                    <span class="lang-flag">🇬🇧</span>
+                                    <div class="lang-info">
+                                        <span class="lang-name">English</span>
+                                        <span class="lang-code">EN</span>
+                                    </div>
+                                    <span class="active-indicator">✓</span>
+                                </button>
+                                <button class="modern-lang-option" onclick="changeLanguage('de')">
+                                    <span class="lang-flag">🇩🇪</span>
+                                    <div class="lang-info">
+                                        <span class="lang-name">Deutsch</span>
+                                        <span class="lang-code">DE</span>
+                                    </div>
+                                </button>
+                                <button class="modern-lang-option" onclick="changeLanguage('sr')">
+                                    <span class="lang-flag">🇷🇸</span>
+                                    <div class="lang-info">
+                                        <span class="lang-name">Srpski</span>
+                                        <span class="lang-code">SR</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <!-- Enhanced 3D Animated Logo -->
+            <div class="enhanced-logo-container">
+                <!-- 3D E Emoji - Above the frame -->
+                <div class="floating-emoji-enhanced">
+                    <img src="https://customer-assets.emergentagent.com/job_web-portfolio-41/artifacts/r5ayip5b_MyEmoji_20240427_242459_0.gif" 
+                         alt="3D E Emoji" class="emoji-enhanced">
+                    
+                    <!-- Company Name directly below mascot -->
+                    <div class="company-name-below-mascot">
+                        019 SOLUTIONS
+                    </div>
+                </div>
+                
+                <!-- Main Logo Section -->
+                <div class="main-logo-section">
+                    <!-- 3D Numbers Section -->
+                    <div class="logo-3d-section">
+                        <div class="numbers-3d">
+                            <span class="number-3d" data-number="0">0</span>
+                            <span class="number-3d" data-number="1">1</span>
+                            <span class="number-3d" data-number="9">9</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Solutions Text Section -->
+                    <div class="solutions-text-section">
+                        <div class="animated-solutions">
+                            <span class="solution-letter">S</span>
+                            <span class="solution-letter">O</span>
+                            <span class="solution-letter">L</span>
+                            <span class="solution-letter">U</span>
+                            <span class="solution-letter">T</span>
+                            <span class="solution-letter">I</span>
+                            <span class="solution-letter">O</span>
+                            <span class="solution-letter">N</span>
+                            <span class="solution-letter">S</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Swiss Excellence Tagline -->
+                <div class="tagline-enhanced">
+                    🇨🇭 Swiss Digital Excellence
+                </div>
+            </div>
+            
+            <!-- Hero Tagline with Typewriter Effect -->
+            <div class="hero-tagline">
+                <p class="typed-text" id="typedText"></p>
+            </div>
+            
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+            
+            <!-- Hero CTA Buttons -->
+            <div class="hero-cta-buttons">
+                <button class="hero-cta primary" onclick="scrollToSection('#services')">
+                    Start Your Project →
+                </button>
+                <button class="hero-cta secondary" onclick="scrollToSection('#portfolio')">
+                    View Our Work →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional solutions for your business</p>
+            </div>
+            
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Real projects with real results</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-button active" onclick="filterPortfolio('All')">All</button>
+                <button class="filter-button" onclick="filterPortfolio('Fintech')">Fintech</button>
+                <button class="filter-button" onclick="filterPortfolio('Gaming')">Gaming</button>
+                <button class="filter-button" onclick="filterPortfolio('Tourism')">Tourism</button>
+                <button class="filter-button" onclick="filterPortfolio('Real Estate')">Real Estate</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your project?</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:contact@019solutions.com">contact@019solutions.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-details">
+                            <h4>Contact</h4>
+                            <a href="mailto:contact@019solutions.com">Direct Message</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Switzerland</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text" name="company" placeholder="Company (Optional)">
+                        <select name="service_interest">
+                            <option value="">Service Interest</option>
+                            <option value="full-stack">Full-Stack Development</option>
+                            <option value="ecommerce">E-Commerce Solutions</option>
+                            <option value="mobile">Mobile Development</option>
+                            <option value="consulting">Technical Consulting</option>
+                        </select>
+                    </div>
+                    
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                    
+                    <div class="submit-message" id="submitMessage" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Payment Methods Section -->
+    <section class="modern-payment-methods-section">
+        <div class="container">
+            <div class="payment-header-modern">
+                <h3 class="payment-title-modern">Swiss Payment Solutions</h3>
+                <p class="payment-subtitle-modern">Premium payment methods for Swiss Digital Excellence</p>
+            </div>
+            
+            <div class="modern-payment-grid">
+                <div class="modern-payment-card" style="--method-color: #1A1F71" onclick="window.open('https://www.visa.com', '_blank')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">💳</div>
+                        <span class="payment-method-name-modern">Visa</span>
+                    </div>
+                    <p class="payment-method-description">Secure Visa card payments</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to use</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="modern-payment-card" style="--method-color: #EB001B" onclick="window.open('https://www.mastercard.com', '_blank')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">💳</div>
+                        <span class="payment-method-name-modern">Mastercard</span>
+                    </div>
+                    <p class="payment-method-description">Mastercard worldwide acceptance</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to use</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="modern-payment-card" style="--method-color: #003087" onclick="window.open('https://www.paypal.com/paypalme/019solutions', '_blank')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">🅿️</div>
+                        <span class="payment-method-name-modern">PayPal</span>
+                    </div>
+                    <p class="payment-method-description">Pay with PayPal instantly</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to use</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="modern-payment-card" style="--method-color: #635BFF" onclick="window.open('https://stripe.com', '_blank')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">⚡</div>
+                        <span class="payment-method-name-modern">Stripe</span>
+                    </div>
+                    <p class="payment-method-description">Modern payment infrastructure</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to use</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="modern-payment-card" style="--method-color: #F7931A" onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh', 'Bitcoin')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">₿</div>
+                        <span class="payment-method-name-modern">Bitcoin</span>
+                    </div>
+                    <p class="payment-method-description">Cryptocurrency payments</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to copy</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="modern-payment-card" style="--method-color: #627EEA" onclick="copyToClipboard('0x742d35Cc6C74C64C3e3F08a65E73d70E8F3Aa98B', 'Ethereum')">
+                    <div class="payment-card-header">
+                        <div class="payment-method-icon-modern">♦️</div>
+                        <span class="payment-method-name-modern">Ethereum</span>
+                    </div>
+                    <p class="payment-method-description">Secure ETH transactions</p>
+                    <div class="payment-card-action">
+                        <span class="action-text">Click to copy</span>
+                        <span class="action-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-security-note">
+                <span class="security-icon">🔒</span>
+                <span>All transactions are secured with Swiss-grade encryption</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="footer-content-simple">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="footer-number">019</span>
+                        <span class="footer-text">SOLUTIONS</span>
+                    </div>
+                    <p class="footer-tagline">Swiss Digital Excellence</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <a href="mailto:contact@019solutions.com">contact@019solutions.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <a href="mailto:info@019solutions.com">info@019solutions.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🌍</span>
+                        <span>Switzerland</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-simple">
+                <p>&copy; 2024 019 Solutions - Swiss Digital Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/matrix-effects.js"></script>
+    <script src="js/typewriter.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

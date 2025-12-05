@@ -1,0 +1,192 @@
+/* Trial Status Component - Bottom of Page in Cloud Style */
+
+.bottom-status-container {
+  margin: 3rem 0 2rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.trial-status {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+  border: 3px solid;
+  border-radius: 25px;
+  padding: 2rem 3rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(16, 185, 129, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.trial-status::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(5, 150, 105, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.trial-status:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5);
+}
+
+/* Trial Active - Green Theme (like PWA section) */
+.trial-active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+  border-color: rgba(16, 185, 129, 0.6);
+}
+
+.trial-active .trial-icon {
+  font-size: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.trial-active .trial-text {
+  color: var(--matrix-color);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  font-size: 1.2rem;
+}
+
+/* Trial Urgent - Yellow/Orange Warning (2 days or less) */
+.trial-urgent {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15));
+  border-color: rgba(251, 191, 36, 0.8);
+  animation: urgentPulse 1.5s ease-in-out infinite;
+}
+
+.trial-urgent .trial-icon {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.trial-urgent .trial-text {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+  font-size: 1.2rem;
+}
+
+/* Trial Expired - Red Critical (like PWA section) */
+.trial-expired {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.15));
+  border-color: rgba(239, 68, 68, 0.8);
+  animation: criticalPulse 1s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.trial-expired .trial-icon {
+  color: #ef4444;
+  font-size: 1.8rem;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.trial-expired .trial-text {
+  color: #ef4444;
+  text-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+  font-size: 1.3rem;
+}
+
+.trial-expired .trial-action {
+  display: block;
+  margin-top: 0.8rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  padding: 0.8rem 2rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  animation: glow 1.5s ease-in-out infinite;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes urgentPulse {
+  0%, 100% {
+    box-shadow: 0 5px 20px rgba(251, 191, 36, 0.3);
+  }
+  50% {
+    box-shadow: 0 5px 30px rgba(251, 191, 36, 0.6);
+  }
+}
+
+@keyframes criticalPulse {
+  0%, 100% {
+    box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 5px 35px rgba(239, 68, 68, 0.7);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .trial-status {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .trial-status .trial-icon {
+    font-size: 0.9rem;
+  }
+  
+  .trial-expired .trial-action {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .trial-status {
+    top: 4rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,227 @@
+.leaderboard-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.leaderboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leaderboard-title {
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--matrix-color);
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.leaderboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid var(--matrix-color);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.stat-value {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--matrix-color);
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 14px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.leaderboard-list {
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid var(--matrix-color);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.leaderboard-entry:hover {
+  background: rgba(16, 185, 129, 0.15);
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+}
+
+.leaderboard-entry.rank-1 {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.05) 100%);
+  border-color: #ffd700;
+}
+
+.leaderboard-entry.rank-2 {
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.05) 100%);
+  border-color: #c0c0c0;
+}
+
+.leaderboard-entry.rank-3 {
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.05) 100%);
+  border-color: #cd7f32;
+}
+
+.entry-rank {
+  font-size: 32px;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+  color: var(--matrix-color);
+}
+
+.rank-1 .entry-rank {
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+.rank-2 .entry-rank {
+  color: #c0c0c0;
+  text-shadow: 0 0 10px #c0c0c0;
+}
+
+.rank-3 .entry-rank {
+  color: #cd7f32;
+  text-shadow: 0 0 10px #cd7f32;
+}
+
+.entry-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.entry-username {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--matrix-color);
+}
+
+.entry-level {
+  font-size: 14px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.entry-points {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--matrix-color);
+  margin-right: 20px;
+}
+
+.entry-badge {
+  font-size: 14px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--matrix-color);
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: var(--matrix-color);
+  white-space: nowrap;
+}
+
+.leaderboard-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  color: #888;
+}
+
+.leaderboard-footer p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.no-data {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 18px;
+}
+
+.leaderboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  color: var(--matrix-color);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(16, 185, 129, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--matrix-color);
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .leaderboard-title {
+    font-size: 28px;
+  }
+  
+  .stat-value {
+    font-size: 24px;
+  }
+  
+  .entry-rank {
+    font-size: 24px;
+    min-width: 40px;
+  }
+  
+  .entry-username {
+    font-size: 16px;
+  }
+  
+  .entry-points {
+    font-size: 18px;
+  }
+  
+  .entry-badge {
+    display: none;
+  }
+}

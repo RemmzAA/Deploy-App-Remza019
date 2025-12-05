@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=REMZA019 Gaming
+Comment=Professional Gaming Platform by 019Solutions
+Exec=remza019-gaming
+Icon=remza019-gaming
+Terminal=false
+Type=Application
+Categories=Game;Entertainment;
+Keywords=gaming;fortnite;streaming;remza019;
+StartupWMClass=REMZA019 Gaming

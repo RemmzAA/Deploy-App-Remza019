@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019 Solutions - Digital Architects of Tomorrow</title>
+    <meta name="description" content="019 Solutions - Professional Digital Development Company. Full-stack development, gaming solutions, AI integration, and digital transformation services.">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Background -->
+    <div id="matrix-bg" class="matrix-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-number">019</span>
+                <span class="logo-text">SOLUTIONS</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link">HOME</a>
+                <a href="#services" class="nav-link">SERVICES</a>
+                <a href="#portfolio" class="nav-link">PORTFOLIO</a>
+                <a href="#about" class="nav-link">ABOUT</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <div class="company-logo">019</div>
+                </div>
+                <h1 class="hero-title">019 SOLUTIONS</h1>
+                <div class="hero-subtitle" id="typewriter">Transforming Ideas Into Digital Reality</div>
+                <div class="hero-tagline">// WHERE CODE MEETS CREATIVITY</div>
+                <div class="hero-tagline">DIGITAL ARCHITECTS OF TOMORROW</div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">PROJECTS</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="12">0</span>
+                        <span class="stat-label">HAPPY CLIENTS</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="95">0</span>
+                        <span class="stat-label">SUCCESS RATE %</span>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#contact" class="cta-button cta-primary">START YOUR PROJECT - FREE</a>
+                    <a href="#portfolio" class="cta-button cta-secondary">VIEW SUCCESS STORIES</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional solutions for every digital need</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Full-Stack Development</h3>
+                    <p class="service-description">Complete web applications using modern frameworks like React, Node.js, and MongoDB</p>
+                    <ul class="service-features">
+                        <li>Frontend & Backend Development</li>
+                        <li>Database Design & Integration</li>
+                        <li>API Development</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                    <div class="service-price">€2,000 - €15,000</div>
+                    <button class="service-btn" data-service="full-stack">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Responsive Design</h3>
+                    <p class="service-description">Mobile-first, responsive websites that work seamlessly across all devices</p>
+                    <ul class="service-features">
+                        <li>Mobile-First Approach</li>
+                        <li>Cross-Browser Compatibility</li>
+                        <li>Modern UI/UX Design</li>
+                        <li>Accessibility Standards</li>
+                    </ul>
+                    <div class="service-price">€800 - €5,000</div>
+                    <button class="service-btn" data-service="responsive">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Complete online stores with payment integration and inventory management</p>
+                    <ul class="service-features">
+                        <li>Payment Gateway Integration</li>
+                        <li>Inventory Management</li>
+                        <li>Admin Dashboard</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+                    <div class="service-price">€3,000 - €20,000</div>
+                    <button class="service-btn" data-service="ecommerce">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Performance Optimization</h3>
+                    <p class="service-description">Lightning-fast websites optimized for speed, SEO, and user experience</p>
+                    <ul class="service-features">
+                        <li>Speed Optimization</li>
+                        <li>SEO Enhancement</li>
+                        <li>Code Splitting</li>
+                        <li>CDN Integration</li>
+                    </ul>
+                    <div class="service-price">€500 - €3,000</div>
+                    <button class="service-btn" data-service="performance">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎮</div>
+                    <h3 class="service-title">Gaming Solutions</h3>
+                    <p class="service-description">Interactive gaming platforms, streaming sites, and community features</p>
+                    <ul class="service-features">
+                        <li>Gaming Website Development</li>
+                        <li>Community Features</li>
+                        <li>Streaming Integration</li>
+                        <li>Interactive Elements</li>
+                    </ul>
+                    <div class="service-price">€1,500 - €10,000</div>
+                    <button class="service-btn" data-service="gaming">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-description">Cutting-edge AI features, chatbots, and machine learning implementations</p>
+                    <ul class="service-features">
+                        <li>AI Chatbots</li>
+                        <li>Machine Learning</li>
+                        <li>Data Analysis</li>
+                        <li>Automation Tools</li>
+                    </ul>
+                    <div class="service-price">€2,500 - €20,000</div>
+                    <button class="service-btn" data-service="ai">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Successful projects that showcase our expertise</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/trading-demo.jpg" alt="AI Trading Platform" loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">AI Trading Intelligence Platform</h3>
+                        <p class="portfolio-description">Advanced trading platform with AI-powered market analysis and automated trading features.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">WebSocket</span>
+                        </div>
+                        <a href="demos/trading-demo.html" class="portfolio-link" target="_blank">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/adriatic-dreams.jpg" alt="Adriatic Dreams Tourism" loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Adriatic Dreams Tourism Platform</h3>
+                        <p class="portfolio-description">Beautiful tourism website with booking system for Mediterranean destinations and travel packages.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Booking</span>
+                        </div>
+                        <a href="demos/adriatic-dreams.html" class="portfolio-link" target="_blank">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/berlin-apartments.jpg" alt="Berlin Premium Apartments" loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Berlin Premium Apartments</h3>
+                        <p class="portfolio-description">Luxury apartment booking platform with advanced search, filtering, and reservation system.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Payments</span>
+                        </div>
+                        <a href="demos/berlin-apartments.html" class="portfolio-link" target="_blank">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/remza019-gaming.jpg" alt="Remza019 Gaming Platform" loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Remza019 Gaming Platform</h3>
+                        <p class="portfolio-description">Professional gaming content creator platform with streaming schedule and community features.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Streaming</span>
+                            <span class="tech-tag">Social</span>
+                            <span class="tech-tag">Community</span>
+                        </div>
+                        <a href="demos/remza019-gaming.html" class="portfolio-link" target="_blank">View Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About 019 Solutions</h2>
+                <p class="section-subtitle">Swiss-based digital solutions company dedicated to crafting exceptional web applications</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Business Quality</h3>
+                    <p>We are committed to precision, reliability, and attention to detail in every project.</p>
+                    
+                    <h3>Modern Technology</h3>
+                    <p>Using the latest frameworks and tools for optimal performance.</p>
+                    
+                    <h3>Business Focus</h3>
+                    <p>Solutions designed to drive growth and profitability.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <h4>15+ Projects Completed</h4>
+                        <p>Successfully delivered projects across various industries</p>
+                    </div>
+                    <div class="about-stat">
+                        <h4>12+ Happy Clients</h4>
+                        <p>Building long-term partnerships with businesses worldwide</p>
+                    </div>
+                    <div class="about-stat">
+                        <h4>95% Success Rate</h4>
+                        <p>Consistently delivering projects on time and within budget</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your digital transformation?</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Build Something Amazing Together</h3>
+                    <p>We're here to help you bring your digital vision to life. Whether you need a complete website overhaul, custom application development, or just want to discuss your next big idea, we're ready to make it happen.</p>
+                    <ul class="contact-details">
+                        <li>📧 <a href="mailto:contact@019solutions.com">contact@019solutions.com</a></li>
+                        <li>📧 <a href="mailto:info@019solutions.com">info@019solutions.com</a></li>
+                        <li>📧 <a href="mailto:business@019solutions.com">business@019solutions.com</a></li>
+                        <li>💬 <a href="https://discord.gg/019solutions" target="_blank">Join Community Discord</a></li>
+                        <li>💬 <a href="https://wa.me/41787664181" target="_blank">WhatsApp Support</a></li>
+                        <li>🌐 <strong>www.019solutions.com</strong></li>
+                        <li>📍 Switzerland</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service">
+                                <option value="full-stack">Full-Stack Development</option>
+                                <option value="responsive">Responsive Design</option>
+                                <option value="ecommerce">E-commerce Solutions</option>
+                                <option value="performance">Performance Optimization</option>
+                                <option value="gaming">Gaming Solutions</option>
+                                <option value="ai">AI Integration</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Description *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="under-5k">Under €5,000</option>
+                                <option value="5k-15k">€5,000 - €15,000</option>
+                                <option value="15k-50k">€15,000 - €50,000</option>
+                                <option value="50k-plus">€50,000+</option>
+                                <option value="discuss">Let's Discuss</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-section">
+        <div class="container">
+            <h3 class="payment-title">Accepted Payment Methods</h3>
+            <div class="payment-methods">
+                <div class="payment-item">
+                    <div class="payment-icon visa">VISA</div>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-icon mastercard">MC</div>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-icon paypal">PayPal</div>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-icon stripe">Stripe</div>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-icon bitcoin">₿</div>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-icon ethereum">Ξ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>019 SOLUTIONS</h3>
+                    <p>Transforming ideas into digital reality with cutting-edge technology and innovative solutions.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Gaming Solutions</a></li>
+                        <li><a href="#services">E-commerce</a></li>
+                        <li><a href="#services">AI Integration</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#portfolio">Our Work</a></li>
+                        <li><a href="#contact">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="mailto:contact@019solutions.com">Email Us</a></li>
+                        <li><a href="https://discord.gg/019solutions" target="_blank">Discord</a></li>
+                        <li><a href="https://wa.me/41787664181" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="business-info">
+                    <p><strong>019 Solutions</strong> - Digital Architects of Tomorrow</p>
+                    <p>📧 <a href="mailto:contact@019solutions.com">contact@019solutions.com</a> • 📧 <a href="mailto:info@019solutions.com">info@019solutions.com</a></p>
+                    <p>💬 <a href="https://discord.gg/019solutions" target="_blank">Discord Community</a> • <a href="https://wa.me/41787664181" target="_blank">WhatsApp Support</a></p>
+                    <p>🌐 <strong>www.019solutions.com</strong> • 📍 Switzerland</p>
+                </div>
+                <p>&copy; 2025 019 Solutions. All rights reserved.</p>
+                <p>Transforming Ideas Into Digital Reality</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

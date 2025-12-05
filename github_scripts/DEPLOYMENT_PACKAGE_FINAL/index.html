@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="019 Solutions - Swiss Digital Excellence. Professional web development, admin panels, and freelancer networks.">
+    <title>019 Solutions - Swiss Digital Excellence</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/green-theme.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="clean-navigation">
+        <div class="nav-container">
+            <!-- Brand -->
+            <div class="nav-brand spectacular-brand">
+                <div class="brand-container-premium">
+                    <span class="brand-number-3d">019</span>
+                    <div class="brand-text-container">
+                        <span class="brand-text-premium">SOLUTIONS</span>
+                        <div class="brand-glow-effect"></div>
+                    </div>
+                </div>
+                <div class="brand-tagline-premium">
+                    <span class="tagline-text">Swiss Digital Excellence</span>
+                </div>
+            </div>
+            
+            <!-- Language Switcher -->
+            <div class="top-right-controls">
+                <div class="modern-language-switcher">
+                    <button class="modern-lang-toggle" id="languageToggle">
+                        <span>🇬🇧</span>
+                        <span>EN</span>
+                        <span style="font-size: 0.7rem; opacity: 0.7;">▼</span>
+                    </button>
+                    
+                    <div class="modern-lang-dropdown" id="languageDropdown">
+                        <button class="modern-lang-option active" data-lang="en">
+                            <span>🇬🇧</span>
+                            <span>English</span>
+                        </button>
+                        <button class="modern-lang-option" data-lang="de">
+                            <span>🇩🇪</span>
+                            <span>Deutsch</span>
+                        </button>
+                        <button class="modern-lang-option" data-lang="sr">
+                            <span>🇷🇸</span>
+                            <span>Srpski</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hamburger Menu -->
+                <div class="burger-menu-container" id="menuContainer">
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <div class="navigation-dropdown" id="navigationDropdown">
+                        <div class="nav-items">
+                            <a href="#hero" class="nav-item">Home</a>
+                            <a href="#services" class="nav-item">Services</a>
+                            <a href="#portfolio" class="nav-item">Portfolio</a>
+                            <a href="#freelancers" class="nav-item">Freelancers</a>
+                            <a href="#contact" class="nav-item">Contact</a>
+                            <a href="#admin" class="nav-item">Admin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background">
+            <canvas id="matrixCanvas"></canvas>
+        </div>
+        
+        <div class="hero-content">
+            <!-- Logo Area -->
+            <div class="animated-solutions">
+                <!-- E Emoji Mascot -->
+                <div class="floating-emoji-enhanced">
+                    <img src="https://customer-assets.emergentagent.com/job_web-portfolio-41/artifacts/r5ayip5b_MyEmoji_20240427_242459_0.gif"
+                         alt="3D E Emoji" class="emoji-enhanced" />
+                    
+                    <!-- Company Name -->
+                    <div class="company-name-below-mascot">
+                        019 SOLUTIONS
+                    </div>
+                </div>
+                
+                <!-- Swiss Excellence Tagline -->
+                <div class="tagline-enhanced">
+                    🇨🇭 Swiss Digital Excellence
+                </div>
+            </div>
+            
+            <div class="hero-tagline">
+                <p class="typed-text">Transforming Ideas Into Digital Reality<span class="cursor">|</span></p>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Premium Services</h2>
+                <p class="section-subtitle">Professional solutions for your business</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card matrix-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Full-Stack Development</h3>
+                    <p class="service-description">Complete web applications with React, Node.js, and modern technologies.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+                
+                <div class="service-card matrix-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Responsive Design</h3>
+                    <p class="service-description">Mobile-first design approach for all devices and screen sizes.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+                
+                <div class="service-card matrix-card">
+                    <div class="service-icon">🛍️</div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Complete online stores with payment integration and admin panels.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+                
+                <div class="service-card matrix-card">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">Performance Optimization</h3>
+                    <p class="service-description">Speed optimization and performance tuning for web applications.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+                
+                <div class="service-card matrix-card">
+                    <div class="service-icon">🎮</div>
+                    <h3 class="service-title">Gaming Solutions</h3>
+                    <p class="service-description">Gaming websites, communities, and interactive experiences.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+                
+                <div class="service-card matrix-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-description">Artificial intelligence features and chatbot implementations.</p>
+                    <button class="service-button matrix-button">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Success Stories</h2>
+                <p class="section-subtitle">Professional projects for satisfied clients</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-button active" data-filter="all">All Projects</button>
+                <button class="filter-button" data-filter="fintech">Fintech</button>
+                <button class="filter-button" data-filter="tourism">Tourism</button>
+                <button class="filter-button" data-filter="gaming">Gaming</button>
+                <button class="filter-button" data-filter="real-estate">Real Estate</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card" data-category="fintech">
+                    <div class="project-image">
+                        <div class="project-placeholder">📊</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Trading Intelligence Platform</h3>
+                        <p class="project-description">Advanced trading platform with real-time data and analytics.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">WebSocket</span>
+                        </div>
+                        <a href="demos/trading.html" class="project-link">View Demo</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-category="tourism">
+                    <div class="project-image">
+                        <div class="project-placeholder">🏖️</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Adriatic Dreams Tourism</h3>
+                        <p class="project-description">Beautiful tourism website for Adriatic coast destinations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <a href="demos/tourism.html" class="project-link">View Demo</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-category="gaming">
+                    <div class="project-image">
+                        <div class="project-placeholder">🎮</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Remza Gaming Community</h3>
+                        <p class="project-description">Gaming community platform with live streaming integration.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">Discord</span>
+                        </div>
+                        <a href="demos/gaming.html" class="project-link">View Demo</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-category="real-estate">
+                    <div class="project-image">
+                        <div class="project-placeholder">🏠</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Berlin Apartments Portal</h3>
+                        <p class="project-description">Modern real estate platform for Berlin property listings.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Maps API</span>
+                            <span class="tech-tag">Search</span>
+                        </div>
+                        <a href="demos/apartments.html" class="project-link">View Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freelancer Panel -->
+    <section id="freelancers" class="modern-freelancer-panel">
+        <div class="freelancer-container">
+            <div class="freelancer-header">
+                <div class="header-content">
+                    <h2 class="section-title">
+                        <span class="title-icon">👥</span>
+                        Freelancer Network
+                    </h2>
+                    <p class="section-subtitle">Connect with our elite network of verified professionals</p>
+                </div>
+            </div>
+            
+            <div class="freelancers-grid">
+                <div class="freelancer-card-modern">
+                    <div class="card-header">
+                        <div class="freelancer-avatar-container">
+                            <div class="freelancer-avatar">AT</div>
+                            <div class="availability-indicator available">
+                                <span class="availability-dot"></span>
+                            </div>
+                        </div>
+                        <div class="freelancer-basic-info">
+                            <h3 class="freelancer-name">Alex Thompson</h3>
+                            <div class="freelancer-title">Full-Stack Developer</div>
+                            <div class="freelancer-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-number">4.9</span>
+                            </div>
+                        </div>
+                        <div class="freelancer-rate">
+                            <span class="rate-amount">€75/hour</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="freelancer-bio">Experienced developer specializing in React, Node.js, and modern web technologies.</p>
+                        <div class="freelancer-skills">
+                            <span class="skill-tag-modern">React</span>
+                            <span class="skill-tag-modern">Node.js</span>
+                            <span class="skill-tag-modern">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="contact-btn primary">Contact Now</button>
+                        <button class="portfolio-btn secondary">View Portfolio</button>
+                    </div>
+                </div>
+                
+                <div class="freelancer-card-modern">
+                    <div class="card-header">
+                        <div class="freelancer-avatar-container">
+                            <div class="freelancer-avatar">SM</div>
+                            <div class="availability-indicator busy">
+                                <span class="availability-dot"></span>
+                            </div>
+                        </div>
+                        <div class="freelancer-basic-info">
+                            <h3 class="freelancer-name">Sarah Martinez</h3>
+                            <div class="freelancer-title">UI/UX Designer</div>
+                            <div class="freelancer-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-number">4.8</span>
+                            </div>
+                        </div>
+                        <div class="freelancer-rate">
+                            <span class="rate-amount">€65/hour</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="freelancer-bio">Creative designer with expertise in user experience design and prototyping.</p>
+                        <div class="freelancer-skills">
+                            <span class="skill-tag-modern">Figma</span>
+                            <span class="skill-tag-modern">Adobe XD</span>
+                            <span class="skill-tag-modern">Prototyping</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="contact-btn primary">Contact Now</button>
+                        <button class="portfolio-btn secondary">View Portfolio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section id="admin" class="modern-admin-panel">
+        <div class="admin-container">
+            <div class="admin-header-modern">
+                <div class="admin-branding">
+                    <h1 class="admin-title">
+                        <span class="brand-number">019</span>
+                        <span class="brand-text">SOLUTIONS</span>
+                        <span class="admin-label">Admin Panel</span>
+                    </h1>
+                    <p class="admin-subtitle">Comprehensive Business Management Dashboard</p>
+                </div>
+            </div>
+            
+            <div class="admin-navigation">
+                <button class="admin-nav-tab active" data-tab="dashboard">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-label">Dashboard</span>
+                </button>
+                <button class="admin-nav-tab" data-tab="projects">
+                    <span class="tab-icon">💼</span>
+                    <span class="tab-label">Projects</span>
+                </button>
+                <button class="admin-nav-tab" data-tab="clients">
+                    <span class="tab-icon">👥</span>
+                    <span class="tab-label">Clients</span>
+                </button>
+                <button class="admin-nav-tab" data-tab="analytics">
+                    <span class="tab-icon">📈</span>
+                    <span class="tab-label">Analytics</span>
+                </button>
+                <button class="admin-nav-tab" data-tab="settings">
+                    <span class="tab-icon">⚙️</span>
+                    <span class="tab-label">Settings</span>
+                </button>
+            </div>
+            
+            <div class="admin-content-area">
+                <div class="dashboard-content">
+                    <div class="stats-grid-modern">
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Total Projects</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-content">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Active Projects</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-content">
+                                <div class="stat-number">€18,200</div>
+                                <div class="stat-label">Monthly Revenue</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-content">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Client Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section-compact">
+        <div class="container">
+            <div class="section-header-compact">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your project? Contact us today!</p>
+            </div>
+            
+            <div class="contact-content-compact">
+                <div class="contact-info-compact">
+                    <div class="contact-card-compact">
+                        <div class="contact-icon-compact">📧</div>
+                        <div class="contact-details-compact">
+                            <h3>Email</h3>
+                            <p>contact@019solutions.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card-compact">
+                        <div class="contact-icon-compact">💬</div>
+                        <div class="contact-details-compact">
+                            <h3>WhatsApp</h3>
+                            <p>+41 76 123 4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card-compact">
+                        <div class="contact-icon-compact">🌍</div>
+                        <div class="contact-details-compact">
+                            <h3>Location</h3>
+                            <p>Switzerland</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-compact">
+                    <form id="contactForm">
+                        <input type="text" class="form-input-compact" placeholder="Your Name" required>
+                        <input type="email" class="form-input-compact" placeholder="Your Email" required>
+                        <select class="form-select-compact">
+                            <option>Select Service</option>
+                            <option>Full-Stack Development</option>
+                            <option>Responsive Design</option>
+                            <option>E-commerce Solutions</option>
+                            <option>Performance Optimization</option>
+                            <option>Gaming Solutions</option>
+                            <option>AI Integration</option>
+                        </select>
+                        <textarea class="form-textarea-compact" placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="form-submit-compact">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="organized-footer">
+        <div class="footer-container-organized">
+            <div class="footer-left-organized">
+                <div class="footer-brand-organized">
+                    <div class="footer-019">019</div>
+                    <div class="footer-solutions">SOLUTIONS</div>
+                </div>
+                <div class="footer-tagline-compact">Swiss Digital Excellence</div>
+                
+                <div class="footer-contact-compact">
+                    <div class="contact-item-footer">
+                        <span class="contact-icon-footer">📧</span>
+                        <a href="mailto:contact@019solutions.com" class="contact-link">contact@019solutions.com</a>
+                    </div>
+                    <div class="contact-item-footer">
+                        <span class="contact-icon-footer">💬</span>
+                        <a href="https://wa.me/41761234567" class="contact-link">+41 76 123 4567</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-right-organized">
+                <h3 class="payment-title-footer">Payment Methods</h3>
+                <div class="payment-grid-footer">
+                    <button class="payment-btn-footer" data-method="paypal">
+                        <span class="payment-icon">💳</span>
+                        <span>PayPal</span>
+                    </button>
+                    <button class="payment-btn-footer" data-method="visa">
+                        <span class="payment-icon">💳</span>
+                        <span>Visa</span>
+                    </button>
+                    <button class="payment-btn-footer" data-method="mastercard">
+                        <span class="payment-icon">💳</span>
+                        <span>Mastercard</span>
+                    </button>
+                    <button class="payment-btn-footer" data-method="stripe">
+                        <span class="payment-icon">⚡</span>
+                        <span>Stripe</span>
+                    </button>
+                    <button class="payment-btn-footer" data-method="bitcoin">
+                        <span class="payment-icon">₿</span>
+                        <span>Bitcoin</span>
+                    </button>
+                    <button class="payment-btn-footer" data-method="ethereum">
+                        <span class="payment-icon">Ξ</span>
+                        <span>Ethereum</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom-organized">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 019 Solutions. All rights reserved. | Swiss Digital Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/matrix.js"></script>
+</body>
+</html>

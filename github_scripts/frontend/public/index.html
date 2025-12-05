@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00ff00" />
+    
+    <!-- Cache Control - Force Fresh Content -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="REMZA019" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/remza-logo.png" />
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="REMZA019 Gaming - Professional Gaming Content Creator specializing in FORTNITE Battle Royale, Rocket Racing, and Call of Duty. Live streaming, highlights, and gaming community hub. Powered by 019Solutions." />
+    <meta name="keywords" content="REMZA019, gaming, fortnite battle royale, rocket racing, call of duty, gaming streams, youtube gaming, professional gamer, serbia gaming, gaming community, live streaming, 019solutions" />
+    <meta name="author" content="019Solutions" />
+    <meta name="developer" content="019Solutions - Custom Web Solutions" />
+    <meta name="copyright" content="© 2024 REMZA019 Gaming. Developed by 019Solutions." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://remza019.ch/" />
+    
+    <!-- Enhanced Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remza019.ch/" />
+    <meta property="og:title" content="REMZA019 Gaming - Professional Gaming Content Creator" />
+    <meta property="og:description" content="Professional gaming content creator specializing in FORTNITE Battle Royale, Rocket Racing, and Call of Duty. Join the gaming community for live streams and highlights." />
+    <meta property="og:image" content="https://remza019.ch/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="REMZA019 Gaming" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Enhanced Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://remza019.ch/" />
+    <meta property="twitter:title" content="REMZA019 Gaming - Professional Gaming Content Creator" />
+    <meta property="twitter:description" content="Professional gaming content creator specializing in FORTNITE Battle Royale, Rocket Racing, and Call of Duty." />
+    <meta property="twitter:image" content="https://remza019.ch/og-image.png" />
+    <meta property="twitter:creator" content="@REMZA019" />
+
+    <!-- Structured Data - Gaming Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "REMZA019 Gaming",
+      "url": "https://remza019.ch",
+      "logo": "https://remza019.ch/logo.png",
+      "description": "Professional gaming content creator specializing in FORTNITE Battle Royale, Rocket Racing, and Call of Duty. Developed by 019Solutions.",
+      "sameAs": [
+        "https://www.youtube.com/@remza019",
+        "https://discord.gg/remza019"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "vladicaristic19@gmail.com"
+      },
+      "developer": {
+        "@type": "Organization",
+        "name": "019Solutions",
+        "description": "Custom Web Development & Digital Solutions"
+      }
+    }
+    </script>
+
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://img.youtube.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    
+    <!-- Optimized Font Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia:wght@400&family=Metal+Mania&family=Montserrat:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>REMZA019 Gaming - Professional Gaming Content Creator | FORTNITE & Call of Duty</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('✅ PWA: Service Worker registered!', registration.scope);
+            })
+            .catch((error) => {
+              console.log('❌ PWA: Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

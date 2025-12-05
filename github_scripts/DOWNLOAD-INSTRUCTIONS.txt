@@ -1,0 +1,31 @@
+=============================================
+KAKO PREUZETI FAJL - TAČNE INSTRUKCIJE
+=============================================
+
+FAJL ZA DOWNLOAD:
+REMZA019-SUPER-DEBUG-v1.0.2.zip (120 MB)
+
+LOKACIJA:
+/app/REMZA019-SUPER-DEBUG-v1.0.2.zip
+
+KORACI U EMERGENT FILE MANAGER:
+1. Klikni "Files" ikonu LEVO u sidebar-u
+2. Vidiš folder: "app" 
+3. Klikni na "app" folder
+4. Scroll DOLE kroz fajlove
+5. Traži: REMZA019-SUPER-DEBUG-v1.0.2.zip
+6. Klikni na fajl
+7. Klikni "Download" dugme
+
+ALTERNATIVE:
+- Fajl je TAKOĐE u: /app/DOWNLOAD-HERE/
+- Ako ne vidiš ni tamo, javi mi!
+
+POSLE DOWNLOAD-A:
+1. Ekstraktuj ZIP
+2. Otvori folder: win-unpacked
+3. Pokreni: START-DEBUG.bat
+4. Čekaj da se otvori Notepad sa LOG-om
+5. Kopiraj SVE iz LOG-a i pošalji mi
+
+=============================================

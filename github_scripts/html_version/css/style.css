@@ -1,0 +1,343 @@
+/* ========================================
+   🎨 MAIN STYLES FOR 019 SOLUTIONS
+   ======================================== */
+
+/* PREMIUM FONT SYSTEM */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+/* CSS RESET & RICH BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* SECTION HEADERS */
+.section-title {
+  font-family: 'Space Grotesk', 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  letter-spacing: -0.02em;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  text-transform: uppercase;
+}
+
+@keyframes titleGlow {
+  0% { filter: brightness(1) drop-shadow(0 0 20px rgba(139, 92, 246, 0.3)); }
+  100% { filter: brightness(1.2) drop-shadow(0 0 40px rgba(139, 92, 246, 0.6)); }
+}
+
+.section-subtitle {
+  font-family: 'Inter', 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  color: #a1a1aa;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 3rem;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+
+/* ENHANCED 3D ANIMATED LOGO SYSTEM */
+.enhanced-logo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 10;
+  min-height: 400px;
+}
+
+/* 3D E Emoji - Above everything */
+.floating-emoji-enhanced {
+  position: absolute;
+  top: -100px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 20;
+  filter: drop-shadow(0 0 50px rgba(139, 92, 246, 0.8));
+  animation: floatingEmoji 6s ease-in-out infinite;
+}
+
+@keyframes floatingEmoji {
+  0%, 100% { transform: translateX(50%) translateY(0) rotateY(0deg) scale(1); }
+  25% { transform: translateX(50%) translateY(-25px) rotateY(90deg) scale(1.15); }
+  50% { transform: translateX(50%) translateY(0) rotateY(180deg) scale(1); }
+  75% { transform: translateX(50%) translateY(-25px) rotateY(270deg) scale(1.15); }
+}
+
+.emoji-enhanced {
+  width: 180px;
+  height: 180px;
+  filter: 
+    drop-shadow(0 0 40px rgba(139, 92, 246, 1))
+    drop-shadow(0 0 80px rgba(59, 130, 246, 0.8))
+    drop-shadow(0 0 120px rgba(6, 182, 212, 0.6));
+}
+
+/* Company Name directly below mascot - SINHRONIZOVANO */
+.company-name-below-mascot {
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', 'JetBrains Mono', 'Space Grotesk', monospace;
+  font-size: 4.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  text-shadow: 
+    0 0 60px rgba(139, 92, 246, 1),
+    0 0 100px rgba(59, 130, 246, 0.8),
+    0 0 140px rgba(6, 182, 212, 0.6);
+  letter-spacing: 0.25em;
+  z-index: 25;
+  animation: companyNamePulse 3s ease-in-out infinite alternate;
+  text-transform: uppercase;
+  filter: 
+    drop-shadow(0 0 50px rgba(139, 92, 246, 1))
+    drop-shadow(0 0 80px rgba(59, 130, 246, 0.8))
+    drop-shadow(0 0 120px rgba(6, 182, 212, 0.6));
+}
+
+@keyframes companyNamePulse {
+  0% { 
+    filter: brightness(1) 
+           drop-shadow(0 0 30px rgba(139, 92, 246, 0.6));
+    text-shadow: 
+      0 0 40px rgba(139, 92, 246, 0.8),
+      0 0 80px rgba(59, 130, 246, 0.6);
+  }
+  100% { 
+    filter: brightness(1.3) 
+           drop-shadow(0 0 60px rgba(139, 92, 246, 1));
+    text-shadow: 
+      0 0 80px rgba(139, 92, 246, 1),
+      0 0 120px rgba(59, 130, 246, 0.9);
+  }
+}
+
+/* Main Logo Section Layout */
+.main-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+/* 3D Numbers */
+.numbers-3d {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.number-3d {
+  font-size: 6rem;
+  font-weight: 900;
+  font-family: 'Space Grotesk', monospace;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  animation: numberFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+}
+
+.number-3d:nth-child(1) { animation-delay: 0s; }
+.number-3d:nth-child(2) { animation-delay: 0.5s; }
+.number-3d:nth-child(3) { animation-delay: 1s; }
+
+@keyframes numberFloat {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-20px) rotateY(180deg); }
+}
+
+/* Animated SOLUTIONS Text */
+.animated-solutions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 1rem;
+}
+
+.solution-letter {
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 
+    0 0 40px rgba(139, 92, 246, 0.9),
+    0 0 80px rgba(59, 130, 246, 0.7),
+    0 0 120px rgba(6, 182, 212, 0.5);
+  letter-spacing: -0.05em;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 15;
+  filter: 
+    drop-shadow(0 0 30px rgba(139, 92, 246, 0.8))
+    drop-shadow(0 0 60px rgba(59, 130, 246, 0.6));
+  animation: letterReveal 1.2s ease forwards;
+  opacity: 0;
+}
+
+.solution-letter:nth-child(1) { animation-delay: 0.2s; }
+.solution-letter:nth-child(2) { animation-delay: 0.4s; }
+.solution-letter:nth-child(3) { animation-delay: 0.6s; }
+.solution-letter:nth-child(4) { animation-delay: 0.8s; }
+.solution-letter:nth-child(5) { animation-delay: 1.0s; }
+.solution-letter:nth-child(6) { animation-delay: 1.2s; }
+.solution-letter:nth-child(7) { animation-delay: 1.4s; }
+.solution-letter:nth-child(8) { animation-delay: 1.6s; }
+.solution-letter:nth-child(9) { animation-delay: 1.8s; }
+
+@keyframes letterReveal {
+  0% { 
+    opacity: 0; 
+    transform: translateY(80px) rotateY(-90deg) scale(0.5);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) rotateY(0deg) scale(1);
+  }
+}
+
+.solution-letter:hover {
+  transform: rotateY(360deg) scale(1.4);
+  transition: transform 0.8s ease;
+  text-shadow: 
+    0 0 60px rgba(139, 92, 246, 1),
+    0 0 120px rgba(59, 130, 246, 0.9),
+    0 0 180px rgba(6, 182, 212, 0.7);
+}
+
+/* Swiss Excellence Tagline */
+.tagline-enhanced {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #8b5cf6;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.7);
+  letter-spacing: 0.08em;
+  margin-top: 2rem;
+  z-index: 10;
+  position: relative;
+  animation: taglineGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes taglineGlow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.3); }
+}
+
+/* Responsive Design for Enhanced Logo */
+@media (max-width: 1024px) {
+  .main-logo-section {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .solution-letter {
+    font-size: 3rem;
+  }
+  
+  .floating-emoji-enhanced {
+    top: -120px;
+  }
+  
+  .emoji-enhanced {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .company-name-below-mascot {
+    font-size: 3.5rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .solution-letter {
+    font-size: 2.5rem;
+  }
+  
+  .floating-emoji-enhanced {
+    top: -100px;
+  }
+  
+  .emoji-enhanced {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .company-name-below-mascot {
+    font-size: 2.8rem;
+    letter-spacing: 0.18em;
+    top: 150px;
+  }
+  
+  .tagline-enhanced {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-name-below-mascot {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    top: 130px;
+  }
+}

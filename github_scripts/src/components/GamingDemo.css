@@ -1,0 +1,476 @@
+/* REMZA019 Gaming Website Styles */
+/* Professional Gaming Content Creator Platform */
+
+/* Demo Header Styles */
+.demo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.15),
+    rgba(6, 182, 212, 0.12)
+  );
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  position: relative;
+  z-index: 5;
+}
+
+.gaming-header .header-brand h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.gaming-header .header-brand p {
+  font-size: 1.2rem;
+  color: #a1a1aa;
+  margin: 0.5rem 0 0 0;
+  font-weight: 300;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: #10b981;
+  font-size: 1.1rem;
+}
+
+.gaming-live .live-dot {
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.offline-indicator {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Main Content Gaming */
+.main-content-gaming {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.stream-player {
+  padding: 0;
+  overflow: hidden;
+}
+
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.1),
+    rgba(6, 182, 212, 0.1),
+    rgba(0, 0, 0, 0.8)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.play-button {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.play-button:hover {
+  background: rgba(16, 185, 129, 1);
+  transform: scale(1.1);
+}
+
+.play-icon {
+  font-size: 2rem;
+  color: white;
+  margin-left: 5px;
+}
+
+.stream-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+
+.stream-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.stream-overlay p {
+  font-size: 1rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.stream-info {
+  padding: 2rem;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.stream-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.stream-stats .stat-item {
+  text-align: center;
+}
+
+.stream-stats .stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #10b981;
+  line-height: 1;
+}
+
+.stream-stats .stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.follow-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Gaming Bio Styles */
+.gaming-bio {
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.gaming-bio h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bio-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Recent Streams */
+.recent-streams {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.recent-streams h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.streams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.stream-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.stream-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.stream-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.stream-card:hover .stream-thumbnail img {
+  transform: scale(1.05);
+}
+
+.stream-duration,
+.stream-views {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stream-duration {
+  top: 10px;
+  left: 10px;
+}
+
+.stream-views {
+  top: 10px;
+  right: 10px;
+}
+
+.stream-details {
+  padding: 1.5rem;
+}
+
+.stream-details h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.stream-game {
+  font-size: 0.9rem;
+  color: #10b981;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.watch-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* Stream Schedule */
+.stream-schedule {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.stream-schedule h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.schedule-card {
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.schedule-card.rest-day {
+  opacity: 0.6;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.schedule-day {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.schedule-time {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.schedule-game {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.rest-day .schedule-day {
+  color: #ef4444;
+}
+
+/* Community Section */
+.community-section {
+  text-align: center;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.community-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.community-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.community-btn.discord {
+  background: linear-gradient(135deg, #5865F2, #4752C4);
+}
+
+.community-btn.youtube {
+  background: linear-gradient(135deg, #FF0000, #CC0000);
+}
+
+.community-btn.youtube-follow {
+  background: linear-gradient(135deg, #FF4500, #FF6347);
+}
+
+.community-btn.twitch {
+  background: linear-gradient(135deg, #9146FF, #772CE8);
+}
+
+.community-btn.twitter {
+  background: linear-gradient(135deg, #1DA1F2, #0D8BD9);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .demo-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .gaming-header .header-brand h1 {
+    font-size: 2rem;
+  }
+  
+  .video-placeholder {
+    height: 250px;
+  }
+  
+  .stream-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .streams-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .schedule-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .community-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .community-btn {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gaming-header .header-brand h1 {
+    font-size: 1.5rem;
+  }
+  
+  .gaming-header .header-brand p {
+    font-size: 1rem;
+  }
+  
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bio-content p {
+    font-size: 1rem;
+  }
+}

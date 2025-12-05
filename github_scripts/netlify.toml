@@ -1,0 +1,44 @@
+# REMZA019 Gaming - Netlify Configuration
+[build]
+  base = "frontend/"
+  publish = "frontend/build"
+  command = "cp .env.netlify .env.production && yarn install && yarn build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  SKIP_PREFLIGHT_CHECK = "true"
+  DANGEROUSLY_DISABLE_HOST_CHECK = "true"
+  GENERATE_SOURCEMAP = "false"
+
+# Handle React Router SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+    
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache main files
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

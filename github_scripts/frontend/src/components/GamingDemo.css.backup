@@ -1,0 +1,1967 @@
+/* REMZA019 Gaming Demo - BOLD ITALIC THEME */
+/* Import Rich Bold Italic Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Pirata+One&family=Metal+Mania&family=Nosifer&family=UnifrakturMaguntia:wght@400&family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+/* Matrix Background - SOLID BLACK NO GRID */
+.matrix-background-demo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000 !important;  /* SOLID BLACK */
+  background-image: none !important;  /* NO PATTERNS */
+  z-index: 0;
+}
+
+/* Gaming Demo Main Container - BLACK BACKGROUND */
+.gaming-demo {
+  min-height: 100vh;
+  background: #000000 !important;  /* SOLID BLACK */
+  background-image: none !important;  /* NO GRID LINES */
+  background-pattern: none !important;  /* NO PATTERNS */
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* REMZA019 Gaming Header Brand */
+.header-brand {
+  text-align: center;
+  margin-top: 40px;  /* SPUŠTENO ZA 1cm (40px) */
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.custom-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid var(--matrix-color);
+  box-shadow: 0 0 20px var(--matrix-color);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--matrix-color);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--matrix-color), 0 0 40px var(--matrix-color);
+  }
+}
+
+.header-brand h1 {
+  font-family: 'UnifrakturMaguntia', 'Metal Mania', 'Nosifer', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #00ff00;  /* NEON GREEN */
+  text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  letter-spacing: 3px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Main Content Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* YouTube Video Section Layout */
+.youtube-video-section {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 2rem;
+}
+
+/* About REMZA019 - HERO LEFT COLUMN */
+.about-hero-left {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+}
+
+.about-hero-title {
+  font-family: 'UnifrakturMaguntia', 'Metal Mania', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00ff00;
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.about-hero-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-hero-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.about-hero-item:hover {
+  border-color: #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.about-hero-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
+}
+
+.about-hero-item p {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.about-hero-item strong {
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* About REMZA019 - Main Independent Section */
+.about-remza019-main {
+  margin: 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.about-main-content {
+  background: rgba(0, 255, 0, 0.05);
+  border: 2px solid rgba(0, 255, 0, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.15);
+}
+
+.about-main-title {
+  font-family: 'UnifrakturMaguntia', 'Metal Mania', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #00ff00;
+  text-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.about-main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.about-main-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 15px;
+  transition: all 0.4s ease;
+}
+
+.about-main-item:hover {
+  border-color: #00ff00;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.about-main-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.6));
+}
+
+.about-main-text h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ff00;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.about-main-text p {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.about-main-text strong {
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* CSS Variables for Customization */
+:root {
+  --matrix-color: #00ff00;
+  --text-color: #00ff00;
+}
+
+/* Apply Custom Text Color to Key Elements */
+.demo-header h1,
+.live-indicator,
+.about-main-text strong,
+.matrix-card h3,
+.stream-card h4,
+.video-title,
+.section-title,
+.highlight-text,
+.gaming-live,
+.viewer-menu-title,
+.about-tags .tag-item,
+h2, h3, h4, h5, h6 {
+  color: var(--text-color) !important;
+  text-shadow: 0 0 10px var(--text-color);
+}
+
+/* Global Bold Italic Styling - NO GRID BACKGROUND */
+body, .gaming-demo {
+  font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  background: #000000 !important;  /* SOLID BLACK */
+  background-image: none !important;  /* NO GRID PATTERNS */
+}
+
+/* Rich Typography for Content */
+p, span, div {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Headers and Titles (excluding main gothic title) */
+h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Buttons Bold Italic */
+button, .btn, .matrix-button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Cards and Content Areas */
+.matrix-card, .stream-card, .video-item {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* NO PURPLE COLORS ANYWHERE */
+
+/* Gaming Demo Header */
+.demo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 2rem 1rem 2rem;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+/* Admin Access Button - Standalone in Header */
+/* Admin Access Button - Single Button Top Right */
+.admin-access-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  color: #00ff00;
+  padding: 0.7rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.admin-access-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #00ff00;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Desktop Download Button - Next to Admin */
+.desktop-download-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 11rem;  /* Left of admin button */
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.3) 100%);
+  border: 2px solid #10b981;
+  color: #10b981;
+  padding: 0.7rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.desktop-download-btn:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #000;
+  border-color: #10b981;
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.8);
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* PWA Install Section - Bottom of Page */
+.pwa-install-section {
+  margin: 4rem 0 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.pwa-install-container {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.15));
+  border: 3px solid rgba(59, 130, 246, 0.6);
+  border-radius: 25px;
+  padding: 3rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.pwa-install-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(37, 99, 235, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.pwa-install-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #3b82f6;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  letter-spacing: 2px;
+}
+
+.pwa-install-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pwa-install-button-bottom {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  color: #ffffff;
+  padding: 1.5rem 4rem;
+  border-radius: 35px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 
+    0 10px 30px rgba(59, 130, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.pwa-install-button-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.pwa-install-button-bottom:hover::before {
+  left: 100%;
+}
+
+.pwa-install-button-bottom:hover {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 20px 50px rgba(59, 130, 246, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.pwa-install-button-bottom:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.pwa-install-note {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* Mobile Responsive for PWA Install Section */
+@media (max-width: 768px) {
+  .pwa-install-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .pwa-install-title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .pwa-install-description {
+    font-size: 1rem;
+  }
+  
+  .pwa-install-button-bottom {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* Admin Modal Overlay */
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.admin-modal-content {
+  width: 100%;
+  max-width: 1200px;
+  max-height: 90vh;
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+}
+
+.admin-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.admin-modal-header h2 {
+  color: #10b981;
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.admin-close-btn {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-close-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: rotate(90deg);
+}
+
+.admin-modal-body {
+  height: calc(90vh - 100px);
+  overflow-y: auto;
+}
+
+/* Mobile Optimization for Admin Button */
+@media (max-width: 768px) {
+  .admin-access-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .desktop-download-btn {
+    top: 4rem;
+    right: 1rem;
+    left: auto;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .admin-modal-overlay {
+    padding: 0.5rem;
+  }
+  
+  .admin-modal-content {
+    max-height: 95vh;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+  }
+  
+  .admin-modal-header {
+    padding: 1rem 1.2rem;
+  }
+  
+  .admin-modal-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .admin-close-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .admin-modal-body {
+    height: calc(95vh - 75px);
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-access-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .admin-modal-overlay {
+    padding: 0;
+  }
+  
+  .admin-modal-content {
+    border-radius: 0;
+    max-height: 100vh;
+  }
+  
+  .admin-modal-header {
+    padding: 0.8rem 1rem;
+  }
+  
+  .admin-modal-header h2 {
+    font-size: 1rem;
+  }
+  
+  .admin-modal-body {
+    height: calc(100vh - 65px);
+  }
+}
+
+/* Header brand centered */
+.header-brand {
+  text-align: center;
+}
+
+/* Live status centered below title */
+.live-status {
+  text-align: center;
+}
+
+/* Import Gothic Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Pirata+One&family=Metal+Mania&family=Nosifer&family=UnifrakturMaguntia:wght@400&display=swap');
+
+.gaming-header .header-brand h1 {
+  font-family: 'Cinzel', 'UnifrakturMaguntia', 'Metal Mania', 'Pirata One', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 25%, #34d399 50%, #10b981 75%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: 0.3rem;
+  text-shadow: 
+    0 0 10px rgba(16, 185, 129, 0.8),
+    0 0 20px rgba(16, 185, 129, 0.6),
+    0 0 30px rgba(16, 185, 129, 0.4),
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000;
+  position: relative;
+  text-transform: uppercase;
+  font-style: normal;
+  text-decoration: none;
+  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.7));
+}
+
+.gaming-header .header-brand h1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #10b981, #06b6d4, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
+  filter: blur(3px);
+  opacity: 0.8;
+}
+
+/* Gothic style enhancement */
+.gaming-header .header-brand h1::after {
+  content: '⚔️';
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.8));
+}
+
+.gaming-header .header-brand p {
+  font-size: 1.2rem;
+  color: #a1a1aa;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Enhanced Bold Italic Styles for Gaming Content */
+
+/* Latest Gaming Content Section */
+.latest-videos h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  color: #10b981;
+}
+
+.video-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.video-stats {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Stream Cards Bold Italic */
+.stream-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.stream-game {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* About Section Bold Italic */
+.about-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+}
+
+.about-section p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+/* Community Buttons Enhanced */
+.community-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 1.2px;
+  text-transform: uppercase; 
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Matrix Buttons Bold Italic */
+.matrix-button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Watch Highlights Button Special */
+.watch-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic; 
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Channel Stats Bold Italic */
+.stat-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.stat-label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Schedule Items */
+.schedule-item {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Live/Offline Status Bold Italic */
+.live-indicator, .offline-indicator {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.gaming-live .live-dot {
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* YouTube Video Section */
+.youtube-video-section {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 5;
+}
+
+/* Main Content Gaming */
+.main-content-gaming {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.stream-player {
+  padding: 0;
+  overflow: hidden;
+}
+
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.1),
+    rgba(6, 182, 212, 0.1),
+    rgba(0, 0, 0, 0.8)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  background: rgba(16, 185, 129, 1);
+  transform: scale(1.1);
+}
+
+.play-icon {
+  font-size: 2rem;
+  color: white;
+  margin-left: 5px;
+}
+
+.stream-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+.stream-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stream-info {
+  padding: 2rem;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.stream-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.stream-stats .stat-item {
+  text-align: center;
+}
+
+.stream-stats .stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #10b981;
+  line-height: 1;
+}
+
+.stream-stats .stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+/* Gaming Bio */
+.gaming-bio {
+  padding: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.gaming-bio h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bio-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Recent Streams */
+.recent-streams {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.recent-streams h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.streams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.stream-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.stream-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.stream-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.stream-card:hover .stream-thumbnail img {
+  transform: scale(1.05);
+}
+
+.stream-duration,
+.stream-views {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stream-duration {
+  top: 10px;
+  left: 10px;
+}
+
+.stream-views {
+  top: 10px;
+  right: 10px;
+}
+
+.stream-details {
+  padding: 1.5rem;
+}
+
+.stream-details h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.stream-game {
+  font-size: 0.9rem;
+  color: #10b981;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Stream Schedule */
+.stream-schedule {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.stream-schedule h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.schedule-card {
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.schedule-card.rest-day {
+  opacity: 0.6;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.schedule-day {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.schedule-time {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.schedule-game {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.rest-day .schedule-day {
+  color: #ef4444;
+}
+
+/* Community Section */
+.community-section {
+  text-align: center;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.community-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.community-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.community-btn.discord {
+  background: linear-gradient(135deg, #5865F2, #4752C4);
+}
+
+.community-btn.youtube {
+  background: linear-gradient(135deg, #FF0000, #CC0000);
+}
+
+.community-btn.youtube-follow {
+  background: linear-gradient(135deg, #FF4500, #FF6347);
+}
+
+.community-btn.twitch {
+  background: linear-gradient(135deg, #9146FF, #772CE8);
+}
+
+.community-btn.twitter {
+  background: linear-gradient(135deg, #1DA1F2, #0D8BD9);
+}
+
+/* Enhanced Mobile Responsiveness - Ultra Optimized with Centered Title */
+@media (max-width: 1200px) {
+  .demo-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+  
+  .gaming-header .header-brand h1 {
+    font-size: 3.2rem;
+    letter-spacing: 0.2rem;
+  }
+  
+  .gaming-header .header-brand h1::after {
+    right: -50px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .demo-header {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .header-brand {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .live-status {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .gaming-header .header-brand h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.15rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .gaming-header .header-brand h1::after {
+    right: -40px;
+    font-size: 1.5rem;
+  }
+  
+  .live-indicator, .offline-indicator {
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* YouTube Section Mobile */
+  .youtube-video-section {
+    margin-bottom: 0;
+    width: 100%;
+  }
+  
+  /* Gaming Bio Mobile */
+  .gaming-bio {
+    padding: 1.5rem 1rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .gaming-bio h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .bio-content p {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Streams Grid Mobile */
+  .streams-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .recent-streams {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .recent-streams h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Schedule Grid Mobile */
+  .schedule-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .stream-schedule {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .stream-schedule h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .schedule-card {
+    padding: 1rem;
+  }
+  
+  /* Community Links Mobile */
+  .community-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .community-section {
+    padding: 2rem 1rem;
+  }
+  
+  .community-section h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .community-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+  
+  /* Latest Gaming Content Mobile Enhancement */
+  .latest-videos {
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
+  .latest-videos h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+  
+  .video-list {
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .video-item {
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+  }
+  
+  .video-item h4 {
+    font-size: 1rem;
+    line-height: 1.3;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .video-stats {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Stream Cards Mobile */
+  .stream-card {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .stream-card h4 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
+
+/* Extra Small Mobile (phones in portrait) - Ultra Optimized */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .demo-header {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .header-brand {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .live-status {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .gaming-header .header-brand h1 {
+    font-size: 2.2rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.1;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .gaming-header .header-brand h1::after {
+    right: -35px;
+    font-size: 1.3rem;
+  }
+  
+  .live-indicator, .offline-indicator {
+    font-size: 0.95rem;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Full Width Sections */
+  .youtube-video-section,
+  .gaming-bio,
+  .recent-streams,
+  .stream-schedule,
+  .community-section {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .youtube-video-section {
+    margin-bottom: 0;
+  }
+  
+  .gaming-bio {
+    margin-top: 0;
+  }
+  
+  .gaming-bio h2,
+  .recent-streams h2,
+  .stream-schedule h2,
+  .community-section h2 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  
+  .schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .stream-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .stream-card h4 {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  
+  .stream-game {
+    font-size: 0.85rem;
+  }
+  
+  .community-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.8rem;
+    max-width: 280px;
+    width: 100%;
+  }
+  
+  /* Channel Stats Mobile */
+  .channel-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .stat-item {
+    min-width: 100px;
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Ultra Small Mobile (very small phones) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.3rem;
+  }
+  
+  .gaming-header .header-brand h1 {
+    font-size: 1.9rem;
+    letter-spacing: 0.05rem;
+  }
+  
+  .gaming-header .header-brand h1::after {
+    right: -30px;
+    font-size: 1.1rem;
+  }
+  
+  .demo-header {
+    padding: 1rem 0.5rem;
+  }
+  
+  .community-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+    max-width: 260px;
+  }
+  
+  .streams-grid, .schedule-grid {
+    padding: 0;
+  }
+  
+  /* Full width sections */
+  .youtube-video-section,
+  .gaming-bio,
+  .recent-streams, 
+  .stream-schedule,
+  .community-section {
+    padding: 1rem 0.3rem;
+  }
+  
+  .youtube-video-section {
+    margin-bottom: 0;
+  }
+  
+  .gaming-bio {
+    margin-top: 0;
+  }
+
+}
+
+/* Support the Streamer Section - Modern Design */
+.support-streamer-section {
+  margin: 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.support-container {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(16, 185, 129, 0.1));
+  border: 3px solid rgba(0, 255, 0, 0.4);
+  border-radius: 25px;
+  padding: 3rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(0, 255, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.support-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.support-content {
+  position: relative;
+  z-index: 1;
+}
+
+.support-title {
+  font-family: 'Montserrat', 'Roboto', sans-serif !important;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #000000 !important;
+  background: #00ff00;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-clip: text !important;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.8),
+    0 0 40px rgba(0, 255, 0, 0.6),
+    2px 2px 4px rgba(0, 255, 0, 0.9) !important;
+  margin-bottom: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.support-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.support-streamer-btn {
+  background: linear-gradient(135deg, #00ff00, #10b981);
+  border: none;
+  color: #000000;
+  padding: 1.5rem 4rem;
+  border-radius: 35px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.support-streamer-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.support-streamer-btn:hover::before {
+  left: 100%;
+}
+
+.support-streamer-btn:hover {
+  background: linear-gradient(135deg, #10b981, #00ff00);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 20px 50px rgba(0, 255, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.support-streamer-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Mobile Responsive for Support Section */
+@media (max-width: 768px) {
+
+
+/* Bottom Section Styling for Donation */
+.support-streamer-section.bottom-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.support-streamer-section.bottom-section .support-container {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(16, 185, 129, 0.15));
+  border: 3px solid rgba(0, 255, 0, 0.6);
+}
+
+.support-streamer-section.bottom-section .support-container::before {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 0, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 50%);
+}
+  .support-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .support-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .support-description {
+    font-size: 1rem;
+  }
+  
+  .support-streamer-btn {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* About REMZA019 - COMPACT VERSION */
+.about-remza-compact {
+  margin: 3rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.about-compact-container {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(16, 185, 129, 0.1));
+  border: 3px solid rgba(0, 255, 0, 0.4);
+  border-radius: 25px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(0, 255, 0, 0.3);
+}
+
+.about-compact-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #00ff00;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.about-compact-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-bio {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about-bio strong {
+  color: #00ff00;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-tags .tag {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(16, 185, 129, 0.2));
+  border: 2px solid rgba(0, 255, 0, 0.5);
+  color: #00ff00;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.about-tags .tag:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.3), rgba(16, 185, 129, 0.3));
+  border-color: #00ff00;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 255, 0, 0.5);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .about-compact-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .about-compact-title {
+    font-size: 2rem;
+  }
+  
+  .about-bio {
+    font-size: 1rem;
+  }
+  
+  .about-tags {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .about-tags .tag {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* 019Solutions Footer */
+.site-footer {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 20, 0, 0.98));
+  border-top: 2px solid rgba(0, 255, 0, 0.3);
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.site-footer p {
+  color: rgba(0, 255, 0, 0.7);
+  font-size: 14px;
+  margin: 8px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.developer-credit {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.dev-link {
+  color: #00ff00;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.dev-link:hover {
+  color: #00ffaa;
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  text-decoration: underline;
+}
+
+/* Featured Video Section */
+.featured-video-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-video-section h2 {
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+  color: #10b981;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.featured-video-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid #10b981;
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.video-info {
+  text-align: center;
+}
+
+.video-info h3 {
+  font-size: 28px;
+  color: #10b981;
+  margin-bottom: 10px;
+}
+
+.video-info p {
+  font-size: 16px;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .featured-video-section h2 {
+    font-size: 28px;
+  }
+  
+  .featured-video-container {
+    padding: 20px;
+  }
+  
+  .video-info h3 {
+    font-size: 20px;
+  }
+  
+  .video-info p {
+    font-size: 14px;
+  }
+}

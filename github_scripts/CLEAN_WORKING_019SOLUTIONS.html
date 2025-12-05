@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019 Solutions - Digital Architects of Tomorrow</title>
+    <meta name="description" content="019 Solutions - Professional Digital Development Company. Full-stack development, gaming solutions, AI integration, and digital transformation services.">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* SIMPLE MATRIX BACKGROUND */
+        .matrix-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000 0%, #001a00 50%, #000 100%);
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes matrixFall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Cursor Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.9) 0%, rgba(255, 107, 107, 0.5) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            left: var(--mouse-x, 0);
+            top: var(--mouse-y, 0);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5), 0 0 40px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(1px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .company-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #ff6b6b 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px #00ff41;
+            box-shadow: 
+                0 0 50px rgba(255, 107, 107, 0.4), 
+                0 0 100px rgba(78, 205, 196, 0.3),
+                inset 0 0 50px rgba(0, 255, 65, 0.1);
+            animation: logoMatrix 4s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-logo::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ff41, #ff6b6b, #4ecdc4, #00ff41);
+            border-radius: 25px;
+            z-index: -1;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .company-logo:hover {
+            box-shadow: 
+                0 0 80px rgba(255, 107, 107, 0.6), 
+                0 0 160px rgba(78, 205, 196, 0.4),
+                0 0 200px rgba(0, 255, 65, 0.3);
+            transform: scale(1.05);
+        }
+
+        @keyframes logoMatrix {
+            0% {
+                box-shadow: 
+                    0 0 50px rgba(255, 107, 107, 0.4), 
+                    0 0 100px rgba(78, 205, 196, 0.3),
+                    inset 0 0 50px rgba(0, 255, 65, 0.1);
+            }
+            100% {
+                box-shadow: 
+                    0 0 70px rgba(0, 255, 65, 0.6), 
+                    0 0 140px rgba(255, 107, 107, 0.4),
+                    inset 0 0 70px rgba(78, 205, 196, 0.2);
+            }
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px #00ff41, 0 0 40px rgba(0, 255, 65, 0.5);
+        }
+
+        .brand-name {
+            color: #ff6b6b;
+            text-shadow: 0 0 20px #ff6b6b, 0 0 40px rgba(255, 107, 107, 0.6);
+        }
+
+        .brand-solutions {
+            color: #4ecdc4;
+            margin-left: 20px;
+            text-shadow: 0 0 20px #4ecdc4, 0 0 40px rgba(78, 205, 196, 0.6);
+        }
+
+        .typing-container {
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41, 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        .cursor {
+            color: #ff6b6b;
+            animation: matrixBlink 1s infinite;
+            text-shadow: 0 0 5px #ff6b6b;
+        }
+
+        @keyframes matrixBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .signature-tagline {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .tagline-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #00ff41;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        .tagline-main {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #00ff41, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: matrixShine 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        @keyframes matrixShine {
+            0%, 100% {
+                background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #00ff41, #ff6b6b);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+            33% {
+                background: linear-gradient(135deg, #00ff41, #ff6b6b, #4ecdc4, #00ff41);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+            66% {
+                background: linear-gradient(135deg, #4ecdc4, #00ff41, #ff6b6b, #4ecdc4);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+        }
+
+        .tagline-binary {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(0, 255, 65, 0.6);
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            margin-bottom: 1rem;
+            animation: matrixFlow 8s linear infinite;
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        @keyframes matrixFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            border-radius: 10px;
+            animation: statGlow 3s linear infinite;
+        }
+
+        @keyframes statGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00ff41;
+            text-shadow: 0 0 15px #00ff41, 0 0 30px rgba(0, 255, 65, 0.6);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #4ecdc4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4), 0 0 20px rgba(0, 255, 65, 0.2);
+            animation: matrixPulse 2s infinite;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6), 0 0 40px rgba(0, 255, 65, 0.4);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00ff41;
+            border: 2px solid #00ff41;
+            box-shadow: 0 15px 30px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(78, 205, 196, 0.2));
+            color: #fff;
+            box-shadow: 0 20px 40px rgba(0, 255, 65, 0.5), inset 0 0 30px rgba(0, 255, 65, 0.2);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        @keyframes matrixPulse {
+            0%, 100% {
+                box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4), 0 0 20px rgba(0, 255, 65, 0.2);
+            }
+            50% {
+                box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6), 0 0 40px rgba(0, 255, 65, 0.4);
+            }
+        }
+
+        /* Portfolio Section - SIMPLE VERSION */
+        .portfolio-section {
+            padding: 100px 0;
+            position: relative;
+            backdrop-filter: blur(2px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #00ff41);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(0, 255, 65, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(255, 107, 107, 0.05));
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(0, 255, 65, 0.3);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #00ff41);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-category {
+            color: #00ff41;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .portfolio-title {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .portfolio-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+        }
+
+        .portfolio-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(78, 205, 196, 0.2));
+            color: #00ff41;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tech-tag:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.3), rgba(78, 205, 196, 0.3));
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .portfolio-live-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4ecdc4, #00ff41);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-live-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 30px rgba(78, 205, 196, 0.4),
+                0 0 20px rgba(0, 255, 65, 0.3);
+            background: linear-gradient(135deg, #00ff41, #ff6b6b);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .typing-text {
+                font-size: 1.5rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-logo {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background Effect -->
+    <div class="matrix-background" id="matrix-bg"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <div class="company-logo">019</div>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="brand-name">019</span>
+                    <span class="brand-solutions">SOLUTIONS</span>
+                </h1>
+                
+                <div class="typing-container">
+                    <div class="typing-text" id="typing-text">Transforming Ideas Into Digital Reality<span class="cursor">|</span></div>
+                </div>
+                
+                <div class="signature-tagline">
+                    <div class="tagline-code">// WHERE CODE MEETS CREATIVITY</div>
+                    <div class="tagline-main">DIGITAL ARCHITECTS OF TOMORROW</div>
+                    <div class="tagline-binary">01001001 01001110 01001110 01001111 01010110 01000001 01010100 01001001 01001111 01001110</div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">35+</span>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">🚀 Start Your Project</a>
+                    <a href="#portfolio" class="btn-secondary">📈 View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Real Projects, Real Results</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Trading Intelligence Platform -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image" onclick="window.open('https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/oqwr1t51_index.html', '_blank')">
+                        💹 Trading Intelligence Platform
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">FinTech</div>
+                        <h3 class="portfolio-title">Trading Intelligence Platform</h3>
+                        <p class="portfolio-description">Advanced AI-powered trading platform with real-time market data, intelligent signals, and comprehensive portfolio management.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Real-time Data</span>
+                            <span class="tech-tag">FinTech API</span>
+                        </div>
+                        <a href="https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/oqwr1t51_index.html" target="_blank" class="portfolio-live-link">🚀 View Live Demo</a>
+                    </div>
+                </div>
+                
+                <!-- Remza019 Gaming Platform -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image" onclick="window.open('https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/z8ure5c7_remza019-gaming.html', '_blank')">
+                        🎮 Remza019 Gaming Platform
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Gaming</div>
+                        <h3 class="portfolio-title">Remza019 Gaming Website</h3>
+                        <p class="portfolio-description">Professional gaming content creator platform featuring YouTube integration, streaming schedules, and community engagement.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">YouTube API</span>
+                            <span class="tech-tag">Streaming</span>
+                            <span class="tech-tag">Community</span>
+                        </div>
+                        <a href="https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/z8ure5c7_remza019-gaming.html" target="_blank" class="portfolio-live-link">🎯 View Live Demo</a>
+                    </div>
+                </div>
+                
+                <!-- Adriatic Dreams Tourism -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image" onclick="window.open('https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/08vyaud6_adriatic-dreams-tourism.html', '_blank')">
+                        🏖️ Adriatic Dreams Tourism
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Tourism</div>
+                        <h3 class="portfolio-title">Adriatic Dreams Tourism</h3>
+                        <p class="portfolio-description">Luxury tourism platform showcasing exclusive Adriatic coast experiences with premium accommodations and booking system.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Booking System</span>
+                            <span class="tech-tag">Luxury Design</span>
+                        </div>
+                        <a href="https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/08vyaud6_adriatic-dreams-tourism.html" target="_blank" class="portfolio-live-link">🌊 View Live Demo</a>
+                    </div>
+                </div>
+                
+                <!-- Berlin Apartment Booking -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image" onclick="window.open('https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/pgx77tq8_berlin-apartment-booking.html', '_blank')">
+                        🏢 Berlin Apartment Booking
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Real Estate</div>
+                        <h3 class="portfolio-title">Berlin Apartment Booking</h3>
+                        <p class="portfolio-description">Sophisticated property booking platform for premium Berlin apartments with advanced search and booking features.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Search Engine</span>
+                            <span class="tech-tag">Booking System</span>
+                            <span class="tech-tag">Property Management</span>
+                        </div>
+                        <a href="https://customer-assets.emergentagent.com/job_monolith-deploy/artifacts/pgx77tq8_berlin-apartment-booking.html" target="_blank" class="portfolio-live-link">🏙️ View Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // SIMPLE MATRIX BACKGROUND EFFECT
+        function createMatrixEffect() {
+            const matrixBg = document.getElementById('matrix-bg');
+            const characters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const specialWords = ['0DEVETNAST', '0NINETEEN', '019', 'SOLUTIONS', 'MATRIX'];
+            
+            function createMatrixColumn() {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animation = `matrixFall ${Math.random() * 4 + 3}s linear infinite`;
+                
+                // Create content
+                let content = '';
+                const length = Math.random() * 20 + 10;
+                
+                for (let i = 0; i < length; i++) {
+                    if (Math.random() < 0.1 && i > 5) {
+                        const specialWord = specialWords[Math.floor(Math.random() * specialWords.length)];
+                        content += specialWord + '\n';
+                        i += 2; // Skip ahead
+                    } else {
+                        content += characters[Math.floor(Math.random() * characters.length)] + '\n';
+                    }
+                }
+                
+                column.textContent = content;
+                matrixBg.appendChild(column);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (column.parentNode) {
+                        column.parentNode.removeChild(column);
+                    }
+                }, 8000);
+            }
+            
+            // Create columns
+            setInterval(createMatrixColumn, 150);
+            
+            // Initial burst
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createMatrixColumn, i * 100);
+            }
+        }
+
+        // Enhanced cursor tracking
+        document.addEventListener('mousemove', function(e) {
+            document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        
+        // Typing effect
+        const phrases = [
+            "Transforming Ideas Into Digital Reality",
+            "Building Tomorrow's Technology Today",
+            "Where Innovation Meets Excellence",
+            "Creating Digital Experiences That Matter"
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        
+        function typeText() {
+            const current = phrases[currentPhrase];
+            const typingElement = document.getElementById('typing-text');
+            
+            if (isDeleting) {
+                typingElement.innerHTML = current.substring(0, currentChar - 1) + '<span class="cursor">|</span>';
+                currentChar--;
+            } else {
+                typingElement.innerHTML = current.substring(0, currentChar + 1) + '<span class="cursor">|</span>';
+                currentChar++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && currentChar === current.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeText, typeSpeed);
+        }
+        
+        // Start effects when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMatrixEffect();
+            setTimeout(typeText, 1000);
+        });
+    </script>
+</body>
+</html>

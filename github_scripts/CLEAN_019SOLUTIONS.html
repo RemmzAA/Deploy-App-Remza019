@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019 Solutions - Digital Architects of Tomorrow</title>
+    <meta name="description" content="019 Solutions - Professional Digital Development Company. Full-stack development, gaming solutions, AI integration, and digital transformation services.">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            background: #0f0f23;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Cursor Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.8) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            left: var(--mouse-x, 0);
+            top: var(--mouse-y, 0);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e 50%, #16213e);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.08;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.9));
+            z-index: 2;
+        }
+
+        .hero-background::after {
+            content: "01001001 01001110 01001110 01001111 01010110 01000001 01010100 01001001 01001111 01001110";
+            position: absolute;
+            top: 10%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(78, 205, 196, 0.2);
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            animation: binaryFlow 20s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes binaryFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .company-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #ff6b6b 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.3), 0 0 100px rgba(78, 205, 196, 0.2);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        .company-logo:hover {
+            box-shadow: 0 0 80px rgba(255, 107, 107, 0.5), 0 0 160px rgba(78, 205, 196, 0.4);
+            transform: scale(1.05);
+        }
+
+        @keyframes logoGlow {
+            from { 
+                box-shadow: 0 0 30px rgba(255, 107, 107, 0.3), 0 0 60px rgba(78, 205, 196, 0.2); 
+            }
+            to { 
+                box-shadow: 0 0 50px rgba(255, 107, 107, 0.6), 0 0 100px rgba(78, 205, 196, 0.4); 
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-name {
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+        }
+
+        .brand-solutions {
+            color: #4ecdc4;
+            margin-left: 20px;
+            text-shadow: 0 0 20px rgba(78, 205, 196, 0.8);
+        }
+
+        .typing-container {
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .cursor {
+            color: #ff6b6b;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .signature-tagline {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .tagline-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline-main {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+            animation: textShine 4s ease-in-out infinite;
+        }
+
+        @keyframes textShine {
+            0%, 100% {
+                background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ff6b6b);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+            50% {
+                background: linear-gradient(135deg, #4ecdc4, #ff6b6b, #4ecdc4);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+        }
+
+        .tagline-binary {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(78, 205, 196, 0.4);
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            margin-bottom: 1rem;
+            animation: binaryFlow 8s linear infinite;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+            animation: pulseButton 2s infinite;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4ecdc4;
+            border: 2px solid #4ecdc4;
+            box-shadow: 0 15px 30px rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: #0a0a0a;
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.5);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        @keyframes pulseButton {
+            0%, 100% {
+                box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+            }
+            50% {
+                box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6), 0 0 50px rgba(255, 107, 107, 0.3);
+            }
+        }
+
+        .hero-guarantee {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .guarantee-badge {
+            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(255, 107, 107, 0.2));
+            border: 1px solid rgba(78, 205, 196, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: guaranteePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes guaranteePulse {
+            0%, 100% {
+                border-color: rgba(78, 205, 196, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                border-color: rgba(255, 107, 107, 0.7);
+                transform: scale(1.02);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: scale(1.1);
+                filter: brightness(1.3);
+                text-shadow: 0 0 40px rgba(255, 107, 107, 0.8), 0 0 60px rgba(78, 205, 196, 0.6);
+            }
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .service-description {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: #aaa;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            position: relative;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-category {
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-title {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #16213e, #0f0f23);
+            position: relative;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-item h4 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #ccc;
+        }
+
+        .contact-item a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #4ecdc4;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input, .form-textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: #fff;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #888;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.6), rgba(22, 33, 62, 0.4) 50%, rgba(15, 15, 35, 0.6));
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.2), inset 0 0 30px rgba(255, 255, 255, 0.03);
+        }
+
+        .footer-logo::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.6;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        .footer-logo::after {
+            content: "╔══════════════╗\A║ ██ ███ ██  ║\A║ ██  █  ██  ║\A╚══════════════╝\A 019solutions ";
+            color: #fff;
+            font-size: 0.4rem;
+            line-height: 1;
+            text-align: center;
+            white-space: pre;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 15px rgba(78, 205, 196, 0.8), 0 0 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.4), 0 0 100px rgba(78, 205, 196, 0.3), inset 0 0 50px rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            }
+            25% {
+                background: linear-gradient(45deg, #4ecdc4, #ff6b6b, #4ecdc4);
+            }
+            50% {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            }
+            75% {
+                background: linear-gradient(45deg, #4ecdc4, #ff6b6b, #4ecdc4);
+            }
+        }
+
+        .footer-brand h3 {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .footer-brand p {
+            color: #888;
+            max-width: 250px;
+        }
+
+        .footer-column h4 {
+            color: #4ecdc4;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #888;
+        }
+
+        .business-info {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .business-info p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+
+        .business-info a {
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .business-info a:hover {
+            color: #ff6b6b;
+        }
+
+        .business-info strong {
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .typing-text {
+                font-size: 1.5rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .services-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-logo {
+                width: 300px;
+                height: 150px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .services-section, .portfolio-section, .contact-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-background"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <div class="company-logo">019</div>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="brand-name">019</span>
+                    <span class="brand-solutions">SOLUTIONS</span>
+                </h1>
+                
+                <div class="typing-container">
+                    <div class="typing-text" id="typing-text">Transforming Ideas Into Digital Reality<span class="cursor">|</span></div>
+                </div>
+                
+                <div class="signature-tagline">
+                    <div class="tagline-code">// WHERE CODE MEETS CREATIVITY</div>
+                    <div class="tagline-main">DIGITAL ARCHITECTS OF TOMORROW</div>
+                    <div class="tagline-binary">01001001 01001110 01001110 01001111 01010110 01000001 01010100 01001001 01001111 01001110</div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">35+</span>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">🚀 Start Your Project - FREE</a>
+                    <a href="#portfolio" class="btn-secondary">👁️ View Success Stories</a>
+                </div>
+                
+                <div class="hero-guarantee">
+                    <div class="guarantee-badge">
+                        ✅ 100% Satisfaction Guaranteed<br>
+                        💰 Money-Back Promise<br>
+                        ⚡ Fast Delivery
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional solutions for every digital need</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⟨/⟩</div>
+                    <h3 class="service-title">Full-Stack Development</h3>
+                    <p class="service-description">Complete web applications using modern frameworks like React, Node.js, and MongoDB</p>
+                    <ul class="service-features">
+                        <li>Frontend & Backend Development</li>
+                        <li>Database Design & Integration</li>
+                        <li>API Development</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                    <div class="service-price">€2,000 - €15,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">◈◇◈</div>
+                    <h3 class="service-title">Responsive Design</h3>
+                    <p class="service-description">Mobile-first, responsive websites that work seamlessly across all devices</p>
+                    <ul class="service-features">
+                        <li>Mobile-First Approach</li>
+                        <li>Cross-Browser Compatibility</li>
+                        <li>Modern UI/UX Design</li>
+                        <li>Accessibility Standards</li>
+                    </ul>
+                    <div class="service-price">€800 - €5,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⟦$⟧</div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Complete online stores with payment integration and inventory management</p>
+                    <ul class="service-features">
+                        <li>Payment Gateway Integration</li>
+                        <li>Inventory Management</li>
+                        <li>Admin Dashboard</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+                    <div class="service-price">€3,000 - €20,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡◄►</div>
+                    <h3 class="service-title">Performance Optimization</h3>
+                    <p class="service-description">Lightning-fast websites optimized for speed, SEO, and user experience</p>
+                    <ul class="service-features">
+                        <li>Speed Optimization</li>
+                        <li>SEO Enhancement</li>
+                        <li>Code Splitting</li>
+                        <li>CDN Integration</li>
+                    </ul>
+                    <div class="service-price">€500 - €3,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⟪◎⟫</div>
+                    <h3 class="service-title">Gaming Solutions</h3>
+                    <p class="service-description">Interactive gaming platforms, streaming sites, and community features</p>
+                    <ul class="service-features">
+                        <li>Gaming Website Development</li>
+                        <li>Community Features</li>
+                        <li>Streaming Integration</li>
+                        <li>Interactive Elements</li>
+                    </ul>
+                    <div class="service-price">€1,500 - €10,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⟨◉⟩</div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-description">Cutting-edge AI features, chatbots, and machine learning implementations</p>
+                    <ul class="service-features">
+                        <li>AI Chatbots</li>
+                        <li>Machine Learning</li>
+                        <li>Data Analysis</li>
+                        <li>Automation Tools</li>
+                    </ul>
+                    <div class="service-price">€2,500 - €20,000</div>
+                    <button class="service-btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Showcasing our expertise across industries</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image">🏖️ Adriatic Dreams</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Tourism</div>
+                        <h3 class="portfolio-title">Adriatic Dreams Tourism</h3>
+                        <p class="portfolio-description">Elegant tourism showcase featuring luxury coastal experiences, interactive galleries, and seamless booking integration with stunning visual design.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image">🏢 Berlin Booking</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Real Estate</div>
+                        <h3 class="portfolio-title">Berlin Apartment Booking</h3>
+                        <p class="portfolio-description">Sophisticated property booking system with advanced search filters, interactive maps, and streamlined reservation management.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image">🎮 Gaming Platform</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Gaming</div>
+                        <h3 class="portfolio-title">Remza019 Gaming Website</h3>
+                        <p class="portfolio-description">Professional gaming platform showcasing YouTube channel content and interactive community features.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">YouTube API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image">💼 Business Solutions</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">E-commerce</div>
+                        <h3 class="portfolio-title">Modern E-commerce Platform</h3>
+                        <p class="portfolio-description">Professional online stores with payment integration, inventory management, and modern user experience design.</p>
+                        <div class="portfolio-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Stripe</span>
+                            <span class="tech-tag">Alpaca API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your vision to life?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Business Email</h4>
+                            <p><a href="mailto:contact@019solutions.com">contact@019solutions.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Business Phone</h4>
+                            <p><a href="tel:+41787664181">+41 78 766 41 81</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <h4>WhatsApp & Viber</h4>
+                            <p>
+                                <a href="https://wa.me/41787664181" target="_blank">WhatsApp</a> • 
+                                <a href="viber://chat?number=41787664181" target="_blank">Viber</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Direct Contact</h4>
+                            <p><a href="mailto:risticvladica@hotmail.com">risticvladica@hotmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name *" required class="form-input">
+                        <input type="email" name="email" placeholder="Email Address *" required class="form-input">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="company" placeholder="Company Name" class="form-input">
+                        <select name="service" class="form-input">
+                            <option value="">Service of Interest</option>
+                            <option value="full-stack">Full-Stack Development</option>
+                            <option value="gaming">Gaming Solutions</option>
+                            <option value="e-commerce">E-commerce</option>
+                            <option value="ai-integration">AI Integration</option>
+                        </select>
+                    </div>
+                    <input type="text" name="subject" placeholder="Project Subject *" required class="form-input">
+                    <textarea name="message" placeholder="Tell us about your project *" required class="form-textarea" rows="5"></textarea>
+                    <select name="budget" class="form-input">
+                        <option value="">Budget Range</option>
+                        <option value="under-5k">Under €5,000</option>
+                        <option value="5k-15k">€5,000 - €15,000</option>
+                        <option value="15k-50k">€15,000 - €50,000</option>
+                        <option value="50k-plus">€50,000+</option>
+                    </select>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo"></div>
+                    <h3>019 SOLUTIONS</h3>
+                    <p>Transforming ideas into digital reality with cutting-edge technology and innovative solutions.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Gaming Solutions</a></li>
+                        <li><a href="#services">E-commerce</a></li>
+                        <li><a href="#services">AI Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:contact@019solutions.com">Business Email</a></li>
+                        <li><a href="mailto:risticvladica@hotmail.com">Direct Contact</a></li>
+                        <li><a href="tel:+41787664181">Phone: +41 78 766 41 81</a></li>
+                        <li><a href="https://wa.me/41787664181" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="business-info">
+                    <p><strong>019 Solutions</strong> - Digital Architects of Tomorrow</p>
+                    <p>📧 <a href="mailto:contact@019solutions.com">contact@019solutions.com</a> • 📞 <a href="tel:+41787664181">+41 78 766 41 81</a></p>
+                    <p>💬 <a href="https://wa.me/41787664181" target="_blank">WhatsApp</a> • <a href="viber://chat?number=41787664181" target="_blank">Viber</a> • 📧 <a href="mailto:risticvladica@hotmail.com">risticvladica@hotmail.com</a></p>
+                    <p>🌐 <strong>www.019solutions.com</strong> • 📍 Switzerland</p>
+                </div>
+                <p>&copy; 2025 019 Solutions. All rights reserved.</p>
+                <p>Transforming Ideas Into Digital Reality</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth cursor following effect
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.body.style.setProperty('--mouse-x', x + 'px');
+            document.body.style.setProperty('--mouse-y', y + 'px');
+        });
+        
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent(`New Project Inquiry: ${data.subject}`);
+            const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company || 'Not provided'}
+Service: ${data.service || 'Not specified'}
+Budget: ${data.budget || 'Not specified'}
+
+Message:
+${data.message}
+            `);
+            
+            // Open email client
+            window.location.href = `mailto:contact@019solutions.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            alert('Thank you! Your email client will now open with your message ready to send.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Typing effect
+        const phrases = [
+            "Transforming Ideas Into Digital Reality",
+            "Building Tomorrow's Technology Today",
+            "Where Innovation Meets Excellence",
+            "Creating Digital Experiences That Matter"
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        
+        function typeText() {
+            const current = phrases[currentPhrase];
+            const typingElement = document.getElementById('typing-text');
+            
+            if (isDeleting) {
+                typingElement.innerHTML = current.substring(0, currentChar - 1) + '<span class="cursor">|</span>';
+                currentChar--;
+            } else {
+                typingElement.innerHTML = current.substring(0, currentChar + 1) + '<span class="cursor">|</span>';
+                currentChar++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && currentChar === current.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeText, typeSpeed);
+        }
+        
+        // Start typing effect
+        setTimeout(typeText, 1000);
+
+        // Add scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards
+            document.querySelectorAll('.service-card, .portfolio-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

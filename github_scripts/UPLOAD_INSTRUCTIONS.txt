@@ -1,0 +1,47 @@
+INSTRUKCIJE ZA UPLOAD:
+
+1. Otvorite fajl /app/DEPLOY_THIS_INDEX.html na ovom sistemu
+2. Kopirajte KOMPLETAN sadržaj (oko 1000+ linija koda)
+3. U cPanel-u kreirajte novi index.html
+4. Paste-ujte KOMPLETAN kod
+5. Save
+
+VAŽNO: Fajl mora biti 30-40 KB, ne 2.65 KB!
+
+Evo početak koda koji treba da kopirate:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019 Solutions - Digital Architects of Tomorrow</title>
+    <meta name="description" content="019 Solutions - Professional Digital Development Company. Full-stack development, gaming solutions, AI integration, and digital transformation services.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+[I OVO TREBA DA NASTAVI JOŠ 950+ LINIJA KODA...]
+
+Kopirajte KOMPLETAN fajl iz /app/DEPLOY_THIS_INDEX.html!
