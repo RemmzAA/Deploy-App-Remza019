@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Interactive Audience Notifications System
+019 Solutions - Interactive Audience Notifications System
 Real-time notifications for viewers without Discord dependency
 Email integration with vladicaristic19@gmail.com
 """
@@ -26,9 +26,9 @@ from email.mime.multipart import MIMEMultipart
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# EMAIL CONFIGURATION - REMZA019 Gaming
+# EMAIL CONFIGURATION - 019 Solutions
 SENDER_EMAIL = "vladicaristic19@gmail.com"
-SENDER_NAME = "REMZA019 Gaming"
+SENDER_NAME = "019 Solutions"
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 
@@ -37,7 +37,7 @@ WELCOME_EMAIL_TEMPLATE = """
 <html>
 <body style="background: #000000; color: #00ff00; font-family: monospace; padding: 20px;">
     <div style="text-align: center; border: 2px solid #00ff00; padding: 20px; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 REMZA019 GAMING 🎮</h1>
+        <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 019 SOLUTIONS 🎮</h1>
         <h2 style="color: #10b981;">Welcome to the Gaming Community!</h2>
         
         <p>Thanks for subscribing to REMZA019 notifications!</p>
@@ -305,7 +305,7 @@ async def notify_live_start(background_tasks: BackgroundTasks, game: str = "FORT
     try:
         notification = NotificationRequest(
             type="live",
-            title="🔴 REMZA019 GAMING IS LIVE!",
+            title="🔴 019 SOLUTIONS IS LIVE!",
             message=f"Join the stream now! Playing {game} with {viewers} viewers watching.",
             url="/"
         )
@@ -411,7 +411,7 @@ async def send_welcome_email(email: str):
             
         # Create email message
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "🎮 Welcome to REMZA019 Gaming Community!"
+        msg['Subject'] = "🎮 Welcome to 019 Solutions Community!"
         msg['From'] = f"{SENDER_NAME} <{SENDER_EMAIL}>"
         msg['To'] = email
         
@@ -441,7 +441,7 @@ async def send_email_notification(email: str, notification: NotificationRequest)
         
         # Create email message
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"🎮 REMZA019 Gaming - {notification.title}"
+        msg['Subject'] = f"🎮 019 Solutions - {notification.title}"
         msg['From'] = f"{SENDER_NAME} <{SENDER_EMAIL}>"
         msg['To'] = email
         
@@ -458,7 +458,7 @@ async def send_email_notification(email: str, notification: NotificationRequest)
             <html>
             <body style="background: #000000; color: #00ff00; font-family: monospace; padding: 20px;">
                 <div style="text-align: center; border: 2px solid #00ff00; padding: 20px; max-width: 600px; margin: 0 auto;">
-                    <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 REMZA019 GAMING 🎮</h1>
+                    <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 019 SOLUTIONS 🎮</h1>
                     <h2 style="color: #10b981;">{notification.title}</h2>
                     
                     <div style="background: rgba(0, 255, 0, 0.1); padding: 15px; margin: 20px 0; border: 1px solid #00ff00;">

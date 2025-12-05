@@ -1,5 +1,5 @@
 """
-License Validator Module for REMZA019 Gaming
+License Validator Module for 019 Solutions
 Simple license validation for development/testing
 """
 
@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class LicenseValidator:
-    """Simple license validator for REMZA019 Gaming"""
+    """Simple license validator for 019 Solutions"""
     
     @staticmethod
     def validate():

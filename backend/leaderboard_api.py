@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Leaderboard System
+019 Solutions - Leaderboard System
 Track and display top viewers by points
 """
 

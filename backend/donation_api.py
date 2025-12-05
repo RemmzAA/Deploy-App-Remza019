@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Donation System with Stripe Integration
+019 Solutions - Donation System with Stripe Integration
 Support the gaming channel with secure payment processing
 """
 from fastapi import APIRouter, HTTPException, Request, BackgroundTasks, Depends
@@ -47,7 +47,7 @@ async def get_database():
 # Email configuration
 GMAIL_APP_PASSWORD = os.environ.get('GMAIL_APP_PASSWORD', '')
 SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'vladicaristic19@gmail.com')
-SENDER_NAME = os.environ.get('SENDER_NAME', 'REMZA019 Gaming')
+SENDER_NAME = os.environ.get('SENDER_NAME', '019 Solutions')
 
 # Donation packages - FIXED AMOUNTS FOR SECURITY
 DONATION_PACKAGES = {
@@ -94,7 +94,7 @@ DONATION_RECEIPT_TEMPLATE = """
 <html>
 <body style="background: #000000; color: #00ff00; font-family: monospace; padding: 20px;">
     <div style="text-align: center; border: 2px solid #00ff00; padding: 20px; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 REMZA019 GAMING 🎮</h1>
+        <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">🎮 019 SOLUTIONS 🎮</h1>
         <h2 style="color: #10b981;">Thank You for Your Support!</h2>
         
         <div style="background: rgba(0, 255, 0, 0.1); padding: 20px; margin: 20px 0; border: 1px solid #00ff00;">
@@ -134,7 +134,7 @@ DONATION_NOTIFICATION_TEMPLATE = """
             {donor_message}
         </div>
         
-        <p>🎮 Another supporter joins the REMZA019 Gaming community!</p>
+        <p>🎮 Another supporter joins the 019 Solutions community!</p>
     </div>
 </body>
 </html>
@@ -154,7 +154,7 @@ async def send_donation_receipt(donor_email: str, donation_data: Dict):
         
         # Create email
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"🎮 REMZA019 Gaming - Donation Receipt (${donation_data['amount']})"
+        msg['Subject'] = f"🎮 019 Solutions - Donation Receipt (${donation_data['amount']})"
         msg['From'] = f"{SENDER_NAME} <{SENDER_EMAIL}>"
         msg['To'] = donor_email
         
@@ -232,7 +232,7 @@ async def get_donation_packages():
     return {
         "packages": DONATION_PACKAGES,
         "currency": "USD",
-        "description": "Support REMZA019 Gaming with secure donations"
+        "description": "Support 019 Solutions with secure donations"
     }
 
 @donation_router.post("/checkout")

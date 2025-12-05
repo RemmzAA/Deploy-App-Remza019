@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Enhanced User & Admin Memory System
+019 Solutions - Enhanced User & Admin Memory System
 Comprehensive tracking and analytics for all users and admins
 """
 from datetime import datetime, timedelta

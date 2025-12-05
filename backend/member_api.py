@@ -1,4 +1,4 @@
-# Member Management API - REMZA019 Gaming
+# Member Management API - 019 Solutions
 # JWT Authentication + Discord Integration
 
 from fastapi import APIRouter, HTTPException, Depends, Header
@@ -287,7 +287,7 @@ async def login_member(data: MemberLogin):
         )
         
         # Send verification code via email (simpler email for login)
-        subject = "🎮 REMZA019 Gaming - Login Verification Code"
+        subject = "🎮 019 Solutions - Login Verification Code"
         html_content = f"""
         <!DOCTYPE html>
         <html>

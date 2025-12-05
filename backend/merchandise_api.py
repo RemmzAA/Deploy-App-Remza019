@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Merchandise Store Integration
+019 Solutions - Merchandise Store Integration
 Printful/Teespring print-on-demand merch store
 """
 from fastapi import APIRouter, HTTPException

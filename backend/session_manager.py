@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Session Management System
+019 Solutions - Session Management System
 Cookie-based persistent sessions for users and admins
 """
 from fastapi import Request, Response, HTTPException, Depends

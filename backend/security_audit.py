@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Security Audit System
+019 Solutions - Security Audit System
 Comprehensive security checks and email verification enhancements
 """
 import re

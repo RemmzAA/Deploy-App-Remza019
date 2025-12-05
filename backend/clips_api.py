@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Clips & Highlights System
+019 Solutions - Clips & Highlights System
 Create, share, and discover best gaming moments
 """
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form

@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - OBS WebSocket API Integration
+019 Solutions - OBS WebSocket API Integration
 Remote OBS Studio Control (Stream, Scenes, Sources, Audio)
 """
 
