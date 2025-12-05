@@ -1,8 +1,8 @@
 {
-  "name": "remza019-gaming-desktop",
-  "version": "1.0.0",
-  "description": "REMZA019 Gaming Desktop Application - Professional gaming platform by 019Solutions",
-  "author": "019Solutions",
+  "name": "019-solutions-platform",
+  "version": "2.0.0",
+  "description": "019 Solutions Platform - Professional web application by 019 Solutions",
+  "author": "019 Solutions",
   "private": true,
   "proxy": "http://localhost:8001",
   "dependencies": {
