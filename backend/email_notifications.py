@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Email Notifications System
+019 Solutions - Email Notifications System
 Automated email notifications for stream events
 """
 
@@ -108,7 +108,7 @@ class EmailTemplate:
                 
                 <div class="footer">
                     <p>Primili ste ovu email notifikaciju jer ste se pretplatili na {streamer_name} Gaming obaveštenja.</p>
-                    <p style="color: #10b981;">REMZA019 Gaming</p>
+                    <p style="color: #10b981;">019 Solutions</p>
                 </div>
             </div>
         </body>
@@ -265,7 +265,7 @@ async def send_test_email(
 ):
     """Send test email - PUBLIC (for testing)"""
     try:
-        subject = "🎮 Test Email from REMZA019 Gaming"
+        subject = "🎮 Test Email from 019 Solutions"
         html_content = EmailTemplate.live_notification("REMZA019", "https://www.youtube.com/@REMZA019")
         
         background_tasks.add_task(

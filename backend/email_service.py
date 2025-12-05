@@ -1,5 +1,5 @@
 """
-REMZA019 Gaming - Email Notification Service
+019 Solutions - Email Notification Service
 Automated email system for user engagement and notifications
 """
 
@@ -20,7 +20,7 @@ SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
 SMTP_USER = os.environ.get('SMTP_USER', '')
 SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
 FROM_EMAIL = os.environ.get('FROM_EMAIL', 'noreply@remza019gaming.com')
-FROM_NAME = os.environ.get('FROM_NAME', 'REMZA019 Gaming')
+FROM_NAME = os.environ.get('FROM_NAME', '019 Solutions')
 
 class EmailService:
     def __init__(self):
@@ -74,7 +74,7 @@ class EmailService:
     
     async def send_verification_email(self, to_email: str, username: str, verification_code: str, base_url: str) -> bool:
         """Send email verification"""
-        subject = "🎮 Verify Your REMZA019 Gaming Account"
+        subject = "🎮 Verify Your 019 Solutions Account"
         
         html_content = f"""
         <!DOCTYPE html>
@@ -94,11 +94,11 @@ class EmailService:
         <body>
             <div class="container">
                 <div class="header">
-                    <div class="logo">🎮 REMZA019 GAMING</div>
+                    <div class="logo">🎮 019 SOLUTIONS</div>
                 </div>
                 <div class="content">
                     <h2>Welcome, {username}! 🎉</h2>
-                    <p>Thanks for joining REMZA019 Gaming! To complete your registration, please verify your email address.</p>
+                    <p>Thanks for joining 019 Solutions! To complete your registration, please verify your email address.</p>
                     
                     <p>Click the button below to verify your account:</p>
                     <center>
@@ -122,7 +122,7 @@ class EmailService:
                 </div>
                 <div class="footer">
                     <p>If you didn't create this account, you can safely ignore this email.</p>
-                    <p>© 2025 REMZA019 Gaming. All rights reserved.</p>
+                    <p>© 2025 019 Solutions. All rights reserved.</p>
                 </div>
             </div>
         </body>
@@ -130,7 +130,7 @@ class EmailService:
         """
         
         text_content = f"""
-        Welcome to REMZA019 Gaming, {username}!
+        Welcome to 019 Solutions, {username}!
         
         Verification Code: {verification_code}
         
@@ -257,7 +257,7 @@ class EmailService:
     
     async def send_daily_reminder(self, to_email: str, username: str, points: int, streak: int) -> bool:
         """Send daily visit reminder"""
-        subject = "🎮 Don't lose your streak! Visit REMZA019 Gaming today"
+        subject = "🎮 Don't lose your streak! Visit 019 Solutions today"
         
         html_content = f"""
         <!DOCTYPE html>
