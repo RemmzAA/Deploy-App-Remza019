@@ -10,7 +10,9 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional
 from datetime import datetime, timezone
 from dotenv import load_dotenv
-from emergentintegrations.llm.chat import LlmChat, UserMessage
+# emergentintegrations not available in production - commented out
+# from emergentintegrations.llm.chat import LlmChat, UserMessage
+# Note: Auto-highlights feature requires manual AI integration setup
 import uuid
 
 # Load environment variables
