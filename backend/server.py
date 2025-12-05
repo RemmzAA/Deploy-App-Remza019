@@ -140,7 +140,11 @@ app = FastAPI(
 
 
 # Rate Limiter Setup - Protect against abuse
-limiter = Limiter(key_func=get_remote_address)
+# Increased limits for production deployment (100 requests per minute)
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=["100/minute"]  # Generous limit for frontend
+)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
