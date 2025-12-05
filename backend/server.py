@@ -1,4 +1,4 @@
-# REMZA019 Gaming - Professional Gaming Platform
+# 019 Solutions - Professional Gaming Platform
 # Developed by 019Solutions - Custom Web Development & Digital Solutions
 # © 2024 019Solutions. All Rights Reserved.
 # 
@@ -100,7 +100,7 @@ except ImportError:
         
         async def send_message(self, user_message):
             # Mock response for testing
-            return "Hello! I'm REMZA019 Gaming Assistant. I'm here to help you with gaming questions, streaming schedules, and community information. What would you like to know?"
+            return "Hello! I'm 019 Solutions Assistant. I'm here to help you with gaming questions, streaming schedules, and community information. What would you like to know?"
     
     class UserMessage:
         def __init__(self, text):
@@ -124,7 +124,7 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 app = FastAPI(
-    title="REMZA019 Gaming - Professional Gaming Platform",
+    title="019 Solutions - Professional Gaming Platform",
     version="3.0",
     description="Full-stack gaming platform with multi-language support, real-time updates, and payment processing. Developed by 019Solutions.",
     contact={
@@ -725,10 +725,10 @@ class SearchQuery(BaseModel):
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat_with_bot(chat_message: ChatMessage):
-    """AI Gaming Chatbot for REMZA019 Gaming Website"""
+    """AI Gaming Chatbot for 019 Solutions Website"""
     try:
         # Gaming-focused system message
-        gaming_system_message = """You are REMZA019 Gaming Assistant, a friendly AI helper for the REMZA019 Gaming website. 
+        gaming_system_message = """You are 019 Solutions Assistant, a friendly AI helper for the 019 Solutions website. 
 
 ABOUT REMZA019:
 - Serbia-based casual gamer focused on FORTNITE, Call of Duty, and Modern Warfare
