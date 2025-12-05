@@ -35,7 +35,7 @@ from websocket_manager import get_ws_manager
 # Import admin functionality
 from admin_api import admin_router, create_default_admin
 from customization_api import customization_router
-from schedule_api import schedule_router
+# Removed: schedule_api.py (consolidated into admin_api.py and server.py)
 from multi_streamer_api import router as multistreamer_router
 from obs_api import obs_router
 from streamlabs_api import streamlabs_router
@@ -147,7 +147,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # Include admin router
 app.include_router(admin_router)
 app.include_router(customization_router, prefix="/api")
-app.include_router(schedule_router, prefix="/api")
+# Removed: schedule_router (consolidated schedule endpoints)
 app.include_router(multistreamer_router)
 app.include_router(obs_router)
 app.include_router(streamlabs_router)
