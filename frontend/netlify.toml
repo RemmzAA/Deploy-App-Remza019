@@ -8,7 +8,8 @@
   # Publish directory (React build output)
   publish = "build"
   
-  # Base directory
+  # Base directory (IMPORTANT: Must be empty since netlify.toml is already in frontend/)
+  # When netlify.toml is in frontend/, base should be "" or "."
   base = ""
 
 # Environment variables (set these in Netlify UI)
