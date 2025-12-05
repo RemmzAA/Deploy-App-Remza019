@@ -27,7 +27,7 @@
 # API Proxy to Backend (Render.com)
 [[redirects]]
   from = "/api/*"
-  to = "https://YOUR_BACKEND_URL.onrender.com/api/:splat"
+  to = "https://deploy-app-remza019.onrender.com/api/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
