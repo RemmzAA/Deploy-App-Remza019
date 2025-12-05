@@ -1444,9 +1444,12 @@ const AdminDashboard = ({ token, onLogout }) => {
                     >
                       <option value="FORTNITE">FORTNITE</option>
                       <option value="FORTNITE ROCKET RACING">FORTNITE ROCKET RACING</option>
+                      <option value="FORTNITE TOURNAMENT">FORTNITE TOURNAMENT</option>
                       <option value="COD MULTIPLAYER">COD MULTIPLAYER</option>
                       <option value="COD WARZONE">COD WARZONE</option>
-                      <option value="FORTNITE TOURNAMENT">FORTNITE TOURNAMENT</option>
+                      <option value="CRYSIS">CRYSIS</option>
+                      <option value="FAR CRY 6">FAR CRY 6</option>
+                      <option value="HITMAN ABSOLUTION">HITMAN ABSOLUTION</option>
                     </select>
                   </div>
                   
