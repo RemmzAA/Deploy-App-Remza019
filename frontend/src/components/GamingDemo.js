@@ -891,31 +891,6 @@ const GamingDemo = () => {
           </div>
         </motion.section>
 
-        {/* Stream Schedule */}
-        <motion.section 
-          className="stream-schedule"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <h2>📅 {t('weeklySchedule')}</h2>
-          <div className="schedule-grid">
-            {schedule.map((slot, index) => (
-              <motion.div 
-                key={slot.id || `${slot.day}-${index}`}
-                className={`schedule-card matrix-card ${slot.day === 'SUN' || slot.day === 'sunday' ? 'rest-day' : ''}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.8 + 0.05 * index }}
-              >
-                <div className="schedule-day">{slot.day}</div>
-                <div className="schedule-time">{slot.time}</div>
-                <div className="schedule-game">{slot.game}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
         {/* Community Section */}
         <motion.section 
           className="community-section"
