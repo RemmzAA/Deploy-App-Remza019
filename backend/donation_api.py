@@ -11,7 +11,9 @@ import json
 import os
 import logging
 from motor.motor_asyncio import AsyncIOMotorClient
-from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
+# emergentintegrations not available in production - commented out
+# from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
+# Note: Stripe integration requires manual setup with stripe library
 import asyncio
 import smtplib
 from email.mime.text import MIMEText
