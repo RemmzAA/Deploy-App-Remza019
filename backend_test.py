@@ -1348,7 +1348,7 @@ class BackendTester:
 async def main():
     """Main test execution for Member & License System"""
     # Configuration
-    BASE_URL = "https://memberhub-21.preview.emergentagent.com"
+    BASE_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
     ADMIN_USERNAME = "admin"
     ADMIN_PASSWORD = "remza019admin"
     
