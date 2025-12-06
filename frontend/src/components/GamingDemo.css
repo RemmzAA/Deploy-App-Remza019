@@ -88,12 +88,15 @@
 }
 
 .header-brand h1 {
-  font-family: 'UnifrakturMaguntia', 'Metal Mania', 'Nosifer', serif;
+  font-family: 'Orbitron', 'Rajdhani', 'Exo 2', 'Montserrat', sans-serif;
   font-size: 3.5rem;
   font-weight: 900;
   color: var(--text-color);
-  text-shadow: 0 0 20px rgba(var(--theme-primary-rgb), 0.8);
-  letter-spacing: 3px;
+  text-shadow: 
+    0 0 20px rgba(var(--theme-primary-rgb), 0.8),
+    0 0 30px rgba(var(--theme-primary-rgb), 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 4px;
   margin: 0;
   text-transform: uppercase;
 }
