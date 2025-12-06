@@ -26,35 +26,7 @@ const Logo3D = ({ logoUrl = '/remza-logo.png', userName = 'REMZA019', licenseTyp
             <div className="letter-r">R</div>
           </div>
         </div>
-      ) : (
-        // Premium: Custom logo (shown for PREMIUM users)
-        <div className="logo-3d-cube premium">
-          <div className="cube-face cube-front">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-          <div className="cube-face cube-back">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-          <div className="cube-face cube-right">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-          <div className="cube-face cube-left">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-          <div className="cube-face cube-top">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-          <div className="cube-face cube-bottom">
-            <img src={logoUrl} alt={userName} className="logo-img" />
-          </div>
-        </div>
-      )}
       <div className="logo-glow-effect"></div>
-      {showWatermark && (
-        <div className="watermark-badge">
-          <span>🔒 Premium Required</span>
-        </div>
-      )}
     </div>
   );
 };
