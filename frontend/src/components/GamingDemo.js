@@ -777,7 +777,8 @@ const GamingDemo = () => {
         </div>
         
         {/* Header Buttons - Hidden in Distribution Mode */}
-        {!customization.distributionMode && (
+        {/* ADMIN BUTTON - Always visible for OWNER, hidden for distribution */}
+        {(!customization.distributionMode || window.location.hostname === 'localhost') && (
           <motion.button
             className="admin-access-btn"
             onClick={() => setShowAdminPanel(true)}
