@@ -22,7 +22,7 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 # Backend URL from frontend .env
-BACKEND_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
+BACKEND_URL = "https://deployed-app.preview.emergentagent.com"
 
 class ViewerConfigTester:
     def __init__(self):

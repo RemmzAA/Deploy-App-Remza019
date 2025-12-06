@@ -728,7 +728,7 @@ const ActivitiesTab = ({ activities, addPoints }) => {
     
     // Additional actions based on activity type
     if (activity.name === 'Share Stream') {
-      const shareUrl = 'https://gamer-dashboard-5.preview.emergentagent.com';
+      const shareUrl = 'https://deployed-app.preview.emergentagent.com';
       navigator.clipboard.writeText(shareUrl).then(() => {
         alert('📋 Stream link copied to clipboard!');
       });

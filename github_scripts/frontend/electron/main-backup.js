@@ -7,7 +7,7 @@ const https = require('https');
 const APP_VERSION = '1.0.0';
 const UPDATE_CHECK_INTERVAL = 30 * 60 * 1000; // 30 minutes
 const HEARTBEAT_INTERVAL = 5 * 60 * 1000; // 5 minutes
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://gamer-dashboard-5.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://deployed-app.preview.emergentagent.com';
 
 let mainWindow;
 let tray;

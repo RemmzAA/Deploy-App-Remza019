@@ -12,7 +12,7 @@ Saw your recent [VIDEO/STREAM TITLE] – love the [specific compliment about the
 
 As you grow to [FOLLOWERS COUNT], you need more than just social media links. Your audience needs a professional hub.
 
-We built this for REMZA019 Gaming: https://gamer-dashboard-5.preview.emergentagent.com
+We built this for REMZA019 Gaming: https://deployed-app.preview.emergentagent.com
 
 What makes it unique:
 ✅ Custom Admin Panel (you control everything - no coding)
@@ -76,7 +76,7 @@ We built a **multi-tenant system** for gaming organizations:
 • Central dashboard for org management
 • Payment routing (org gets % of donations)
 
-Demo: https://gamer-dashboard-5.preview.emergentagent.com
+Demo: https://deployed-app.preview.emergentagent.com
 
 Perfect for:
 ✅ Esports teams
@@ -107,7 +107,7 @@ Noticed you work with gaming creators at [COMPANY]. Quick question:
 
 How are your creators building their web presence beyond social media?
 
-We built this for streamers: https://gamer-dashboard-5.preview.emergentagent.com
+We built this for streamers: https://deployed-app.preview.emergentagent.com
 (Custom CMS, payment integration, real-time updates)
 
 Most streamers use Linktree ($0) or pay $50k+ for custom dev. We're in the middle ($15k-$50k one-time or $49-$99/mo SaaS).
@@ -130,7 +130,7 @@ Hey r/Twitch!
 
 I built a professional website for a gaming streamer friend (REMZA019) and thought I'd share for feedback.
 
-🔗 Live site: https://gamer-dashboard-5.preview.emergentagent.com
+🔗 Live site: https://deployed-app.preview.emergentagent.com
 
 **Features:**
 - Custom Admin Panel (streamer controls all content - no dev needed)
@@ -266,7 +266,7 @@ REMZA019 was growing fast on YouTube/Twitch but lacked a professional home base 
 
 ---
 
-**Live Demo:** https://gamer-dashboard-5.preview.emergentagent.com  
+**Live Demo:** https://deployed-app.preview.emergentagent.com  
 **GitHub:** [Private Repository - 019Solutions Proprietary]
 
 ---

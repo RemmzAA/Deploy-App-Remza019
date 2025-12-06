@@ -14,7 +14,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Production URL from review request
-BACKEND_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
+BACKEND_URL = "https://deployed-app.preview.emergentagent.com"
 API_BASE_URL = f"{BACKEND_URL}/api"
 
 class ProductionBackendTester:

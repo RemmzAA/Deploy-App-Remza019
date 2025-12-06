@@ -255,7 +255,7 @@ async def send_verification_email(email: str, username: str, token: str):
         msg['To'] = email
         
         # Verification URL (redirect to frontend)
-        verification_url = f"https://gamer-dashboard-5.preview.emergentagent.com/?verify={token}&email={email}"
+        verification_url = f"https://deployed-app.preview.emergentagent.com/?verify={token}&email={email}"
         
         # Attach HTML content
         html_content = VERIFICATION_EMAIL_TEMPLATE.format(

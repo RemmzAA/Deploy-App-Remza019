@@ -11,7 +11,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from environment
-BACKEND_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
+BACKEND_URL = "https://deployed-app.preview.emergentagent.com"
 API_BASE_URL = f"{BACKEND_URL}/api"
 
 class PriorityTester:
@@ -103,7 +103,7 @@ class PriorityTester:
             "donor_name": "Test Supporter",
             "donor_email": "test@remza019gaming.com",
             "message": "Keep up the great FORTNITE content!",
-            "origin_url": "https://gamer-dashboard-5.preview.emergentagent.com"
+            "origin_url": "https://deployed-app.preview.emergentagent.com"
         }
         
         success, result = await self.test_api_endpoint("/donations/checkout", method="POST", data=coffee_checkout)
@@ -133,7 +133,7 @@ class PriorityTester:
             "donor_name": "Custom Supporter",
             "donor_email": "custom@remza019gaming.com",
             "message": "Custom support for REMZA019!",
-            "origin_url": "https://gamer-dashboard-5.preview.emergentagent.com"
+            "origin_url": "https://deployed-app.preview.emergentagent.com"
         }
         
         success, result = await self.test_api_endpoint("/donations/checkout", method="POST", data=custom_checkout)
@@ -249,7 +249,7 @@ class PriorityTester:
             "donor_name": "Test User",
             "donor_email": "test@example.com",
             "message": "Test message",
-            "origin_url": "https://gamer-dashboard-5.preview.emergentagent.com"
+            "origin_url": "https://deployed-app.preview.emergentagent.com"
         }
         
         success, result = await self.test_api_endpoint("/donations/checkout", method="POST", data=invalid_donation, expected_status=400)
@@ -262,7 +262,7 @@ class PriorityTester:
             "donor_name": "Test User",
             "donor_email": "test@example.com",
             "message": "Test message",
-            "origin_url": "https://gamer-dashboard-5.preview.emergentagent.com"
+            "origin_url": "https://deployed-app.preview.emergentagent.com"
         }
         
         success, result = await self.test_api_endpoint("/donations/checkout", method="POST", data=low_amount, expected_status=400)

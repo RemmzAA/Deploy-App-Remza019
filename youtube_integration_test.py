@@ -445,7 +445,7 @@ class YouTubeIntegrationTester:
 async def main():
     """Main test execution"""
     # Configuration from review request
-    BASE_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
+    BASE_URL = "https://deployed-app.preview.emergentagent.com"
     ADMIN_USERNAME = "admin"
     ADMIN_PASSWORD = "remza019admin"
     

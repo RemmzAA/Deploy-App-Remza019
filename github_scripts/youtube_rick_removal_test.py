@@ -30,7 +30,7 @@ if frontend_env_path.exists():
 
 if not BACKEND_URL:
     print("❌ ERROR: Could not find REACT_APP_BACKEND_URL in frontend/.env")
-    BACKEND_URL = "https://gamer-dashboard-5.preview.emergentagent.com"
+    BACKEND_URL = "https://deployed-app.preview.emergentagent.com"
 
 API_BASE_URL = f"{BACKEND_URL}/api"
 

@@ -475,7 +475,7 @@ async def websocket_stats():
 
 # CORS middleware - Production-ready configuration
 # Get allowed origins from environment variable or use default
-ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', 'https://gamer-dashboard-5.preview.emergentagent.com,https://remza019.ch').split(',')
+ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', 'https://deployed-app.preview.emergentagent.com,https://remza019.ch').split(',')
 
 app.add_middleware(
     CORSMiddleware,
