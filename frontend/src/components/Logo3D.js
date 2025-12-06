@@ -2,19 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Logo3D.css';
 
 const Logo3D = ({ logoUrl = '/remza-logo.png', userName = 'REMZA019', licenseType = 'NONE' }) => {
-  const [showWatermark, setShowWatermark] = useState(true);
-  
-  // Show 3D "R" watermark only if user doesn't have PREMIUM license
-  useEffect(() => {
-    const isPremium = licenseType === 'PREMIUM';
-    setShowWatermark(!isPremium);
-  }, [licenseType]);
-  
+  // ALWAYS show "R" watermark cube (removed premium/NONE logic)
   return (
     <div className="logo-3d-container">
-      {showWatermark ? (
-        // Watermark: 3D rotating "R" (shown for non-PREMIUM users)
-        <div className="logo-3d-cube watermark">
+      {/* Always show 3D rotating "R" */}
+      <div className="logo-3d-cube watermark">
           <div className="cube-face cube-front">
             <div className="letter-r">R</div>
           </div>
