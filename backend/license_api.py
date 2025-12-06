@@ -49,8 +49,8 @@ class DeactivateLicenseRequest(BaseModel):
     reason: Optional[str] = None
 
 # Helper Functions
-def generate_license_key(license_type: str = "FULL") -> str:
-    """Generate a unique license key"""
+def generate_license_key(license_type: str = "TRIAL") -> str:
+    """Generate a unique license key in format: TYPE-XXXXX-XXXXX-XXXXX"""
     prefix = license_type.upper()
     
     # Generate 3 segments of 5 random uppercase alphanumeric characters
