@@ -701,7 +701,7 @@ button, .btn, .matrix-button {
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Pirata+One&family=Metal+Mania&family=Nosifer&family=UnifrakturMaguntia:wght@400&display=swap');
 
 .gaming-header .header-brand h1 {
-  font-family: 'Cinzel', 'UnifrakturMaguntia', 'Metal Mania', 'Pirata One', serif;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
   font-size: 4rem;
   font-weight: 900;
   background: linear-gradient(135deg, var(--matrix-color) 0%, #06b6d4 25%, #34d399 50%, var(--matrix-color) 75%, #059669 100%);
