@@ -269,3 +269,7 @@ RENDER_ENV_QUICK_COPY.txt
 .env.render
 RENDER_ENV_SETUP.md
 RENDER_ENV_QUICK_COPY.txt
+-e 
+# Environment files
+*.env
+*.env.*
