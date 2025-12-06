@@ -123,3 +123,7 @@ temp/
 .LSOverride
 Icon
 ._*
+-e 
+# Environment files
+*.env
+*.env.*
