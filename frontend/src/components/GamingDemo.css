@@ -714,15 +714,6 @@ button, .btn, .matrix-button {
     2px 2px 6px rgba(0, 0, 0, 0.9);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    1px 1px 0 #000,
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000,
-    -3px -3px 0 #000,
-    3px -3px 0 #000,
-    -3px 3px 0 #000,
-    3px 3px 0 #000;
   position: relative;
   text-transform: uppercase;
   font-style: normal;
